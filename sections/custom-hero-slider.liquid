@@ -1,0 +1,593 @@
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+{%- style -%}
+  #{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    {% if section.settings.background_color != blank %}
+      background-color:{{ section.settings.background_color }};
+    {% endif %}
+    {% if section.settings.bg_image != blank %}
+      background-image: url({{ section.settings.bg_image | image_url }});
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    {% endif %}
+    position: relative;
+    overflow: hidden;
+  }
+
+  {%- assign adapt_image = section.settings.bg_image -%}
+  {%- if adapt_image == blank and section.blocks.size > 0 -%}
+    {%- assign adapt_image = section.blocks.first.settings.slide_image -%}
+  {%- endif -%}
+
+  {%- assign adapt_mobile_image = section.settings.mobile_bg_image -%}
+  {%- if adapt_mobile_image == blank and section.blocks.size > 0 -%}
+    {%- assign adapt_mobile_image = section.blocks.first.settings.slide_mobile_image -%}
+  {%- endif -%}
+  {%- if adapt_mobile_image == blank -%}
+    {%- assign adapt_mobile_image = adapt_image -%}
+  {%- endif -%}
+
+  {% if section.settings.adapt_height and adapt_image != blank %}
+    #{{ section.id }} {
+      aspect-ratio: {{ adapt_image.aspect_ratio }};
+    }
+  {% else %}
+    #{{ section.id }} {
+      min-height: 600px;
+    }
+  {% endif %}
+
+  #{{ section.id }} .page-width {
+    max-width: {{ section.settings.page_width }}px;
+    padding: 0 60px;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  @media screen and (max-width: 1024px) {
+    #{{ section.id }} {
+      padding-top: {{ section.settings.tablet_padding_top }}px;
+      padding-bottom: {{ section.settings.tablet_padding_bottom }}px;
+    }
+    #{{ section.id }} .page-width {
+      padding: 0 60px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    #{{ section.id }} {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+      {% if section.settings.mobile_bg_image != blank %}
+        background-image: url({{ section.settings.mobile_bg_image | image_url }});
+      {% endif %}
+    }
+    {% if section.settings.adapt_height and adapt_mobile_image != blank %}
+      #{{ section.id }} {
+        aspect-ratio: {{ adapt_mobile_image.aspect_ratio }};
+      }
+    {% else %}
+      #{{ section.id }} {
+        min-height: 500px;
+      }
+    {% endif %}
+  }
+
+  /* Swiper styles */
+  .swiper-{{ section.id }} {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  .swiper-slide-{{ section.id }} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  /* Slide specific background if provided */
+  .slide-bg-{{ section.id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+
+  .slide-mobile-bg-{{ section.id }} {
+    display: none;
+  }
+
+  .slide-content-container-{{ section.id }} {
+    width: 100%;
+    max-width: {{ section.settings.page_width }}px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: flex;
+    justify-content: flex-end; 
+    height: 100%;
+    align-items: center;
+  }
+
+  .slide-content-{{ section.id }} {
+    max-width: 580px;
+    text-align: center;
+    padding: 40px 0px;
+    margin: 0 10% 0 auto;
+  }
+
+  .slide-review-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 22px;
+    font-size: 10px;
+    color: #0A2540;
+    font-weight: 300;
+    font-family: var(--font-stack-body);
+  }
+  .slide-review-{{ section.id }} strong{
+    font-weight: 700;
+  }
+
+  .slide-stars-{{ section.id }} {
+    color: #d69e2e;
+    letter-spacing: 2px;
+  }
+
+  .slide-title-{{ section.id }} {
+    margin-bottom: 22px;
+    color: #0A2540;
+    font-family: var(--font-stack-body);
+    font-weight: 200;
+    font-size: 52px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    padding: 0 10px;
+  }
+
+  .slide-subtitle-{{ section.id }} {
+    font-size: 16px;
+    line-height: 1.6;
+    font-family: var(--font-stack-body);
+    color: #0A2540;
+    margin-bottom: 30px;
+    font-weight: 200;
+  }
+
+  .slide-button-{{ section.id }} {
+    display: inline-block;
+    background-color: #0A2540;
+    color: #ffffff;
+    padding: 14px 32px;
+    text-decoration: none;
+    font-family: var(--font-stack-body);
+    font-size: 14px;
+    font-weight: 200;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+  }
+
+  .slide-button-{{ section.id }}:hover {
+    background-color: #2d3748;
+  }
+
+  .slide-logos-{{ section.id }} {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    z-index: 10;
+  }
+
+  .slide-logos-{{ section.id }} img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  /* Pagination */
+  .swiper-{{ section.id }} .swiper-pagination {
+    text-align: left;
+    padding-left: 30px;
+    bottom: 30px !important;
+  }
+
+  .swiper-{{ section.id }} .swiper-pagination-bullet {
+    background: #0000;
+    border: 1px solid #fff;
+    width: 12px;
+    height: 12px;
+    margin:0 !important;
+  }
+  .swiper-{{ section.id }} .swiper-pagination-bullet:before,
+  .swiper-{{ section.id }} .swiper-pagination-bullet:after {
+    display: none;
+  }
+  .swiper-{{ section.id }} .swiper-pagination-bullet-active {
+    background: #fff;
+    opacity: 1;
+    border-color: #fff;
+  }
+  .swiper-{{ section.id }} .swiper-pagination.swiper-pagination-clickable {
+    justify-content: start;
+    gap: 15px;
+  }   
+
+  @media screen and (max-width: 1024px) {
+    .slide-content-{{ section.id }} {
+      margin: 0 5% 0 auto;
+    }
+  }
+  @media screen and (max-width: 991px) {
+    .slide-content-{{ section.id }} {
+      margin: 0 8% 0 auto;
+      max-width: 480px;
+    }
+    .slide-title-{{ section.id }} {
+      font-size: 42px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .slide-bg-{{ section.id }} {
+      display: none;
+    }
+    .slide-mobile-bg-{{ section.id }} {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .swiper-{{ section.id }} .swiper-pagination.swiper-pagination-clickable {
+        display: none;
+    }
+    .slide-review-{{ section.id }} {
+        font-size: 10px;
+        margin: 0 0 15px;
+    }
+    .slide-content-container-{{ section.id }} {
+      justify-content: center;
+      align-items: flex-end; /* Or center based on need */
+    }
+
+    .slide-content-{{ section.id }} {
+      padding: 30px 0px;
+      margin: 150px 0 0; /* Push down to avoid covering top image on mobile */
+    }
+    .slide-subtitle-{{ section.id }} {
+        font-size: 13px;
+        margin: 0 0 15px;
+    }
+    .slide-title-{{ section.id }} {
+        font-size: 30px;
+        padding: 0;
+        margin: 0 0 15px;
+    }
+
+    .slide-logos-{{ section.id }} {
+      position: static;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .swiper-{{ section.id }} .swiper-pagination {
+      text-align: center;
+      padding-left: 0;
+      bottom: 15px !important;
+    }
+  }
+{%- endstyle -%}
+
+<!-- Swiper CSS -->
+
+<section id="{{ section.id }}" class="custom-slider-section {{ section.settings.custom_class }}">
+  <div class="swiper swiper-{{ section.id }}">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        <div class="swiper-slide swiper-slide-{{ section.id }}" {{ block.shopify_attributes }}>
+          {%- assign bg_class = 'slide-bg-' | append: section.id -%}
+          {%- assign mobile_bg_class = 'slide-mobile-bg-' | append: section.id -%}
+          {%- if block.settings.slide_image != blank -%}
+            {{ block.settings.slide_image | image_url: width: 2000 | image_tag: class: bg_class, loading: 'lazy' }}
+          {%- endif -%}
+
+          {%- if block.settings.slide_mobile_image != blank -%}
+            {{
+              block.settings.slide_mobile_image
+              | image_url: width: 800
+              | image_tag: class: mobile_bg_class, loading: 'lazy'
+            }}
+          {%- elsif block.settings.slide_image != blank -%}
+            {{
+              block.settings.slide_image
+              | image_url: width: 800
+              | image_tag: class: mobile_bg_class, loading: 'lazy'
+            }}
+          {%- endif -%}
+
+          <div class="slide-content-container-{{ section.id }}">
+            <div class="slide-content-{{ section.id }}">
+              {% if block.settings.review_text != blank %}
+                <div class="slide-review-{{ section.id }}">
+                  <span class="slide-stars-{{ section.id }}">★★★★★</span>
+                  <span>{{ block.settings.review_text }}</span>
+                </div>
+              {% endif %}
+
+              {% if block.settings.title != blank %}
+                <h2 class="slide-title-{{ section.id }}">{{ block.settings.title }}</h2>
+              {% endif %}
+
+              {% if block.settings.subtitle != blank %}
+                <p class="slide-subtitle-{{ section.id }}">{{ block.settings.subtitle }}</p>
+              {% endif %}
+
+              {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+                <a href="{{ block.settings.button_link }}" class="slide-button-{{ section.id }}">
+                  {{ block.settings.button_label }}
+                </a>
+              {% endif %}
+
+              {% if block.settings.logo_1 != blank or block.settings.logo_2 != blank %}
+                <div class="slide-logos-{{ section.id }}">
+                  {% if block.settings.logo_1 != blank %}
+                    {{ block.settings.logo_1 | image_url: width: 150 | image_tag: loading: 'lazy' }}
+                  {% endif %}
+                  {% if block.settings.logo_2 != blank %}
+                    {{ block.settings.logo_2 | image_url: width: 150 | image_tag: loading: 'lazy' }}
+                  {% endif %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
+<!-- Swiper JS -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var swiper = new Swiper('.swiper-{{ section.id }}', {
+      loop: true,
+      pagination: {
+        el: '.swiper-{{ section.id }} .swiper-pagination',
+        clickable: true,
+      },
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Hero Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "header",
+      "content": "General settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "adapt_height",
+      "label": "Adapt height to background image",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "page_width",
+      "label": "Page Width",
+      "info": "Add PX number",
+      "default": 1440
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Desktop background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg_image",
+      "label": "Mobile background image"
+    },
+    {
+      "type": "header",
+      "content": "Desktop section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Tablet section padding"
+    },
+    {
+      "type": "range",
+      "id": "tablet_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "tablet_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Mobile section padding"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Custom attributes"
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom classes"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "slide_image",
+          "label": "Slide Image (Desktop)"
+        },
+        {
+          "type": "image_picker",
+          "id": "slide_mobile_image",
+          "label": "Slide Image (Mobile)"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "review_text",
+          "label": "Review Text",
+          "default": "Loved by 1,000 customers based on 193 reviews"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Trending jewellery you can wear on repeat"
+        },
+        {
+          "type": "textarea",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Shop on-trend, versatile designs made with special care, with stainless steel favorites that are loved for their look and sensitive-skin friendliness."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "SHOP BEST SELLERS"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "header",
+          "content": "Bottom Right Logos"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo_1",
+          "label": "Logo 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo_2",
+          "label": "Logo 2"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Slider",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

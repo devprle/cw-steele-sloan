@@ -1,0 +1,486 @@
+{% style %}
+  #{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.background_color }};
+    overflow: hidden;
+  }
+
+  #{{ section.id }} .coll-slider-wrapper {
+    max-width: {{ section.settings.page_width }}px;
+    margin: 0 auto;
+    padding: 0 60px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  #{{ section.id }} .coll-slider-sidebar {
+    flex: 0 0 194px;
+    min-width: 180px;
+  }
+
+  #{{ section.id }} .coll-slider-sidebar h2 {
+    font-family: 'Inter', sans-serif;
+    color: {{ section.settings.text_color }};
+    margin: 0;
+    max-width: 200px;
+    font-weight: 200;
+    font-size: 42px;
+    line-height: 100%;
+    letter-spacing: 0%;
+  }
+
+  #{{ section.id }} .coll-slider-outer {
+    flex: 1;
+    position: relative;
+    width: 100%;
+  }
+
+  #{{ section.id }} .coll-slider-content {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+    user-select: none;
+  }
+
+  #{{ section.id }} .coll-slider-content:active {
+    cursor: grabbing;
+  }
+
+  #{{ section.id }} .coll-slider-content::-webkit-scrollbar {
+    display: none;
+  }
+
+  #{{ section.id }} .coll-slider-item {
+    flex: 0 0 132px;
+    width: 132px;
+    text-align: center;
+    position: relative;
+    text-decoration: none;
+    display: block;
+    -webkit-user-drag: none;
+  }
+
+  #{{ section.id }} .coll-image-holder {
+    width: 132px;
+    height: 132px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    background-color: #eee;
+    transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.25s ease;
+    border: 2px solid transparent;
+  }
+
+  #{{ section.id }} .coll-image-holder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+    -webkit-user-drag: none;
+  }
+
+  #{{ section.id }} .coll-image-holder::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, {{ section.settings.overlay_opacity | divided_by: 100.0 }});
+    z-index: 1;
+    transition: background 0.25s ease;
+  }
+
+  #{{ section.id }} .coll-item-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    z-index: 2;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: {{ section.settings.item_text_color }};
+    line-height: 1.2;
+    word-wrap: break-word;
+    pointer-events: none;
+  }
+
+  #{{ section.id }} .coll-slider-item:hover .coll-image-holder {
+    transform: scale(1.04);
+  }
+
+  #{{ section.id }} .coll-slider-item.is-active .coll-image-holder {
+    border-color: {{ section.settings.active_border_color }};
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  }
+
+  #{{ section.id }} .coll-slider-item.is-active .coll-image-holder::before {
+    background: rgba(0, 0, 0, calc({{ section.settings.overlay_opacity | divided_by: 100.0 }} + 0.15));
+  }
+
+  @media screen and (max-width: 1024px) {
+    #{{ section.id }} .coll-slider-wrapper {
+      padding: 0 30px;
+      gap: 30px;
+    }
+
+    #{{ section.id }} .coll-slider-sidebar h2 {
+      font-size: 36px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    #{{ section.id }} .coll-slider-wrapper {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0 0px;
+      gap: 0px;
+    }
+
+    #{{ section.id }} .coll-slider-content {
+      padding: 15px 0 0;
+    }
+
+    #{{ section.id }} {
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+
+    #{{ section.id }} .coll-slider-sidebar h2 {
+      font-family: Inter;
+      font-weight: 200;
+      font-size: 18px;
+      line-height: 100%;
+      letter-spacing: 0;
+      text-align: center;
+      color: #000000;
+      max-width: 100%;
+    }
+
+    #{{ section.id }} .coll-slider-sidebar {
+      flex: none;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    #{{ section.id }} .coll-slider-outer {
+      width: 100%;
+    }
+
+    #{{ section.id }} .coll-image-holder {
+      width: 75px;
+      height: 75px;
+    }
+
+    #{{ section.id }} .coll-slider-item {
+      flex: 0 0 75px;
+      width: 75px;
+    }
+
+    #{{ section.id }} .coll-item-title {
+      font-size: 12px;
+    }
+  }
+{% endstyle %}
+
+<section id="{{ section.id }}" class="collection-slider-section {{ section.settings.custom_class }}">
+  <div class="coll-slider-wrapper">
+
+    <div class="coll-slider-sidebar">
+      <h2>{{ section.settings.title }}</h2>
+    </div>
+
+    <div class="coll-slider-outer">
+      <div class="coll-slider-content" id="Slider-{{ section.id }}">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'collection_item' -%}
+            {%- assign featured_collection = collections[block.settings.collection] -%}
+
+            {%- if featured_collection != blank -%}
+
+              {%- liquid
+                assign is_active = false
+                if template.name == 'collection' and collection.handle == featured_collection.handle
+                  assign is_active = true
+                endif
+              -%}
+
+              <a href="{{ featured_collection.url }}" class="coll-slider-item {% if is_active %}is-active{% endif %}" {{ block.shopify_attributes }}>
+                <div class="coll-image-holder">
+                  {%- if block.settings.custom_image != blank -%}
+                    <img src="{{ block.settings.custom_image | image_url: width: 300 }}" alt="{{ featured_collection.title | escape }}" loading="lazy" width="140" height="140">
+                  {%- elsif featured_collection.featured_image != blank -%}
+                    <img src="{{ featured_collection.featured_image | image_url: width: 300 }}" alt="{{ featured_collection.title | escape }}" loading="lazy" width="140" height="140">
+                  {%- else -%}
+                    {{ 'image' | placeholder_svg_tag }}
+                  {%- endif -%}
+                </div>
+
+                <span class="coll-item-title">
+                  {%- if block.settings.custom_title != blank -%}
+                    {{ block.settings.custom_title }}
+                  {%- else -%}
+                    {{ featured_collection.title }}
+                  {%- endif -%}
+                </span>
+              </a>
+
+            {%- else -%}
+
+              <div class="coll-slider-item">
+                <div class="coll-image-holder">
+                  {{ 'collection-1' | placeholder_svg_tag }}
+                </div>
+                <span class="coll-item-title">College Name</span>
+              </div>
+
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection Nav Slider",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Sidebar Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Browse Colleges"
+    },
+    {
+      "type": "header",
+      "content": "Style & Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#eeeeee"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Sidebar Title Color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "item_text_color",
+      "label": "Circle Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "active_border_color",
+      "label": "Active Item Border Color",
+      "default": "#d1b06b"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Circle Image Dark Overlay",
+      "default": 40
+    },
+    {
+      "type": "number",
+      "id": "page_width",
+      "label": "Page Width (px)",
+      "default": 1300
+    },
+    {
+      "type": "header",
+      "content": "Desktop Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_item",
+      "name": "Collection Circle",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "Custom Circle Image"
+        },
+        {
+          "type": "text",
+          "id": "custom_title",
+          "label": "Custom Title Over Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Nav Slider",
+      "blocks": [
+        {
+          "type": "collection_item"
+        },
+        {
+          "type": "collection_item"
+        },
+        {
+          "type": "collection_item"
+        },
+        {
+          "type": "collection_item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  #{{ section.id }} .coll-slider-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    overflow: visible;
+    scroll-behavior: auto;
+    scrollbar-width: auto;
+    cursor: default;
+    user-select: auto;
+    max-height: none;
+  }
+
+  #{{ section.id }} .coll-slider-item {
+    flex: 0 0 auto;
+    width: auto;
+    text-align: center;
+    position: relative;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border-radius: 999px;
+    border: 1px solid rgba(10, 37, 64, 0.25);
+    overflow: hidden;
+    background: #eeeeee;
+    transition: all 0.25s ease;
+  }
+
+  #{{ section.id }} .coll-image-holder {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 999px;
+    overflow: hidden;
+    background-color: #eee;
+    border: none;
+    z-index: 0;
+  }
+
+  #{{ section.id }} .coll-image-holder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  #{{ section.id }} .coll-image-holder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, {{ section.settings.overlay_opacity | divided_by: 100.0 }});
+    z-index: 1;
+    transition: background 0.25s ease;
+  }
+
+  #{{ section.id }} .coll-item-title {
+    position: relative;
+    z-index: 2;
+    width: auto;
+    transform: none;
+    top: auto;
+    left: auto;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    color: {{ section.settings.item_text_color }};
+    line-height: 1.2;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  #{{ section.id }} .coll-slider-item:hover {
+    transform: translateY(-1px);
+    border-color: #0A2540;
+  }
+
+  #{{ section.id }} .coll-slider-item:hover .coll-image-holder::before {
+    background: rgba(0, 0, 0, calc({{ section.settings.overlay_opacity | divided_by: 100.0 }} + 0.15));
+  }
+
+  #{{ section.id }} .coll-slider-item.is-active {
+    border: 2px solid {{ section.settings.active_border_color }};
+    box-shadow: 0 0 12px rgba(0,0,0,0.12);
+  }
+
+  #{{ section.id }} .coll-slider-item.is-active .coll-image-holder::before {
+    background: rgba(0, 0, 0, calc({{ section.settings.overlay_opacity | divided_by: 100.0 }} + 0.15));
+  }
+
+  .m-filter--widget-collections {
+    display: none !important;
+  }
+
+  @media screen and (max-width: 767px) {
+    #{{ section.id }} .coll-slider-content {
+      max-height: none;
+      overflow: visible;
+      padding: 10px;
+    }
+  }
+</style>

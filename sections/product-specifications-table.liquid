@@ -1,0 +1,366 @@
+{% style %}
+  #{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.background_color }};
+  }
+
+  #{{ section.id }} .specs-table-container {
+    max-width: {{ section.settings.page_width }}px;
+    margin: 0 auto;
+    padding: 0 60px;
+    width: 100%;
+  }
+
+  #{{ section.id }} .specs-table-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 80px;
+  }
+
+  /* Left Side: Header Content */
+  #{{ section.id }} .specs-content-left {
+    flex: 1;
+    position: sticky;
+    top: 40px;
+  }
+
+  #{{ section.id }} .specs-subheading {
+    font-family: 'Inter', sans-serif;
+    color: {{ section.settings.text_color }};
+    margin: 0 0 22px 0;
+    display: block;
+    font-weight: 200;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 5%;
+    text-transform: uppercase;
+  }
+
+  #{{ section.id }} .specs-main-title {
+    font-family: 'Inter', sans-serif;
+    color: {{ section.settings.text_color }};
+    margin: 0 0 22px 0;
+    font-weight: 200;
+    font-size: 42px;
+    line-height: 100%;
+    letter-spacing: 0%;
+  }
+
+  #{{ section.id }} .specs-main-desc {
+    font-family: 'Inter', sans-serif;
+    color: {{ section.settings.text_color }};
+    margin: 0;
+    font-weight: 200;
+    font-size: 16px;
+    line-height: 130%;
+    letter-spacing: 0%;
+    max-width: 307px;
+  }
+
+  #{{ section.id }} .specs-main-desc p {
+    margin: 0;
+  }
+
+  /* Right Side: Specifications Table Rows */
+  #{{ section.id }} .specs-table-right {
+    flex: 1.9;
+    width: 100%;
+  }
+
+  #{{ section.id }} .specs-row {
+    display: flex;
+    padding: 28px 0;
+    border-bottom: 1px solid {{ section.settings.border_color }};
+    align-items: flex-start;
+  }
+  #{{ section.id }} .specs-row:nth-child(1) {
+    padding-top: 0;
+  }
+
+  #{{ section.id }} .specs-row-label {
+    width: 100%;
+    max-width: 150px;
+    font-family: 'Inter', sans-serif;
+    color: {{ section.settings.text_color }};
+    padding-right: 20px;
+    font-family: Inter;
+    font-weight: 200;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 5%;
+    text-transform: uppercase;
+  }
+
+  #{{ section.id }} .specs-row-value {
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    color: {{ section.settings.text_color }};
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+  }
+
+  #{{ section.id }} .specs-row-value p {
+    margin: 0;
+  }
+
+  /* Tablet Layout Control */
+  @media screen and (max-width: 1024px) {
+    #{{ section.id }} {
+      padding-top: {{ section.settings.tablet_padding_top }}px;
+      padding-bottom: {{ section.settings.tablet_padding_bottom }}px;
+    }
+    #{{ section.id }} .specs-table-container {
+      padding: 0 30px;
+    }
+    #{{ section.id }} .specs-table-inner {
+      gap: 40px;
+    }
+    #{{ section.id }} .specs-main-title {
+      font-size: 34px;
+    }
+  }
+
+  /* Mobile Layout Control */
+  @media screen and (max-width: 767px) {
+    #{{ section.id }} .specs-subheading {
+      margin: 0 0 8px 0;
+    }
+    #{{ section.id }} .specs-main-title {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+    #{{ section.id }} {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+    #{{ section.id }} .specs-table-container {
+      padding: 0 20px;
+    }
+    #{{ section.id }} .specs-table-inner {
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+    }
+    #{{ section.id }} .specs-content-left {
+      position: relative;
+      top: 0;
+    }
+    #{{ section.id }} .specs-table-right {
+      flex: none;
+    }
+    #{{ section.id }} .specs-row {
+      gap: 8px;
+      padding: 10px 0;
+    }
+    #{{ section.id }} .specs-content-left {
+      text-align: center;
+    }
+    #{{ section.id }} .specs-row-label {
+      width: 40%;
+      padding-right: 0;
+    }
+    #{{ section.id }} .specs-row-value {
+      width: 60%;
+    }
+  }
+{% endstyle %}
+
+<section id="{{ section.id }}" class="product-specifications-section {{ section.settings.custom_class }}">
+  <div class="specs-table-container">
+    <div class="specs-table-inner">
+      
+      <!-- Left Side Heading Block -->
+      <div class="specs-content-left">
+        {%- if section.settings.subheading != blank -%}
+          <span class="specs-subheading">{{ section.settings.subheading }}</span>
+        {%- endif -%}
+        
+        {%- if section.settings.title != blank -%}
+          <h2 class="specs-main-title">{{ section.settings.title }}</h2>
+        {%- endif -%}
+        
+        {%- if section.settings.description != blank -%}
+          <div class="specs-main-desc">
+            {{ section.settings.description }}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <!-- Right Side Spec Table Items -->
+      <div class="specs-table-right">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.label != blank or block.settings.value != blank -%}
+            <div class="specs-row" {{ block.shopify_attributes }}>
+              <div class="specs-row-label">
+                {{ block.settings.label }}
+              </div>
+              <div class="specs-row-value">
+                {{ block.settings.value }}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Specifications",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left Block Content"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "SPECIFICATIONS"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Specifications"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Bring on-trend, giftable styles to your shelves, with great quality and pricing, plus the kind of service that keeps retailers coming back</p>"
+    },
+    {
+      "type": "header",
+      "content": "Style & Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f4f4f4"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Row Divider Color",
+      "default": "#d1d1d1"
+    },
+    {
+      "type": "number",
+      "id": "page_width",
+      "label": "Page Width (px)",
+      "default": 1200
+    },
+    {
+      "type": "header",
+      "content": "Desktop Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0, "max": 150, "step": 2, "unit": "px", "label": "Top Padding", "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0, "max": 150, "step": 2, "unit": "px", "label": "Bottom Padding", "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Tablet Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "tablet_padding_top",
+      "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Top Padding", "default": 50
+    },
+    {
+      "type": "range",
+      "id": "tablet_padding_bottom",
+      "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Bottom Padding", "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Mobile Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Top Padding", "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Bottom Padding", "default": 40
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS Class"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "spec_row",
+      "name": "Specification Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label (Left side)",
+          "default": "MATERIAL"
+        },
+        {
+          "type": "richtext",
+          "id": "value",
+          "label": "Value (Right side)",
+          "default": "<p>Chunky silver stainless steel chain</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Specifications",
+      "blocks": [
+        {
+          "type": "spec_row",
+          "settings": { "label": "MATERIAL", "value": "<p>Chunky silver stainless steel chain</p>" }
+        },
+        {
+          "type": "spec_row",
+          "settings": { "label": "FINISH", "value": "<p>Hypoallergenic, tarnish-resistant</p>" }
+        },
+        {
+          "type": "spec_row",
+          "settings": { "label": "CLOSURE", "value": "<p>Lobster clasp with 2\" extender</p>" }
+        },
+        {
+          "type": "spec_row",
+          "settings": { "label": "DIMENSIONS", "value": "<p>Charm approx 1\" H x 3/4\" W</p>" }
+        },
+        {
+          "type": "spec_row",
+          "settings": { "label": "LENGTH", "value": "<p>15.5\" or 18\", both with 2\" extender</p>" }
+        },
+        {
+          "type": "spec_row",
+          "settings": { "label": "CARE", "value": "<p>Wipe with a soft cloth, store flat and dry</p>" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

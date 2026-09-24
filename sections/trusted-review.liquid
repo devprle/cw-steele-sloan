@@ -1,0 +1,516 @@
+{% style %}
+  #{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+
+    {% if section.settings.background_color != blank %}
+      background-color: {{ section.settings.background_color }};
+    {% endif %}
+  }
+
+  #{{ section.id }} .page-width {
+    max-width: {{ section.settings.page_width }}px;
+    padding: 0 60px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  #{{ section.id }} .trusted-review-header {
+    text-align: center;
+    margin-bottom: 90px;
+  }
+
+  #{{ section.id }} .trusted-review-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  #{{ section.id }} .trusted-review-stars {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  #{{ section.id }} .trusted-review-stars svg {
+    width: 14px;
+    height: 14px;
+    fill: #0A2540;
+  }
+
+  #{{ section.id }} .trusted-review-top-text {
+    color: #0A2540;
+    font-family: var(--font-stack-body);
+    font-size: 10px;
+    font-weight: 300;
+    line-height: 1.4;
+  }
+  #{{ section.id }} .trusted-review-top-text strong{
+    font-weight: 700;
+  }
+
+  #{{ section.id }} .trusted-review-heading {
+    margin: 0px 0 21px;
+    color: #0A2540;
+    text-align: center;
+    font-family: var(--font-stack-body);
+    font-size: 52px;
+    font-weight: 200;
+    line-height: 1.1;
+    letter-spacing: 3.1px;
+  }
+
+  #{{ section.id }} .trusted-review-description {
+    color: #667085;
+    text-align: center;
+    font-family: var(--font-stack-body);
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.5;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  #{{ section.id }} .trusted-review-slider {
+  overflow: hidden;
+}
+
+#{{ section.id }} .trusted-review-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+  #{{ section.id }} .trusted-review-card {
+    text-align: center;
+  }
+
+  #{{ section.id }} .trusted-review-image {
+    margin-bottom: 22px;
+  }
+
+  #{{ section.id }} .trusted-review-image img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  #{{ section.id }} .trusted-review-card-stars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    margin-bottom: 16px;
+  }
+
+  #{{ section.id }} .trusted-review-card-stars svg {
+    width: 14px;
+    height: 14px;
+    fill: #0A2540;
+  }
+
+  #{{ section.id }} .trusted-review-text {
+    color: #0A2540;
+    text-align: center;
+    font-family: var(--font-stack-body);
+    font-size: 16px;
+    font-weight: 200;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    max-width: 316px;
+  }
+
+  #{{ section.id }} .trusted-review-author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  #{{ section.id }} .trusted-review-author-image {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  #{{ section.id }} .trusted-review-author-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #{{ section.id }} .trusted-review-author-name {
+    color: #0A2540;
+    font-family: var(--font-stack-body);
+    font-size: 13px;
+    font-weight: 200;
+    line-height: 1.4;
+  }
+
+  @media screen and (max-width: 1024px) {
+    #{{ section.id }} .page-width {
+      padding: 0 15px;
+    }
+    #{{ section.id }} {
+      padding-top: {{ section.settings.tablet_padding_top }}px;
+      padding-bottom: {{ section.settings.tablet_padding_bottom }}px;
+    }
+
+    #{{ section.id }} .trusted-review-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    #{{ section.id }} .trusted-review-heading {
+      font-size: 46px;
+    }
+    #{{ section.id }} .trusted-review-text {
+      margin: 0 auto 10px;
+      max-width: 100%;
+    }
+    #{{ section.id }} .trusted-review-header {
+      margin-bottom: 65px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+
+    #{{ section.id }} {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+
+    #{{ section.id }} .trusted-review-header {
+      margin-bottom: 40px;
+    }
+
+    #{{ section.id }} .trusted-review-heading {
+      font-size: 30px;
+      letter-spacing: 0;
+    }
+    #{{ section.id }} .trusted-review-author-name {
+      font-size: 12px;
+    }
+    #{{ section.id }} .trusted-review-stars svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    #{{ section.id }} .trusted-review-description {
+      font-size: 13px;
+    }
+
+    #{{ section.id }} .trusted-review-slider {
+  overflow: visible;
+}
+
+#{{ section.id }} .trusted-review-grid {
+  display: flex;
+  gap: 0;
+}
+
+#{{ section.id }} .trusted-review-card {
+  width: 85%;
+}
+
+  }
+{% endstyle %}
+
+<section id="{{ section.id }}" class="trusted-review-section {{ section.settings.custom_class }}">
+  <div class="page-width">
+
+    <div class="trusted-review-header">
+
+      <div class="trusted-review-top">
+
+        <div class="trusted-review-stars">
+          {% for i in (1..5) %}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21z"/>
+            </svg>
+          {% endfor %}
+        </div>
+
+        {% if section.settings.top_text != blank %}
+          <div class="trusted-review-top-text">
+            {{ section.settings.top_text }}
+          </div>
+        {% endif %}
+
+      </div>
+
+      {% if section.settings.heading != blank %}
+        <h2 class="trusted-review-heading">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div class="trusted-review-description">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+
+    </div>
+
+    <div class="trusted-review-slider swiper">
+  <div class="trusted-review-grid swiper-wrapper">
+
+    {% for block in section.blocks %}
+      <div class="trusted-review-card swiper-slide">
+
+          <div class="trusted-review-image">
+            {% if block.settings.image != blank %}
+              <img
+                src="{{ block.settings.image | image_url: width: 800 }}"
+                alt="{{ block.settings.author_name }}"
+                width="auto"
+                height="auto"
+              >
+            {% endif %}
+          </div>
+
+          <div class="trusted-review-card-stars">
+            {% for i in (1..5) %}
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 17.27L18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21z"/>
+              </svg>
+            {% endfor %}
+          </div>
+
+          {% if block.settings.review_text != blank %}
+            <div class="trusted-review-text">
+              {{ block.settings.review_text }}
+            </div>
+          {% endif %}
+
+          <div class="trusted-review-author">
+
+            <div class="trusted-review-author-image">
+              {% if block.settings.author_image != blank %}
+                <img
+                  src="{{ block.settings.author_image | image_url: width: 100 }}"
+                  alt="{{ block.settings.author_name }}"
+                  width="auto"
+                  height="auto"
+                >
+              {% endif %}
+            </div>
+
+            {% if block.settings.author_name != blank %}
+              <div class="trusted-review-author-name">
+                {{ block.settings.author_name }}
+              </div>
+            {% endif %}
+
+          </div>
+
+        </div>
+      {% endfor %}
+
+    </div>
+
+  </div>
+</div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+
+    if (window.innerWidth <= 767) {
+
+      new Swiper("#{{ section.id }} .trusted-review-slider", {
+        slidesPerView: 1.15,
+        spaceBetween: 16,
+        freeMode: true,
+      });
+
+    }
+
+  });
+</script>
+{% schema %}
+{
+  "name": "Trusted Reviews",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General settings"
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom class"
+    },
+    {
+      "type": "number",
+      "id": "page_width",
+      "label": "Page width",
+      "default": 1440
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+
+    {
+      "type": "inline_richtext",
+      "id": "top_text",
+      "label": "Top text",
+      "default": "Loved by 1,000 customers based on 193 reviews"
+    },
+
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Loved by customers, trusted by boutiques."
+    },
+
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Fast shipping, beautiful products, and service that keeps people coming back"
+    },
+
+    {
+      "type": "header",
+      "content": "Desktop section padding"
+    },
+
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 80
+    },
+
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 80
+    },
+
+    {
+      "type": "header",
+      "content": "Tablet section padding"
+    },
+
+    {
+      "type": "range",
+      "id": "tablet_padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Tablet top padding",
+      "default": 60
+    },
+
+    {
+      "type": "range",
+      "id": "tablet_padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Tablet bottom padding",
+      "default": 60
+    },
+
+    {
+      "type": "header",
+      "content": "Mobile section padding"
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile top padding",
+      "default": 40
+    },
+
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile bottom padding",
+      "default": 40
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Review image"
+        },
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "Review text",
+          "default": "These earrings are adorable! They arrived quickly and my little girl is so happy with them. Highly recommend!"
+        },
+        {
+          "type": "image_picker",
+          "id": "author_image",
+          "label": "Author image"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author name",
+          "default": "Jessica on 24 Mar, 2026"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Trusted Reviews",
+      "blocks": [
+        {
+          "type": "review"
+        },
+        {
+          "type": "review"
+        },
+        {
+          "type": "review"
+        },
+        {
+          "type": "review"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

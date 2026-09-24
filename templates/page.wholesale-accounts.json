@@ -1,0 +1,579 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "disabled": true,
+      "settings": {}
+    },
+    "image_with_text_e8n9dC": {
+      "type": "image-with-text",
+      "disabled": true,
+      "name": "Image with text",
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "container": "container-fluid",
+        "color_scheme": "",
+        "item_gap": 42,
+        "item_gap_mobile": 30,
+        "layout": "left",
+        "image_column_size": "6",
+        "image_overlap": false,
+        "show_image_reverse": false,
+        "hover_effect": false,
+        "image_animation": "none",
+        "image": "shopify://shop_images/rs_w_1240_cg_true-modified.png",
+        "link": "",
+        "link_2": "",
+        "second_image_offset_top": 10,
+        "title": "Wholesale for Gift Shops and Boutiques",
+        "sub_title": "",
+        "text": "",
+        "text_size": "medium",
+        "content_alignment": "left",
+        "button_label": "FIND OUT MORE",
+        "button_link": "shopify://pages/contact",
+        "button_style": "m-button--secondary",
+        "button_size": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "custom_content_WMpdjk": {
+      "type": "custom-content",
+      "blocks": {
+        "image_r6JNkX": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "link": "",
+            "width": "100%",
+            "alignment": "center",
+            "block_custom_class": "",
+            "animations": "inherit",
+            "enable_preload_image": false
+          }
+        },
+        "text_AwNkz9": {
+          "type": "text",
+          "settings": {
+            "title": "Wholesale for Gift Shops and Boutiques",
+            "subheading": "",
+            "text": "<h4>Wholesale Account Information & Ordering</h4><p>Please contact me at <strong>info@steelesloandesigns</strong> regarding wholesale account ordering for your retail boutique and wholesale for gift shops OR  Use my DIRECT LINK below to order on Faire<br/></p><p>FAIRE Wholesale - <strong>Click on link below:</strong></p><p><a href=\"https://www.faire.com/direct/steelesloandesigns\" target=\"_blank\" title=\"https://www.faire.com/direct/steelesloandesigns\"><strong>https://faire.com/direct/steelesloandesigns</strong></a></p><p><strong>Use my direct link for </strong>50% off the first order (up to $150 max discount) +1 year of free  shipping with Steele Sloan Designs!    </p><p>TOP SHOP and all 5-star reviews (see more on Faire :) )</p><p>Gift Wholesaler and Jewelry Wholesaler -Hypoallergenic earrings in a wide range of designs including gameday and collegiate licensed products for your favorite teams. </p>",
+            "width": "100%",
+            "alignment": "center",
+            "align_text": "left",
+            "text_size": "medium",
+            "text_color": "inherit",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "m-button--primary",
+            "button_size": "",
+            "block_custom_class": "",
+            "animations": "inherit"
+          }
+        }
+      },
+      "block_order": [
+        "image_r6JNkX",
+        "text_AwNkz9"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "description": "",
+        "header_alignment": "center",
+        "container": "container",
+        "color_scheme": "",
+        "content_color_scheme": "",
+        "enable_parallax": false,
+        "parallax_direction": "vertical",
+        "gap": 30,
+        "gap_mobile": 16,
+        "use_scroll_mobile": false,
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "enable_preload_image": false,
+        "custom_class": ""
+      }
+    },
+    "ss_testimonials_jBtggp": {
+      "type": "SS-Testimonials",
+      "blocks": {
+        "slide_bDrdyc": {
+          "type": "slide",
+          "settings": {
+            "stars_count": 5,
+            "heading": "Loooovvveeee! ",
+            "text": "Getting so many compliments on the quality of the product! I will for sure be ordering many more! Thank you so much!",
+            "author_date": ""
+          }
+        },
+        "slide_9KK3z8": {
+          "type": "slide",
+          "settings": {
+            "stars_count": 5,
+            "heading": "Really beautiful and even prettier in person",
+            "text": "The pictures don’t do it enough justice. These are stunning, shiny, and so well detailed in person!",
+            "author_date": ""
+          }
+        },
+        "slide_aG3D3h": {
+          "type": "slide",
+          "settings": {
+            "stars_count": 5,
+            "heading": "Quality jewelry! ",
+            "text": "LOVE everything! Sold a necklace 5 minutes after setting it out!",
+            "author_date": ""
+          }
+        },
+        "slide_VrWkEh": {
+          "type": "slide",
+          "settings": {
+            "stars_count": 5,
+            "heading": "I love these products and the purchasing experience",
+            "text": "They came quickly and packed with such care!",
+            "author_date": "Cathrine"
+          }
+        },
+        "slide_QWBczb": {
+          "type": "slide",
+          "settings": {
+            "stars_count": 5,
+            "heading": "Always quality",
+            "text": "One of my favorite companies to order from! You’ll never be disappointed with their quality or service",
+            "author_date": ""
+          }
+        },
+        "slide_EUgdcR": {
+          "type": "slide",
+          "settings": {
+            "stars_count": 5,
+            "heading": "Exceeded our expectations!",
+            "text": "Customers absolutely love them!! They’re dainty but can be seen!",
+            "author_date": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_bDrdyc",
+        "slide_9KK3z8",
+        "slide_aG3D3h",
+        "slide_VrWkEh",
+        "slide_QWBczb",
+        "slide_EUgdcR"
+      ],
+      "disabled": true,
+      "name": "SS - Testimonial #8",
+      "settings": {
+        "heading": "Latest Reviews",
+        "heading_custom": false,
+        "heading_font": "josefin_sans_n4",
+        "heading_size": 40,
+        "heading_size_mobile": 24,
+        "heading_height": 130,
+        "heading_align": "center",
+        "rating_text": "",
+        "rating_text_custom": false,
+        "rating_text_font": "josefin_sans_n4",
+        "rating_text_size": 24,
+        "rating_text_size_mobile": 20,
+        "rating_text_height": 130,
+        "rating_text_mt": 16,
+        "rating": 4.7,
+        "rating_hide": true,
+        "rating_text_hide": true,
+        "rating_align": "center",
+        "stars_count": 5,
+        "stars_size": 28,
+        "stars_size_mobile": 24,
+        "stars_align": "center",
+        "text": "",
+        "text_custom": false,
+        "text_font": "josefin_sans_n4",
+        "text_size": 20,
+        "text_size_mobile": 16,
+        "text_height": 130,
+        "text_align": "center",
+        "text_mt": 16,
+        "slider_width": 80,
+        "slider_view": 3,
+        "slider_view_mobile": 1.2,
+        "slider_gap": 20,
+        "slider_gap_mobile": 20,
+        "slider_mt": 36,
+        "card_padding_vertical": 32,
+        "card_padding_vertical_mobile": 24,
+        "card_padding_horizontal": 40,
+        "card_padding_horizontal_mobile": 24,
+        "card_radius": 16,
+        "card_border_thickness": 0,
+        "card_shadow": true,
+        "card_heading_custom": false,
+        "card_heading_font": "josefin_sans_n4",
+        "card_heading_size": 24,
+        "card_heading_size_mobile": 20,
+        "card_heading_height": 130,
+        "card_heading_align": "center",
+        "card_heading_mt": 16,
+        "card_text_custom": false,
+        "card_text_font": "josefin_sans_n4",
+        "card_text_size": 14,
+        "card_text_size_mobile": 14,
+        "card_text_height": 150,
+        "card_text_align": "center",
+        "card_text_mt": 16,
+        "card_text_more": "View More",
+        "card_text_less": "View Less",
+        "card_count_words": 20,
+        "card_author_date_text_custom": false,
+        "card_author_date_text_font": "josefin_sans_n4",
+        "card_author_date_text_size": 16,
+        "card_author_date_text_size_mobile": 16,
+        "card_author_date_text_height": 130,
+        "card_author_date_text_align": "center",
+        "card_author_date_text_mt": 16,
+        "arrow_size": 50,
+        "arrow_size_mobile": 50,
+        "arrow_icon_size": 28,
+        "arrow_icon_size_mobile": 28,
+        "arrow_border_thickness": 0,
+        "arrow_show_desktop": true,
+        "arrow_show_mobile": false,
+        "dots_size": 12,
+        "dots_size_mobile": 12,
+        "dots_show_desktop": false,
+        "dots_show_mobile": false,
+        "button": "",
+        "button_url": "",
+        "button_custom": false,
+        "button_font": "josefin_sans_n4",
+        "button_size": 16,
+        "button_size_mobile": 14,
+        "button_height": 100,
+        "button_align": "center",
+        "button_mt": 16,
+        "button_padding_vertical": 20,
+        "button_padding_horizontal": 16,
+        "button_radius": 8,
+        "button_border_thickness": 0,
+        "button_color": "#ffffff",
+        "button_hover_color": "#ffffff",
+        "button_bg_color": "#000000",
+        "button_bg_hover_color": "#000000",
+        "button_border_color": "#000000",
+        "button_border_hover_color": "#000000",
+        "card_bg_color": "#ffffff",
+        "card_border_color": "#000000",
+        "card_shadow_color": "#6a8fc2",
+        "card_heading_color": "#000000",
+        "card_text_color": "#000000",
+        "card_author_date_text_color": "#000000",
+        "arrow_color": "#000000",
+        "arrow_hover_color": "#000000",
+        "arrow_bg_color": "#ffffff",
+        "arrow_bg_hover_color": "#ffffff",
+        "arrow_border_color": "#ffffff",
+        "arrow_border_hover_color": "#ffffff",
+        "dots_color": "#000000",
+        "heading_color": "#000000",
+        "rating_text_color": "#000000",
+        "stars_bg_color": "#6a8fc2",
+        "stars_color": "#ffffff",
+        "text_color": "#000000",
+        "background_color": "#ffffff",
+        "background_gradient": "",
+        "border_color": "#000000",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "padding_horizontal": 5,
+        "padding_horizontal_mobile": 1.5,
+        "full_width": true,
+        "content_width": 120,
+        "border_thickness": 0,
+        "lazy": true
+      }
+    },
+    "testimonials_jpEpiG": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonial_BhNgjr": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Love, love, love everything I ordered!",
+            "description": "<p>Extremely fast shipping is always appreciated!❤️ I'm getting my next order ready now!<br/><br/></p>",
+            "footer": "",
+            "image_text": "",
+            "image_link": "",
+            "product": ""
+          }
+        },
+        "testimonial_rrPMjr": {
+          "type": "testimonial",
+          "settings": {
+            "title": "GREAT SERVICE - QUICK DELIVERY AND QUALITY PRODUCTS AND PRICING.",
+            "description": "<p>HIGHLY RECOMMEND AND WILL BE PLACING ANOTHER ORDER SOON!<br/><br/></p>",
+            "footer": "",
+            "image_text": "",
+            "image_link": "",
+            "product": ""
+          }
+        },
+        "testimonial_ML4PMa": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Absolutely love",
+            "description": "<p>All the new products, shipped quickly and very nice packaging. Steele Sloan Designs is awesome!<br/><br/></p>",
+            "footer": "",
+            "image_text": "",
+            "image_link": "",
+            "product": ""
+          }
+        },
+        "testimonial_HbUhcC": {
+          "type": "testimonial",
+          "settings": {
+            "title": "The best",
+            "description": "<p>Customer service, communication, and great quality. She often throws in extras when possible.<br/><br/></p>",
+            "footer": "",
+            "image_text": "",
+            "image_link": "",
+            "product": ""
+          }
+        },
+        "testimonial_BcFnx9": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Incredible service. Superior product.",
+            "description": "<p>Can’t wait for my customers to check these out! I know these will fly off of the shelves!<br/><br/></p>",
+            "footer": "",
+            "image_text": "",
+            "image_link": "",
+            "product": ""
+          }
+        },
+        "testimonial_36hAmJ": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Fast delivery and beautiful products.",
+            "description": "<p>I don't get excited about customer service often, but Steele Sloan exceeded all my expectations. I can highly recommend them with no hesitation. I'll be doing a reorder very soon!<br/><br/></p>",
+            "footer": "",
+            "image_text": "",
+            "image_link": "",
+            "product": ""
+          }
+        },
+        "testimonial_X6FaCk": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Loooovvveeee!",
+            "description": "<p>Getting so many compliments on the quality of the product! I will for sure be ordering many more! Thank you so much!<br/><br/></p>",
+            "footer": "",
+            "image_text": "",
+            "image_link": "",
+            "product": ""
+          }
+        },
+        "testimonial_LAyJhM": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Really beautiful and even prettier in person ",
+            "description": "<p>The pictures don’t do it enough justice. These are stunning, shiny, and so well detailed in person!</p>",
+            "footer": "",
+            "image_text": "",
+            "image_link": "",
+            "product": ""
+          }
+        },
+        "testimonial_LBmMNh": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Our first time ordering and we loved everything we got in!",
+            "description": "<p>Can't wait to order more!<br/><br/></p>",
+            "footer": "",
+            "image_text": "",
+            "image_link": "",
+            "product": ""
+          }
+        },
+        "testimonial_w8WeXR": {
+          "type": "testimonial",
+          "settings": {
+            "title": "I love these products and the purchasing experience. They came quickly and packed with such care!",
+            "description": "<p>I have had great luck with these items in my shop will definitely re-order.<br/><br/></p>",
+            "footer": "",
+            "image_text": "",
+            "image_link": "",
+            "product": ""
+          }
+        },
+        "testimonial_wEy86p": {
+          "type": "testimonial",
+          "settings": {
+            "title": "From ordering,",
+            "description": "<p>Shipping and receiving working with Steale Sloan has been fast, easy and amazing!</p>",
+            "footer": "",
+            "image_text": "",
+            "image_link": "",
+            "product": ""
+          }
+        },
+        "testimonial_WLrfTn": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Always quality",
+            "description": "<p>One of my favorite companies to order from! You’ll never be disappointed with their quality or service<br/><br/></p>",
+            "footer": "",
+            "image_text": "",
+            "image_link": "",
+            "product": ""
+          }
+        },
+        "testimonial_p7VYpU": {
+          "type": "testimonial",
+          "settings": {
+            "title": "As always love this jewelry...",
+            "description": "<p>never disappointed! Excellent quality plus super fast shipping :)</p>",
+            "footer": "",
+            "image_text": "",
+            "image_link": "",
+            "product": ""
+          }
+        },
+        "testimonial_AUYxf7": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Love everything",
+            "description": "<p> Great quality products that are unique and sure to sell fast!<br/><br/></p>",
+            "footer": "",
+            "image_text": "",
+            "image_link": "",
+            "product": ""
+          }
+        },
+        "testimonial_mDgMKj": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Great Gifts",
+            "description": "<p>My go to when customers are looking for a gift. Great style, quality and price. My favorite boutique item. Exceptional customer service.</p>",
+            "footer": "",
+            "image_text": "",
+            "image_link": "",
+            "product": ""
+          }
+        },
+        "testimonial_GNgFwp": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Exceeded our expectations!",
+            "description": "<p>Customers absolutely love them!! They’re dainty but can be seen!<br/><br/></p>",
+            "footer": "",
+            "image_text": "",
+            "image_link": "",
+            "product": ""
+          }
+        },
+        "testimonial_wrA3xe": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Quality jewelry! ",
+            "description": "<p>LOVE everything! Sold a necklace 5 minutes after setting it out!</p>",
+            "footer": "",
+            "image_text": "",
+            "image_link": "",
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_BhNgjr",
+        "testimonial_rrPMjr",
+        "testimonial_ML4PMa",
+        "testimonial_HbUhcC",
+        "testimonial_BcFnx9",
+        "testimonial_36hAmJ",
+        "testimonial_X6FaCk",
+        "testimonial_LAyJhM",
+        "testimonial_LBmMNh",
+        "testimonial_w8WeXR",
+        "testimonial_wEy86p",
+        "testimonial_WLrfTn",
+        "testimonial_p7VYpU",
+        "testimonial_AUYxf7",
+        "testimonial_mDgMKj",
+        "testimonial_GNgFwp",
+        "testimonial_wrA3xe"
+      ],
+      "disabled": true,
+      "name": "Testimonials",
+      "settings": {
+        "heading": "Latest Reviews",
+        "heading_size": "h3",
+        "subheading": "",
+        "description": "",
+        "header_alignment": "center",
+        "container": "w-full",
+        "color_scheme": "scheme-cee058e4-58e3-46aa-9af9-219dadc79066",
+        "design": "testimonials-6",
+        "show_stars": true,
+        "autorotate": false,
+        "show_navigation": true,
+        "show_pagination": true,
+        "star_color": "#6a8fc2",
+        "item_color_scheme": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "rich_text_GiGDJU": {
+      "type": "rich-text",
+      "blocks": {
+        "text_PkR6tT": {
+          "type": "text",
+          "settings": {
+            "text": "<h3>⭐️ \"Love Everything I Ordered!\"</h3><p>Love, love, love everything I ordered! Extremely fast shipping is always appreciated! ❤️ I'm getting my next order ready now!</p><h3>⭐️ \"Great Service & Quality Products\"</h3><p>GREAT SERVICE – QUICK DELIVERY AND QUALITY PRODUCTS AND PRICING. HIGHLY RECOMMEND AND WILL BE PLACING ANOTHER ORDER SOON!</p><h3>⭐️ \"Obsessed with the New Products\"</h3><p>Absolutely love all the new products, shipped quickly and very nice packaging. Steele Sloan Designs is awesome!</p><h3>⭐️ \"Top-Tier Customer Service\"</h3><p>The best customer service, communication, and great quality. She often throws in extras when possible.</p><h3>⭐️ \"Can’t Wait to Share with Customers!\"</h3><p>Incredible service. Superior product. Can’t wait for my customers to check these out! I know these will fly off the shelves!</p><h3>⭐️ \"Exceeded All Expectations\"</h3><p>I don't get excited about customer service often, but Steele Sloan exceeded all my expectations. Fast delivery and beautiful products. I can highly recommend them with no hesitation. I'll be doing a reorder very soon!</p><h3>⭐️ \"First Order – Impressed!\"</h3><p>Our first time ordering and we loved everything we got in! Can't wait to order more!</p><h3>⭐️ \"So Many Compliments!\"</h3><p>Loooovvveeee! Getting so many compliments on the quality of the product! I will for sure be ordering many more! Thank you so much!</p><h3>⭐️ \"Even Prettier in Person\"</h3><p>Really beautiful and even prettier in person.<br/><br/>The pictures don’t do it enough justice. These are stunning, shiny, and so well detailed in person!</p><h3>⭐️ \"Fast & Thoughtful Shipping\"</h3><p>I love these products and the purchasing experience. They came quickly and packed with such care! I have had great luck with these items in my shop and will definitely re-order.</p><h3>⭐️ \"Smooth Process from Start to Finish\"</h3><p>From ordering, shipping, and receiving – working with Steele Sloan has been fast, easy, and amazing!</p><h3>⭐️ \"Always High Quality\"</h3><p>Always quality. One of my favorite companies to order from! You’ll never be disappointed with their quality or service.</p><h3>⭐️ \"Never Disappointed!\"</h3><p>As always, love this jewelry… never disappointed! Excellent quality plus super fast shipping :)</p><h3>⭐️ \"Sure to Sell Fast\"</h3><p>Love everything. Great quality products that are unique and sure to sell fast!</p><h3>⭐️ \"Loved by All Ages\"</h3><p>Beautiful earrings loved by all ages. Customers love them. Fast-selling jewelry. Great gifts.</p><h3>⭐️ \"Perfect Gift Option\"</h3><p>My go-to when customers are looking for a gift. Great style, quality, and price. My favorite boutique item. Exceptional customer service.</p><h3>⭐️ \"Customers Love Them!\"</h3><p>Exceeded our expectations! Customers absolutely love them!! They’re dainty but can be seen!</p><h3>⭐️ \"Well Made!\"</h3><p>Great Product! Well Made!</p><h3>⭐️ \"My Favs!\"</h3><p>My favs! Always happy with my orders. Super fast shipping and outstanding service!</p><h3>⭐️ \"Sold Instantly!\"</h3><p>Quality jewelry! LOVE everything! Sold a necklace 5 minutes after setting it out!</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_PkR6tT"
+      ],
+      "name": "Rich text",
+      "settings": {
+        "container": "container",
+        "color_scheme": "scheme-cee058e4-58e3-46aa-9af9-219dadc79066",
+        "content_alignment": "left",
+        "padding_top": 52,
+        "padding_bottom": 52,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_e8n9dC",
+    "custom_content_WMpdjk",
+    "ss_testimonials_jBtggp",
+    "testimonials_jpEpiG",
+    "rich_text_GiGDJU"
+  ]
+}

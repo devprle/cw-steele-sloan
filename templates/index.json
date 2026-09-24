@@ -1,0 +1,1031 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_marquee_p9dbyz": {
+      "type": "custom-marquee",
+      "blocks": {
+        "text_r8j4yg": {
+          "type": "text",
+          "settings": {
+            "text": "Free shipping over $40",
+            "icon_svg": ""
+          }
+        },
+        "text_KTrCeF": {
+          "type": "text",
+          "settings": {
+            "text": "Hypoallergenic-friendly stainless steel styles",
+            "icon_svg": ""
+          }
+        },
+        "text_gLmMQd": {
+          "type": "text",
+          "settings": {
+            "text": "Giftable, on-trend designs at a great price point",
+            "icon_svg": ""
+          }
+        },
+        "text_TBBBzn": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Hassle-free returns within 5 days",
+            "icon_svg": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_r8j4yg",
+        "text_KTrCeF",
+        "text_gLmMQd",
+        "text_TBBBzn"
+      ],
+      "name": "Custom Marquee",
+      "settings": {
+        "title": "",
+        "enable_marquee": false,
+        "enable_marquee_tablet": true,
+        "enable_marquee_mobile": true,
+        "pause_on_hover": false,
+        "scroll_speed": 25,
+        "text_color": "#ffffff",
+        "icon_color": "#ffffff",
+        "desktop_font_size": 12,
+        "mobile_font_size": 10,
+        "page_width": 1474,
+        "background_color": "#0a2540",
+        "padding_top": 12,
+        "padding_bottom": 12,
+        "tablet_padding_top": 12,
+        "tablet_padding_bottom": 12,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10,
+        "custom_class": ""
+      }
+    },
+    "custom_hero_slider_kgxEVp": {
+      "type": "custom-hero-slider",
+      "blocks": {
+        "slide_pqPbeR": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Rectangle_1.png",
+            "slide_mobile_image": "shopify://shop_images/Rectangle_1_1.png",
+            "review_text": "<strong>4.9/5</strong> based on <strong>3700</strong> reviews",
+            "title": "The Perfect Gifts at the Perfect Price to Celebrate in Style!",
+            "subtitle": "Steele Sloan Designs — unique, hypoallergenic stainless steel jewelry for everyday and gift-giving, including officially licensed collegiate styles. Great prices, built to last.",
+            "button_label": "SHOP BEST SELLERS",
+            "button_link": "shopify://collections",
+            "logo_1": "shopify://shop_images/image_2.png",
+            "logo_2": "shopify://shop_images/image_3.png"
+          }
+        },
+        "slide_hy4iMg": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/SIP_cuff_on_blonde_sitting.jpg",
+            "slide_mobile_image": "shopify://shop_images/IMG_4393.jpg",
+            "review_text": "Loved by <strong>5000+ </strong>customers",
+            "title": "Jewelry for every gift, every style — collegiate included",
+            "subtitle": "Shop on-trend, versatile designs made with special care, with stainless steel favorites that are loved for their look and sensitive-skin friendliness.",
+            "button_label": "SHOP BEST SELLERS",
+            "button_link": "shopify://collections/all-products",
+            "logo_1": "shopify://shop_images/image_3_a6208a92-8535-4109-8255-118473d125ca.png",
+            "logo_2": "shopify://shop_images/image_2_c8ba78df-5ed6-4d06-8488-31c8a26f6b27.png"
+          }
+        },
+        "slide_rcrmDe": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "review_text": "Loved by 1,000 customers based on 193 reviews",
+            "title": "Trending jewellery you can wear on repeat",
+            "subtitle": "Shop on-trend, versatile designs made with special care, with stainless steel favorites that are loved for their look and sensitive-skin friendliness.",
+            "button_label": "SHOP BEST SELLERS",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_pqPbeR",
+        "slide_hy4iMg",
+        "slide_rcrmDe"
+      ],
+      "name": "Hero Slider",
+      "settings": {
+        "title": "",
+        "adapt_height": true,
+        "page_width": 1342,
+        "background_color": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "tablet_padding_top": 0,
+        "tablet_padding_bottom": 0,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0,
+        "custom_class": ""
+      }
+    },
+    "custom_category_list_gmeMcr": {
+      "type": "custom-category-list",
+      "blocks": {
+        "category_iNBQTe": {
+          "type": "category",
+          "settings": {
+            "collection": "necklace",
+            "image": "shopify://shop_images/Ellipse_6.png",
+            "title": "Necklaces",
+            "subtitle": "Layerable pieces that get compliments",
+            "link": ""
+          }
+        },
+        "category_RakhLW": {
+          "type": "category",
+          "settings": {
+            "collection": "earrings",
+            "image": "shopify://shop_images/Ellipse_6_1.png",
+            "title": "Earrings",
+            "subtitle": "From subtle studs to statement hoops",
+            "link": ""
+          }
+        },
+        "category_qw4TjD": {
+          "type": "category",
+          "settings": {
+            "collection": "bracelets-1",
+            "image": "shopify://shop_images/Ellipse_6_2.png",
+            "title": "Bracelets",
+            "subtitle": "Dainty to statement, made to mix",
+            "link": ""
+          }
+        },
+        "category_wM8tCG": {
+          "type": "category",
+          "settings": {
+            "collection": "under-20",
+            "image": "shopify://shop_images/Ellipse_6_3.png",
+            "title": "Gifts Under $25",
+            "subtitle": "Easy wins for birthdays and \"thinking of you\"",
+            "link": ""
+          }
+        },
+        "category_ckGGmx": {
+          "type": "category",
+          "settings": {
+            "collection": "",
+            "image": "shopify://shop_images/Ellipse_6_4.png",
+            "title": "New Arrivals",
+            "subtitle": "The latest styles, just landed",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_iNBQTe",
+        "category_RakhLW",
+        "category_qw4TjD",
+        "category_wM8tCG",
+        "category_ckGGmx"
+      ],
+      "name": "Custom Category List",
+      "settings": {
+        "title": "",
+        "image_size_desktop": 80,
+        "image_size_mobile": 70,
+        "page_width": 1474,
+        "background_color": "",
+        "padding_top": 25,
+        "padding_bottom": 25,
+        "tablet_padding_top": 25,
+        "tablet_padding_bottom": 25,
+        "mobile_padding_top": 25,
+        "mobile_padding_bottom": 25,
+        "custom_class": ""
+      }
+    },
+    "custom_tabbed_collection_hiLiqX": {
+      "type": "custom-tabbed-collection",
+      "blocks": {
+        "collection_wfpz3c": {
+          "type": "collection",
+          "settings": {
+            "collection": "bears-teams",
+            "tab_title": "Bears"
+          }
+        },
+        "collection_HcNwLx": {
+          "type": "collection",
+          "settings": {
+            "collection": "bulldog-teams",
+            "tab_title": "Bulldogs"
+          }
+        },
+        "collection_X3cQ3K": {
+          "type": "collection",
+          "settings": {
+            "collection": "cats-teams",
+            "tab_title": "Cats"
+          }
+        },
+        "collection_8DLxz8": {
+          "type": "collection",
+          "settings": {
+            "collection": "eagles-teams",
+            "tab_title": "Eagles"
+          }
+        },
+        "collection_KHhtDt": {
+          "type": "collection",
+          "settings": {
+            "collection": "gators-teams",
+            "tab_title": "Gators"
+          }
+        },
+        "collection_qQXQRK": {
+          "type": "collection",
+          "settings": {
+            "collection": "lions-teams",
+            "tab_title": "Lions"
+          }
+        },
+        "collection_Xi3qHN": {
+          "type": "collection",
+          "settings": {
+            "collection": "rams-teams",
+            "tab_title": "Rams"
+          }
+        },
+        "collection_Jff7wr": {
+          "type": "collection",
+          "settings": {
+            "collection": "gold-stud-earrings",
+            "tab_image": "shopify://shop_images/TIGERS_collection_5d9281ca-5399-4d4d-a57c-3cc01233adc2.jpg",
+            "tab_title": "Tigers"
+          }
+        },
+        "collection_XV7YLt": {
+          "type": "collection",
+          "settings": {
+            "collection": "university-of-alabama-gifts-roll-tide",
+            "tab_title": "Alabama - Roll Tide!"
+          }
+        },
+        "collection_FRRPan": {
+          "type": "collection",
+          "settings": {
+            "collection": "university-of-arkansas-razorbacks-go-hogs",
+            "tab_title": "Arkansas - Go Hogs!"
+          }
+        },
+        "collection_cXDMPY": {
+          "type": "collection",
+          "settings": {
+            "collection": "auburn-university-war-eagle",
+            "tab_title": "Auburn - War Eagles"
+          }
+        },
+        "collection_Lf7PVK": {
+          "type": "collection",
+          "settings": {
+            "collection": "florida-sate-university-go-noles",
+            "tab_title": "FSU - Go Noles!"
+          }
+        },
+        "collection_TBPUU7": {
+          "type": "collection",
+          "settings": {
+            "collection": "indiana-hoosiers",
+            "tab_image": "shopify://shop_images/indiana-university-logo.png",
+            "tab_title": ""
+          }
+        },
+        "collection_4FeUnt": {
+          "type": "collection",
+          "settings": {
+            "collection": "louisiana-state-university-lsu-geaux-tigers",
+            "tab_title": "LSU - Geaux Tigers!"
+          }
+        },
+        "collection_PGx89R": {
+          "type": "collection",
+          "settings": {
+            "collection": "university-of-miami",
+            "tab_title": "Miami  - Hurricanes"
+          }
+        },
+        "collection_7JicBa": {
+          "type": "collection",
+          "settings": {
+            "collection": "oklahoma-sooners-university-of-oklahoma",
+            "tab_title": "Oklahoma Sooners"
+          }
+        },
+        "collection_8pbfgG": {
+          "type": "collection",
+          "settings": {
+            "collection": "ole-miss-university-of-mississippi-rebels",
+            "tab_title": "Ole Miss - Rebels"
+          }
+        },
+        "collection_4nPCxH": {
+          "type": "collection",
+          "settings": {
+            "collection": "mississippi-state-bulldogs-hail-state",
+            "tab_title": "Miss St Bulldogs"
+          }
+        },
+        "collection_4ehjVn": {
+          "type": "collection",
+          "settings": {
+            "collection": "university-of-oregon-go-ducks",
+            "tab_title": "Oregon - Go Ducks!"
+          }
+        },
+        "collection_ypeh9n": {
+          "type": "collection",
+          "settings": {
+            "collection": "pittsburgh-panters-university-of-pittsburgh",
+            "tab_title": "Pitt Panthers"
+          }
+        },
+        "collection_Td7hFq": {
+          "type": "collection",
+          "settings": {
+            "collection": "texas-tech-wreck-em-red-raiders",
+            "tab_title": "Texas Tech-Red Raiders"
+          }
+        },
+        "collection_VMwM8x": {
+          "type": "collection",
+          "settings": {
+            "collection": "texas-a-m-gig-em-aggies",
+            "tab_title": "Texas A&M - Aggies"
+          }
+        },
+        "collection_r6nbcE": {
+          "type": "collection",
+          "settings": {
+            "collection": "tcu-texas-christian-university-horned-frogs",
+            "tab_image": "shopify://shop_images/Rectangle_19_5.png",
+            "tab_title": "TCU - Horned Frogs"
+          }
+        },
+        "collection_9PLDc3": {
+          "type": "collection",
+          "settings": {
+            "collection": "university-of-tennessee-volunteers",
+            "tab_title": "Tennessee - Go Vols!"
+          }
+        },
+        "collection_yCqpqC": {
+          "type": "collection",
+          "settings": {
+            "collection": "tulane-university-green-wave",
+            "tab_image": "shopify://shop_images/Rectangle_19_6.png",
+            "tab_title": "Tulane - Green Wave"
+          }
+        },
+        "collection_DhF67U": {
+          "type": "collection",
+          "settings": {
+            "collection": "unc-tarheels-university-of-north-carolina-at-chapel-hill",
+            "tab_title": "UNC - TarHeels"
+          }
+        },
+        "collection_BGR9Nw": {
+          "type": "collection",
+          "settings": {
+            "collection": "university-of-south-carolina-gamecocks",
+            "tab_title": "USC - Gamecocks"
+          }
+        }
+      },
+      "block_order": [
+        "collection_wfpz3c",
+        "collection_HcNwLx",
+        "collection_X3cQ3K",
+        "collection_8DLxz8",
+        "collection_KHhtDt",
+        "collection_qQXQRK",
+        "collection_Xi3qHN",
+        "collection_Jff7wr",
+        "collection_XV7YLt",
+        "collection_FRRPan",
+        "collection_cXDMPY",
+        "collection_Lf7PVK",
+        "collection_TBPUU7",
+        "collection_4FeUnt",
+        "collection_PGx89R",
+        "collection_7JicBa",
+        "collection_8pbfgG",
+        "collection_4nPCxH",
+        "collection_4ehjVn",
+        "collection_ypeh9n",
+        "collection_Td7hFq",
+        "collection_VMwM8x",
+        "collection_r6nbcE",
+        "collection_9PLDc3",
+        "collection_yCqpqC",
+        "collection_DhF67U",
+        "collection_BGR9Nw"
+      ],
+      "name": "Custom Tabbed Collection",
+      "settings": {
+        "heading": "Discover Bestsellers & Fan Favorites",
+        "heading_size": "h2",
+        "header_alignment": "center",
+        "product_to_show": 8,
+        "items_per_row": 4,
+        "item_gap": 20,
+        "item_gap_mobile": 10,
+        "show_view_all": true,
+        "show_cart_button": true,
+        "pcard_image_ratio": "1/1",
+        "show_vendor": false,
+        "hide_title": false,
+        "page_width": 1474,
+        "background_color": "#f4f4f4",
+        "padding_top": 91,
+        "padding_bottom": 30,
+        "tablet_padding_top": 40,
+        "tablet_padding_bottom": 40,
+        "mobile_padding_top": 30,
+        "mobile_padding_bottom": 30,
+        "custom_class": ""
+      }
+    },
+    "custom_features_section_r68rJa": {
+      "type": "custom-features-section",
+      "blocks": {
+        "feature_HeRyhq": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "",
+            "icon_image": "shopify://shop_images/tiktok_3767282_1.svg",
+            "title": "<p><strong>Sensitive-Skin Friendly</strong></p>",
+            "text": "Stainless steel that looks great and is kind to sensitive skin."
+          }
+        },
+        "feature_HVDWY3": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "",
+            "icon_image": "shopify://shop_images/gift_2584757_1.svg",
+            "title": "<p><strong>Jewelry Worth Gifting</strong></p>",
+            "text": "Perfect for birthdays, graduations, and game days."
+          }
+        },
+        "feature_BULx8V": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "",
+            "icon_image": "shopify://shop_images/virtual-assistant_14232163_1.svg",
+            "title": "<p><strong>Customer-First Service</strong></p>",
+            "text": "Honesty, respect, and support you can reach."
+          }
+        },
+        "feature_wgWK68": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "",
+            "icon_image": "shopify://shop_images/necklace_4370480_1.svg",
+            "title": "<p><strong>Officially Licensed</strong></p>",
+            "text": "Real collegiate jewelry, made for real fans."
+          }
+        }
+      },
+      "block_order": [
+        "feature_HeRyhq",
+        "feature_HVDWY3",
+        "feature_BULx8V",
+        "feature_wgWK68"
+      ],
+      "name": "Custom Features Grid",
+      "settings": {
+        "title": "Style, Value, and Team Spirit",
+        "heading_color": "#0a2540",
+        "text_color": "#0a2540",
+        "icon_border_color": "#d9b375",
+        "icon_color": "#d9b375",
+        "heading_size_desktop": 42,
+        "heading_size_mobile": 28,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "icon_size": 90,
+        "floating_image_1_size": 210,
+        "floating_image_2_size": 210,
+        "page_width": 904,
+        "background_color": "#ffffff",
+        "padding_top": 80,
+        "padding_bottom": 110,
+        "tablet_padding_top": 130,
+        "tablet_padding_bottom": 100,
+        "mobile_padding_top": 100,
+        "mobile_padding_bottom": 100,
+        "custom_class": ""
+      }
+    },
+    "shoppable_image_xCABbr": {
+      "type": "shoppable-image",
+      "blocks": {
+        "hotspot_GxHY3x": {
+          "type": "hotspot",
+          "settings": {
+            "product": "texas-tech-ttu-cuff-bracelet-red-raiders-gameday-sizeable-tarnish-resistant",
+            "desktop_top": 25,
+            "desktop_left": 60,
+            "mobile_top": 12,
+            "mobile_left": 30
+          }
+        },
+        "hotspot_tHtd4H": {
+          "type": "hotspot",
+          "settings": {
+            "product": "bama-fan-gold-stud-hypoallergenic-earrings-bama-fan-gifts",
+            "desktop_top": 67,
+            "desktop_left": 74,
+            "mobile_top": 32,
+            "mobile_left": 32
+          }
+        },
+        "hotspot_zfHwPC": {
+          "type": "hotspot",
+          "settings": {
+            "product": "arkansas-razorbacks-necklace-razorback-gameday-perfect-gift-for-razorback-fans",
+            "desktop_top": 42,
+            "desktop_left": 85,
+            "mobile_top": 18,
+            "mobile_left": 70
+          }
+        },
+        "hotspot_LpGT6D": {
+          "type": "hotspot",
+          "settings": {
+            "product": "texas-tech-guns-up-earrings-perfect-gift-for-texas-tech-red-raiders-fans",
+            "desktop_top": 72,
+            "desktop_left": 91,
+            "mobile_top": 35,
+            "mobile_left": 75
+          }
+        }
+      },
+      "block_order": [
+        "hotspot_GxHY3x",
+        "hotspot_tHtd4H",
+        "hotspot_zfHwPC",
+        "hotspot_LpGT6D"
+      ],
+      "name": "Shoppable Image",
+      "settings": {
+        "rating_text": "Loved by <strong>1,000</strong> customers based on <strong>193 </strong>reviews",
+        "title": "Know Someone Who Loves Their Team?",
+        "subtitle": "From game day earrings to personalized necklaces, Steele Sloan Designs has something for every fan on your list.",
+        "button_label": "SHOP BEST SELLERS",
+        "button_link": "shopify://collections",
+        "text_color": "#ffffff",
+        "button_bg": "#ffffff",
+        "button_text_color": "#0a2540",
+        "overlay_opacity": 10,
+        "adapt_height": true,
+        "page_width": 1474,
+        "background_color": "",
+        "bg_image": "shopify://shop_images/Group_15_1.png",
+        "mobile_bg_image": "shopify://shop_images/Rectangle_27.png",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "tablet_padding_top": 36,
+        "tablet_padding_bottom": 36,
+        "mobile_padding_top": 36,
+        "mobile_padding_bottom": 36,
+        "custom_class": ""
+      }
+    },
+    "custom_tabbed_collection_miteCn": {
+      "type": "custom-tabbed-collection",
+      "blocks": {
+        "collection_xQbxdA": {
+          "type": "collection",
+          "settings": {
+            "collection": "best-sellers",
+            "tab_image": "shopify://shop_images/Rectangle_19.png",
+            "tab_title": "Harvard"
+          }
+        }
+      },
+      "block_order": [
+        "collection_xQbxdA"
+      ],
+      "name": "Custom Tabbed Collection",
+      "settings": {
+        "heading": "Check Out More Bestsellers",
+        "heading_size": "h2",
+        "header_alignment": "center",
+        "product_to_show": 8,
+        "items_per_row": 4,
+        "item_gap": 20,
+        "item_gap_mobile": 10,
+        "show_view_all": true,
+        "show_cart_button": true,
+        "pcard_image_ratio": "1/1",
+        "show_vendor": false,
+        "hide_title": false,
+        "page_width": 1474,
+        "background_color": "#f4f4f4",
+        "padding_top": 90,
+        "padding_bottom": 66,
+        "tablet_padding_top": 60,
+        "tablet_padding_bottom": 50,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 30,
+        "custom_class": ""
+      }
+    },
+    "trusted_review_WrKVKK": {
+      "type": "trusted-review",
+      "blocks": {
+        "review_bK7bNh": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_14.png",
+            "review_text": "These earrings are adorable! They arrived quickly and my little girl is so happy with them. Highly recommend!",
+            "author_image": "shopify://shop_images/Ellipse_16.png",
+            "author_name": "Jessica on 24 Mar, 2026"
+          }
+        },
+        "review_9TjtTJ": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_14.png",
+            "review_text": "Absolutely beautiful earrings! Fast delivery and they look even better in person. My daughter is obsessed!",
+            "author_image": "shopify://shop_images/Ellipse_16_1.png",
+            "author_name": "Sara on 27 Mar, 2026"
+          }
+        },
+        "review_yKkTmh": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_14.png",
+            "review_text": "Love these earrings! The quality is fantastic and they were delivered ahead of schedule. My niece is thrilled!",
+            "author_image": "shopify://shop_images/Ellipse_16_2.png",
+            "author_name": "Mark on 25 Mar, 2026"
+          }
+        },
+        "review_zKJ6in": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_14.png",
+            "review_text": "Such pretty earrings! They came in record time and my granddaughter can't stop wearing them. Great purchase!",
+            "author_image": "shopify://shop_images/Ellipse_16_3.png",
+            "author_name": "Linda on 26 Mar, 2026"
+          }
+        }
+      },
+      "block_order": [
+        "review_bK7bNh",
+        "review_9TjtTJ",
+        "review_yKkTmh",
+        "review_zKJ6in"
+      ],
+      "disabled": true,
+      "name": "Trusted Reviews",
+      "settings": {
+        "custom_class": "",
+        "page_width": 1474,
+        "background_color": "#ffffff",
+        "top_text": "Loved by <strong>1,000</strong> customers based on <strong>193</strong> reviews",
+        "heading": "Don't Take Our Word for It",
+        "description": "Join the fans who found their new favorite jewelry.",
+        "padding_top": 110,
+        "padding_bottom": 92,
+        "tablet_padding_top": 60,
+        "tablet_padding_bottom": 60,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40
+      }
+    },
+    "boutique_wholesale_section_Wx3ca4": {
+      "type": "boutique-wholesale-section",
+      "name": "Boutique Wholesale",
+      "settings": {
+        "custom_class": "",
+        "page_width": 1474,
+        "background_color": "#ffffff",
+        "image": "shopify://shop_images/Rectangle_9.png",
+        "title": "Stock Steele Sloan Designs in Your Boutique",
+        "description": "Officially licensed collegiate jewelry and on-trend stainless steel pieces that bring something different to your shelves.",
+        "primary_btn_text": "Wholesale Accounts",
+        "primary_btn_link": "shopify://pages/wholesale-accounts",
+        "secondary_btn_text": "",
+        "secondary_btn_link": "https://faire.com/direct/steelesloandesigns",
+        "review_text": "Absolutely beautiful earrings! Fast delivery and they look even better in person. My daughter is obsessed!",
+        "review_author": "Sara, Boutique Ltd",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "tablet_padding_top": 0,
+        "tablet_padding_bottom": 0,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 0
+      }
+    },
+    "jewelry_category_section_jFeBUJ": {
+      "type": "jewelry-category-section",
+      "blocks": {
+        "feature_nBfXki": {
+          "type": "feature",
+          "settings": {
+            "collection": "necklace",
+            "custom_image": "shopify://shop_images/Rectangle_8.png",
+            "custom_title": "Necklaces",
+            "button_label": "SHOP NOW",
+            "button_url": ""
+          }
+        },
+        "feature_MJYber": {
+          "type": "feature",
+          "settings": {
+            "collection": "bracelets-1",
+            "custom_image": "shopify://shop_images/Rectangle_8_1.png",
+            "custom_title": "Bracelets",
+            "button_label": "SHOP NOW",
+            "button_url": ""
+          }
+        },
+        "feature_34qDqr": {
+          "type": "feature",
+          "settings": {
+            "collection": "earrings",
+            "custom_image": "shopify://shop_images/Rectangle_8_2.png",
+            "custom_title": "Earrings",
+            "button_label": "SHOP NOW",
+            "button_url": ""
+          }
+        },
+        "feature_Xf3994": {
+          "type": "feature",
+          "settings": {
+            "collection": "game-day",
+            "custom_image": "shopify://shop_images/Rectangle_8_3.png",
+            "custom_title": "Game Day",
+            "button_label": "SHOP NOW",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "feature_nBfXki",
+        "feature_MJYber",
+        "feature_34qDqr",
+        "feature_Xf3994"
+      ],
+      "name": "Jewelry Category",
+      "settings": {
+        "custom_class": "",
+        "page_width": 1474,
+        "background_color": "",
+        "heading": "Shop by Category",
+        "padding_top": 82,
+        "padding_bottom": 68,
+        "tablet_padding_top": 60,
+        "tablet_padding_bottom": 60,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40
+      }
+    },
+    "gallery_section_FRi6KV": {
+      "type": "gallery-section",
+      "blocks": {
+        "instafeed_app_block_MEabE9": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": false,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
+        },
+        "gallery_item_4FGnxi": {
+          "type": "gallery_item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_10.png",
+            "link": "",
+            "open_new_tab": true,
+            "is_video": false
+          }
+        },
+        "gallery_item_tqxfy6": {
+          "type": "gallery_item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_11.png",
+            "link": "",
+            "open_new_tab": true,
+            "is_video": false
+          }
+        },
+        "gallery_item_mjDPmB": {
+          "type": "gallery_item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_12.png",
+            "link": "",
+            "open_new_tab": true,
+            "is_video": false
+          }
+        },
+        "gallery_item_MnpTiL": {
+          "type": "gallery_item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_11.png",
+            "link": "",
+            "open_new_tab": true,
+            "is_video": false
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_MEabE9",
+        "gallery_item_4FGnxi",
+        "gallery_item_tqxfy6",
+        "gallery_item_mjDPmB",
+        "gallery_item_MnpTiL"
+      ],
+      "name": "Custom Instagram Grid",
+      "settings": {
+        "font_family": "Outfit",
+        "heading": "<strong>@steelesloandesigns</strong>",
+        "heading_tag": "h2",
+        "heading_size_desktop": 42,
+        "heading_size_mobile": 30,
+        "heading_color": "#0a2540",
+        "heading_weight": "200",
+        "heading_letter_spacing": 1,
+        "heading_margin_bottom": 15,
+        "subheading": "Follow us for new arrivals, styling ideas, and a whole lot of team spirit.",
+        "subheading_size_desktop": 16,
+        "subheading_size_mobile": 13,
+        "subheading_color": "#0a2540",
+        "subheading_weight": "200",
+        "subheading_margin_bottom": 69,
+        "text_alignment": "center",
+        "columns_desktop": 3,
+        "columns_tablet": 3,
+        "columns_mobile": 2,
+        "gap_desktop": 20,
+        "gap_mobile": 8,
+        "image_aspect_ratio": "auto",
+        "image_fit": "cover",
+        "border_radius": 0,
+        "enable_slider": true,
+        "slider_loop": true,
+        "slider_autoplay": false,
+        "slider_autoplay_delay": 3,
+        "slider_show_arrows": false,
+        "slider_show_pagination": false,
+        "arrow_bg_color": "#ffffff",
+        "arrow_icon_color": "#000000",
+        "pagination_color": "#000000",
+        "pagination_active_color": "#0e2e4e",
+        "enable_zoom": true,
+        "overlay_color": "#000000",
+        "overlay_opacity": 30,
+        "enable_hover_icon": true,
+        "hover_icon_type": "instagram",
+        "hover_icon_color": "#ffffff",
+        "hover_icon_size": 32,
+        "show_video_badge": true,
+        "video_badge_bg": "#ffffff",
+        "video_badge_color": "#000000",
+        "video_badge_size": 36,
+        "video_badge_radius": 6,
+        "page_width": 1474,
+        "background_color": "#ffffff",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "tablet_padding_top": 40,
+        "tablet_padding_bottom": 40,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "custom_class": ""
+      }
+    },
+    "custom_newsletter_iKa8cR": {
+      "type": "custom-newsletter",
+      "name": "Custom Newsletter",
+      "settings": {
+        "heading": "Subscribe for promotions, deals, and new product drops",
+        "placeholder": "Enter your email address",
+        "button_label": "SIGN UP NOW",
+        "subtext": "No spam, just the good stuff. Unsubscribe anytime.",
+        "show_icon": false,
+        "text_color": "#0a2540",
+        "button_bg": "#0a2540",
+        "button_text": "#ffffff",
+        "page_width": 1474,
+        "background_color": "#ffffff",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "tablet_padding_top": 40,
+        "tablet_padding_bottom": 40,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "custom_class": ""
+      }
+    },
+    "custom_marquee_7qng3m": {
+      "type": "custom-marquee",
+      "blocks": {
+        "text_9mwMyE": {
+          "type": "text",
+          "settings": {
+            "text": "Free shipping over $40",
+            "icon_svg": ""
+          }
+        },
+        "text_WQ7fDm": {
+          "type": "text",
+          "settings": {
+            "text": "Hypoallergenic stainless steel",
+            "icon_svg": ""
+          }
+        },
+        "text_TQi3VT": {
+          "type": "text",
+          "settings": {
+            "text": "Wholesale prices available",
+            "icon_svg": ""
+          }
+        },
+        "text_QTNaKw": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Hassle-free returns within 5 days",
+            "icon_svg": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_9mwMyE",
+        "text_WQ7fDm",
+        "text_TQi3VT",
+        "text_QTNaKw"
+      ],
+      "name": "Custom Marquee",
+      "settings": {
+        "title": "",
+        "enable_marquee": false,
+        "enable_marquee_tablet": true,
+        "enable_marquee_mobile": true,
+        "pause_on_hover": false,
+        "scroll_speed": 25,
+        "text_color": "#ffffff",
+        "icon_color": "#ffffff",
+        "desktop_font_size": 12,
+        "mobile_font_size": 10,
+        "page_width": 1474,
+        "background_color": "#0a2540",
+        "padding_top": 12,
+        "padding_bottom": 12,
+        "tablet_padding_top": 12,
+        "tablet_padding_bottom": 12,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10,
+        "custom_class": ""
+      }
+    }
+  },
+  "order": [
+    "custom_marquee_p9dbyz",
+    "custom_hero_slider_kgxEVp",
+    "custom_category_list_gmeMcr",
+    "custom_tabbed_collection_hiLiqX",
+    "custom_features_section_r68rJa",
+    "shoppable_image_xCABbr",
+    "custom_tabbed_collection_miteCn",
+    "trusted_review_WrKVKK",
+    "boutique_wholesale_section_Wx3ca4",
+    "jewelry_category_section_jFeBUJ",
+    "gallery_section_FRi6KV",
+    "custom_newsletter_iKa8cR",
+    "custom_marquee_7qng3m"
+  ]
+}

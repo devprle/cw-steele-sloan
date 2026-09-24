@@ -1,0 +1,167 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "disabled": true,
+      "settings": {}
+    },
+    "custom_faq_4KqLXA": {
+      "type": "custom-faq",
+      "blocks": {
+        "faq_item_aCjdjF": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Why Stainless Steel?",
+            "answer": "<p>Our jewelry is crafted from high-quality surgical-grade stainless steel, the same material used in medical implants. It is<br/><br/><strong>hypoallergenic</strong>and nickel-free, making it safe and comfortable for sensitive skin — even for those who react to other metals.<br/><br/>Unlike gold-plated, brass, or dipped jewelry that can tarnish, fade, or cause skin discoloration within months, stainless steel is highly resistant to tarnish and corrosion. With proper care, your Steele Sloan Designs pieces will maintain their beautiful shine<br/><br/>and color for years, even with daily wear. This durability makes it perfect for busy women who want elegant, worry-free jewelry that celebrates their team spirit.<br/><br/></p>"
+          }
+        },
+        "faq_item_gKtWXf": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Care Instructions",
+            "answer": "<p>Our stainless steel jewelry is designed for everyday wear and low maintenance. To keep your pieces looking their best:</p><ul><li>Gently clean with warm water and mild soap using a soft cloth.</li><li>Rinse thoroughly and pat dry with a soft towel.</li><li>Avoid harsh chemicals (perfume, lotions, chlorine, or cleaning products).</li><li>Remove before swimming in pools or the ocean, exercising, or applying beauty products.</li><li>Store in a dry place, ideally in the original pouch or a jewelry box to prevent scratches.</li></ul><p>With these simple steps, your hypoallergenic, tarnish-resistant pieces will continue to look beautiful for years.</p>"
+          }
+        },
+        "faq_item_beUTCm": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are your products officially licensed?",
+            "answer": "<p>Yes! Steele Sloan Designs is an authorized licensee for officially licensed collegiate and greek products through CLC, Affinity and Fanatics. We proudly offer authentic jewelry featuring your favorite schools.<br/><br/> All licensed designs are produced with permission and meet official licensing standards.</p>"
+          }
+        },
+        "faq_item_rh4bbN": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Why don't you have my school listed?",
+            "answer": "<p>We adhere to licensing with all of our schools and it is a process - time-wise and financially.  If you don't see a certain school please let us know that you are interested.  We always add new school updates to our instagram so please follow us for updates! </p>"
+          }
+        },
+        "faq_item_pJEMT3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>We want you to love your purchase! Returns are accepted within 7 days of delivery for unworn items in original packaging with tags attached. Customized or personalized items, clearance products, and certain licensed items<br/><br/> may be non-returnable. Shipping costs are non-refundable. Defective or damaged items are eligible for replacement — please contact us with photos and your order number.</p>"
+          }
+        },
+        "faq_item_3f6gpF": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer gift wrapping or gift messages?",
+            "answer": "<p>Many items are perfect graduation, birthday, or “just because” gifts. We do not offer gift wrapping but items come in a white jewelry box or organza bag and we are happy to add a gift note- just let us know!</p>"
+          }
+        },
+        "faq_item_Gw9hNb": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I know what size to order?",
+            "answer": "<p>Each product page includes detailed sizing information. For earrings, we offer standard post sizes. Necklaces and bracelets include adjustable or multiple length options. If you’re unsure, feel free to contact us  — we’re happy to help!</p>"
+          }
+        },
+        "faq_item_wTrYdU": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What if I accidentally order the wrong item or wrong color?",
+            "answer": "<p>Mistakes happen!  We will happily exchange within the 7 day time frame - please email us and let us know - you will just be responsible for the cost of return shipping the item back to us and the correct item back to you. </p>"
+          }
+        },
+        "faq_item_qm87Nc": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is your jewelry waterproof or safe for everyday wear?",
+            "answer": "<p>Our stainless steel pieces are highly water-resistant and suitable for daily wear. However, we recommend removing them before swimming in chlorinated pools, hot tubs, or the ocean to preserve the finish and extend the life of any plated elements.</p>"
+          }
+        },
+        "faq_item_3bwUzq": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer customization or personalization?",
+            "answer": "<p>Select items can be customized but only in larger quantities - we do not do custom one time products. Contact us for details or special requests.</p>"
+          }
+        },
+        "faq_item_pmaiAE": {
+          "type": "faq_item",
+          "settings": {
+            "question": "I have sensitive skin — will your jewelry cause irritation?",
+            "answer": "<p>Our 316L stainless steel is hypoallergenic and nickel-free, making it one of the best choices for sensitive skin. Many customers with metal allergies wear our jewelry comfortably all day.</p>"
+          }
+        },
+        "faq_item_ncrg3c": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I contact customer service?",
+            "answer": "<p>We’re here to help! Email us at info@steelesloandesigns.com or use the contact form on the website. We typically respond within 24–48 hours.</p>"
+          }
+        },
+        "faq_item_hYjD9E": {
+          "type": "faq_item",
+          "settings": {
+            "question": "HOW LONG DOES SHIPPING TAKE?",
+            "answer": "<p>Standard US shipping takes 3-5 business days. Free over $75. International orders typically arrive within 7-14 business days.</p>"
+          }
+        },
+        "faq_item_FCpAmb": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Where are your products made?",
+            "answer": "<p>Our jewelry is designed in the USA and responsibly manufactured with high-quality materials to meet our strict standards for durability, safety, and style.</p>"
+          }
+        },
+        "faq_item_Kxh8Xb": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Shipping Questions?",
+            "answer": "<p>Most items are shipped same or next day - please see our \"<a href=\"/policies/shipping-policy\" title=\"/policies/shipping-policy\">Shipping\" Section</a>\" for more details</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_aCjdjF",
+        "faq_item_gKtWXf",
+        "faq_item_beUTCm",
+        "faq_item_rh4bbN",
+        "faq_item_pJEMT3",
+        "faq_item_3f6gpF",
+        "faq_item_Gw9hNb",
+        "faq_item_wTrYdU",
+        "faq_item_qm87Nc",
+        "faq_item_3bwUzq",
+        "faq_item_pmaiAE",
+        "faq_item_ncrg3c",
+        "faq_item_hYjD9E",
+        "faq_item_FCpAmb",
+        "faq_item_Kxh8Xb"
+      ],
+      "name": "Custom FAQ",
+      "settings": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Fast shipping, beautiful products, and service that keeps people coming back",
+        "background_color": "#ffffff",
+        "text_color": "#121212",
+        "question_color": "#666666",
+        "answer_color": "#121212",
+        "divider_color": "#e8e8e8",
+        "page_width": 1200,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "tablet_padding_top": 40,
+        "tablet_padding_bottom": 40,
+        "mobile_padding_top": 30,
+        "mobile_padding_bottom": 30,
+        "custom_class": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_faq_4KqLXA"
+  ]
+}

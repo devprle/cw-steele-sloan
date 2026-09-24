@@ -1,0 +1,346 @@
+{% style %}
+  #{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.background_color }};
+  }
+
+  #{{ section.id }} .faq-section-container {
+    max-width: {{ section.settings.page_width }}px;
+    margin: 0 auto;
+    padding: 0 60px;
+    width: 100%;
+  }
+
+  #{{ section.id }} .faq-section-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 80px;
+  }
+
+  #{{ section.id }} .faq-content-left {
+    flex: 1;
+    position: sticky;
+    top: 40px;
+  }
+
+  #{{ section.id }} .faq-main-title {
+    font-family: 'Inter', sans-serif;
+    color: {{ section.settings.text_color }};
+    margin: 0 0 22px 0;
+    font-weight: 200;
+    font-size: 52px;
+    line-height: 100%;
+    letter-spacing: 0%;
+  }
+
+  #{{ section.id }} .faq-main-desc {
+    font-family: 'Inter', sans-serif;
+    color: {{ section.settings.text_color }};
+    margin: 0;
+    font-weight: 200;
+    font-size: 16px;
+    line-height: 130%;
+    letter-spacing: 0%;
+  }
+
+  #{{ section.id }} .faq-main-desc p {
+    margin: 0;
+  }
+
+  /* Right Side: FAQ List Rows */
+  #{{ section.id }} .faq-items-right {
+    flex: 1.4;
+    width: 100%;
+  }
+
+  #{{ section.id }} .faq-item-row {
+    padding: 30px 0;
+    border-bottom: 1px solid {{ section.settings.border_color }};
+  }
+
+  #{{ section.id }} .faq-item-row:first-child {
+    padding-top: 0;
+  }
+
+  #{{ section.id }} .faq-item-question {
+    font-family: 'Inter', sans-serif;
+    color: {{ section.settings.text_color }};
+    margin: 0 0 16px 0;
+    font-weight: 200;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 5%;
+    text-transform: uppercase;
+  }
+  #{{ section.id }} .faq-item-answer {
+    font-family: 'Inter', sans-serif;
+    color: {{ section.settings.text_color }};
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 160%;
+    letter-spacing: 0%;
+  }
+  .m-section__header.m\:text-center {
+    margin-bottom: 70px;
+  }
+  #{{ section.id }} .faq-item-answer p {
+    margin: 0;
+  }
+
+  /* Tablet Layout Control */
+  @media screen and (max-width: 1024px) {
+    #{{ section.id }} {
+      padding-top: {{ section.settings.tablet_padding_top }}px;
+      padding-bottom: {{ section.settings.tablet_padding_bottom }}px;
+    }
+    #{{ section.id }} .faq-section-container {
+      padding: 0 30px;
+    }
+    #{{ section.id }} .faq-section-inner {
+      gap: 40px;
+    }
+    #{{ section.id }} .faq-main-title {
+      font-size: 30px;
+      margin-bottom: 15px;
+    }
+  }
+
+  /* Mobile Layout Control */
+  @media screen and (max-width: 767px) {
+    #{{ section.id }} {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+    #{{ section.id }} .faq-section-container {
+      padding: 0 20px;
+    }
+    #{{ section.id }} .faq-section-inner {
+      flex-direction: column;
+      gap: 40px;
+    }
+    #{{ section.id }} .faq-content-left {
+      position: relative;
+      top: 0;
+      text-align: center;
+    }
+    #{{ section.id }} .faq-section-inner {
+      gap: 20px;
+    }
+    #{{ section.id }} .faq-items-right {
+      flex: none;
+    }
+    #{{ section.id }} .faq-item-row {
+      padding: 26px 0;
+    }
+    #{{ section.id }} .faq-item-row:first-child {
+      padding-top: 0px;
+    }
+    #{{ section.id }} .faq-item-answer {
+      font-size: 13px;
+    }
+  }
+{% endstyle %}
+
+<section id="{{ section.id }}" class="clean-faq-section {{ section.settings.custom_class }}">
+  <div class="faq-section-container">
+    <div class="faq-section-inner">
+      
+      <!-- Left Side Title Block -->
+      <div class="faq-content-left">
+        {%- if section.settings.title != blank -%}
+          <h2 class="faq-main-title">{{ section.settings.title }}</h2>
+        {%- endif -%}
+        
+        {%- if section.settings.description != blank -%}
+          <div class="faq-main-desc">
+            {{ section.settings.description }}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <!-- Right Side FAQ List Block -->
+      <div class="faq-items-right">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.question != blank or block.settings.answer != blank -%}
+            <div class="faq-item-row" {{ block.shopify_attributes }}>
+              {%- if block.settings.question != blank -%}
+                <h3 class="faq-item-question">
+                  {{ block.settings.question }}
+                </h3>
+              {%- endif -%}
+              
+              {%- if block.settings.answer != blank -%}
+                <div class="faq-item-answer">
+                  {{ block.settings.answer }}
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Clean Layout FAQ",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left Block Header"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Fast shipping, beautiful products, and service that keeps people coming back</p>"
+    },
+    {
+      "type": "header",
+      "content": "Style & Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Divider Line Color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "number",
+      "id": "page_width",
+      "label": "Page Width (px)",
+      "default": 1200
+    },
+    {
+      "type": "header",
+      "content": "Desktop Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0, "max": 150, "step": 2, "unit": "px", "label": "Top Padding", "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0, "max": 150, "step": 2, "unit": "px", "label": "Bottom Padding", "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Tablet Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "tablet_padding_top",
+      "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Top Padding", "default": 50
+    },
+    {
+      "type": "range",
+      "id": "tablet_padding_bottom",
+      "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Bottom Padding", "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Mobile Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Top Padding", "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Bottom Padding", "default": 40
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS Class"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "HOW LONG DOES SHIPPING TAKE?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Standard US shipping takes 3–5 business days. Free over $75. International orders typically arrive within 7–14 business days.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Clean Layout FAQ",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "HOW LONG DOES SHIPPING TAKE?",
+            "answer": "<p>Standard US shipping takes 3–5 business days. Free over $75. International orders typically arrive within 7–14 business days.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "WHAT SHIPPING OPTIONS ARE AVAILABLE?",
+            "answer": "<p>We offer standard, expedited, and overnight shipping options.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "CAN I TRACK MY ORDER?",
+            "answer": "<p>Yes, once your order has shipped, you will receive a tracking link via email.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "WHAT ARE THE SHIPPING COSTS?",
+            "answer": "<p>Shipping costs vary based on the selected method and destination. Standard shipping is free for orders over $75.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "DO YOU SHIP INTERNATIONALLY?",
+            "answer": "<p>Yes, we ship to many countries worldwide. Please check our shipping policy for details.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

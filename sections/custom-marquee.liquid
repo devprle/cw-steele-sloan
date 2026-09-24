@@ -1,0 +1,653 @@
+{%- style -%}
+  #{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    {% if section.settings.background_color != blank %}
+      background-color: {{ section.settings.background_color }};
+    {% endif %}
+    {% if section.settings.bg_image != blank %}
+      background-image: url({{ section.settings.bg_image | image_url }});
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    {% endif %}
+    overflow: hidden;
+  }
+
+  #{{ section.id }} .page-width {
+    max-width: {{ section.settings.page_width }}px;
+    padding: 0 60px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 1024px) {
+    #{{ section.id }} {
+      padding-top: {{ section.settings.tablet_padding_top }}px;
+      padding-bottom: {{ section.settings.tablet_padding_bottom }}px;
+    }
+    #{{ section.id }} .page-width {
+      padding: 0 15px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    #{{ section.id }} {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+      {% if section.settings.mobile_bg_image != blank %}
+        background-image: url({{ section.settings.mobile_bg_image | image_url }});
+      {% endif %}
+    }
+  }
+
+  /* Marquee Styles */
+  .marquee-wrapper-{{ section.id }} {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .marquee-wrapper-{{ section.id }}.is-marquee-active {
+    justify-content: flex-start;
+  }
+
+  .marquee-wrapper-{{ section.id }}:not(.is-marquee-active) {
+    justify-content: center;
+  }
+
+  .marquee-track-{{ section.id }} {
+    display: flex;
+    flex-wrap: nowrap;
+    {% if section.settings.enable_marquee %}
+      width: max-content;
+      will-change: transform;
+      animation: marqueeScroll-{{ section.id }} {{ section.settings.scroll_speed }}s linear infinite;
+    {% else %}
+      width: 100%;
+      justify-content: center;
+    {% endif %}
+  }
+
+  .marquee-track-{{ section.id }}.is-marquee-active {
+    width: max-content;
+    animation: marqueeScroll-{{ section.id }} {{ section.settings.scroll_speed }}s linear infinite;
+  }
+
+  {% if section.settings.pause_on_hover %}
+    .marquee-wrapper-{{ section.id }}:hover .marquee-track-{{ section.id }} {
+      animation-play-state: paused;
+    }
+  {% endif %}
+
+  .marquee-content-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    {% if section.settings.enable_marquee %}
+      width: max-content;
+      justify-content: flex-start;
+    {% else %}
+      width: auto;
+      justify-content: center;
+    {% endif %}
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .marquee-content-{{ section.id }}.is-marquee-active {
+    width: max-content;
+    justify-content: flex-start;
+  }
+
+  .marquee-item-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 30px;
+    color: {{ section.settings.text_color }};
+    font-size: {{ section.settings.desktop_font_size }}px;
+    font-weight: 300;
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+    font-family: var(--font-stack-body);
+  }
+
+  .marquee-icon-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: {{ section.settings.icon_color }};
+  }
+
+  .marquee-icon-{{ section.id }} svg {
+    width: 20px;
+    height: 20px;
+  }
+  .marquee-icon-{{ section.id }} svg path {
+    stroke: {{ section.settings.icon_color }};
+  }
+  
+  .marquee-icon-{{ section.id }} img {
+    height: 20px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  /* Duplicate content visibility on desktop */
+  .marquee-content-{{ section.id }}[aria-hidden="true"] {
+    {% if section.settings.enable_marquee %}
+      display: flex;
+      flex-shrink: 0;
+      min-width: auto;
+    {% else %}
+      display: none;
+    {% endif %}
+  }
+
+  @keyframes marqueeScroll-{{ section.id }} {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(calc(-1 * var(--marquee-distance, 50%)), 0, 0); }
+  }
+
+  /* Tablet Overrides (768px to 1024px) */
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    .marquee-track-{{ section.id }} {
+      {% if section.settings.enable_marquee_tablet %}
+        width: max-content;
+        flex-wrap: nowrap;
+        animation: marqueeScroll-{{ section.id }} {{ section.settings.scroll_speed }}s linear infinite;
+      {% else %}
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        animation: none;
+      {% endif %}
+    }
+    .marquee-content-{{ section.id }} {
+      {% if section.settings.enable_marquee_tablet %}
+        width: max-content;
+        flex-shrink: 0;
+        justify-content: flex-start;
+      {% else %}
+        width: auto;
+        flex-wrap: wrap;
+        justify-content: center;
+        flex-shrink: 1;
+      {% endif %}
+    }
+    .marquee-content-{{ section.id }}[aria-hidden="true"] {
+      {% if section.settings.enable_marquee_tablet %}
+        display: flex;
+        flex-shrink: 0;
+        min-width: auto;
+      {% else %}
+        display: none;
+      {% endif %}
+    }
+  }
+
+  /* Mobile Overrides (under 768px) */
+  @media screen and (max-width: 767px) {
+    .marquee-item-{{ section.id }} {
+      font-size: {{ section.settings.mobile_font_size }}px;
+      padding: 0 20px;
+    }
+    .marquee-icon-{{ section.id }} svg,
+    .marquee-icon-{{ section.id }} img {
+      width: 18px;
+      height: 18px;
+    }
+    
+    .marquee-track-{{ section.id }} {
+      {% if section.settings.enable_marquee_mobile %}
+        width: max-content;
+        flex-wrap: nowrap;
+        animation: marqueeScroll-{{ section.id }} {{ section.settings.scroll_speed }}s linear infinite;
+      {% else %}
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        animation: none;
+      {% endif %}
+    }
+    .marquee-content-{{ section.id }} {
+      {% if section.settings.enable_marquee_mobile %}
+        width: max-content;
+        flex-shrink: 0;
+        justify-content: flex-start;
+      {% else %}
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        flex-shrink: 1;
+      {% endif %}
+    }
+    .marquee-content-{{ section.id }}[aria-hidden="true"] {
+      {% if section.settings.enable_marquee_mobile %}
+        display: flex;
+        flex-shrink: 0;
+        min-width: auto;
+      {% else %}
+        display: none;
+      {% endif %}
+    }
+    {% if section.settings.enable_marquee_mobile == false %}
+      .marquee-item-{{ section.id }} {
+        padding: 8px 15px;
+      }
+    {% endif %}
+  }
+  @media(max-width: 1200px){
+    .marquee-item-{{ section.id }} {
+      padding: 0 5px
+    }
+  }
+{%- endstyle -%}
+
+<section id="{{ section.id }}" class="custom-marquee-section {{ section.settings.custom_class }}">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+      <h2 style="text-align: center; color: {{ section.settings.text_color }}; margin-bottom: 20px;">
+        {{ section.settings.title }}
+      </h2>
+    {% endif %}
+    
+    <div class="marquee-wrapper-{{ section.id }}">
+      <div class="marquee-track-{{ section.id }}">
+        
+        {% capture marquee_items %}
+          {% for block in section.blocks %}
+            <div class="marquee-item-{{ section.id }}" {{ block.shopify_attributes }}>
+              <span class="marquee-icon-{{ section.id }}">
+                {% if block.settings.icon_svg != blank %}
+                  {{ block.settings.icon_svg }}
+                {% elsif block.settings.icon_image != blank %}
+                  {{ block.settings.icon_image | image_url: width: 60 | image_tag: loading: 'lazy' }}
+                {% else %}
+                  <!-- Default Check Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M12.8333 6.46334V7C12.8326 8.25792 12.4253 9.4819 11.6721 10.4894C10.9189 11.4969 9.86021 12.2339 8.65392 12.5906C7.44763 12.9473 6.15836 12.9044 4.9784 12.4685C3.79844 12.0326 2.79101 11.2269 2.10635 10.1716C1.4217 9.11636 1.0965 7.86804 1.17927 6.61285C1.26204 5.35766 1.74833 4.16286 2.56562 3.20663C3.38292 2.2504 4.48742 1.58398 5.7144 1.30675C6.94139 1.02953 8.22512 1.15637 9.37413 1.66834" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12.8333 2.33334L7 8.1725L5.25 6.4225" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                {% endif %}
+              </span>
+              <span>{{ block.settings.text }}</span>
+            </div>
+          {% endfor %}
+        {% endcapture %}
+
+        <div class="marquee-content-{{ section.id }}">
+          {{ marquee_items }}
+        </div>
+        
+        {% if section.settings.enable_marquee or section.settings.enable_marquee_tablet or section.settings.enable_marquee_mobile %}
+          <!-- Duplicate content for seamless loop -->
+          <div class="marquee-content-{{ section.id }}" aria-hidden="true">
+            {{ marquee_items }}
+          </div>
+        {% endif %}
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    const sectionId = '{{ section.id }}';
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+
+    const wrapper = section.querySelector('.marquee-wrapper-{{ section.id }}');
+    const track = section.querySelector('.marquee-track-{{ section.id }}');
+    if (!wrapper || !track) return;
+
+    const marqueeEnabled = {
+      desktop: {{ section.settings.enable_marquee | json }},
+      tablet: {{ section.settings.enable_marquee_tablet | json }},
+      mobile: {{ section.settings.enable_marquee_mobile | json }}
+    };
+
+    function isMarqueeActive() {
+      const w = window.innerWidth;
+      if (w <= 767) return marqueeEnabled.mobile;
+      if (w <= 1024) return marqueeEnabled.tablet;
+      return marqueeEnabled.desktop;
+    }
+
+    let originalItems = null;
+
+    function getOriginalItems(row) {
+      if (!originalItems || !originalItems.length) {
+        originalItems = Array.from(
+          row.querySelectorAll('.marquee-item-{{ section.id }}')
+        ).map((item) => item.cloneNode(true));
+      }
+      return originalItems;
+    }
+
+    function fillContentRow(row) {
+      const items = getOriginalItems(row);
+      if (!items.length) return;
+
+      row.innerHTML = '';
+      items.forEach((item) => row.appendChild(item.cloneNode(true)));
+
+      const minWidth = wrapper.offsetWidth;
+      let safety = 0;
+      while (row.scrollWidth < minWidth && safety < 20) {
+        items.forEach((item) => row.appendChild(item.cloneNode(true)));
+        safety += 1;
+      }
+    }
+
+    function syncDuplicateRows() {
+      const rows = track.querySelectorAll('.marquee-content-{{ section.id }}');
+      const primary = rows[0];
+      if (!primary) return;
+
+      fillContentRow(primary);
+
+      rows.forEach((row, index) => {
+        if (index === 0) return;
+        row.innerHTML = primary.innerHTML;
+      });
+    }
+
+    function updateMarquee() {
+      const active = isMarqueeActive();
+      wrapper.classList.toggle('is-marquee-active', active);
+      track.classList.toggle('is-marquee-active', active);
+
+      track.querySelectorAll('.marquee-content-{{ section.id }}').forEach((row) => {
+        row.classList.toggle('is-marquee-active', active);
+      });
+
+      if (!active) {
+        track.style.removeProperty('--marquee-distance');
+        return;
+      }
+
+      syncDuplicateRows();
+
+      const primary = track.querySelector('.marquee-content-{{ section.id }}');
+      if (!primary) return;
+
+      const distance = primary.offsetWidth;
+      track.style.setProperty('--marquee-distance', `${distance}px`);
+    }
+
+    let resizeTimer;
+    function onResize() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(updateMarquee, 150);
+    }
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(updateMarquee);
+    } else {
+      updateMarquee();
+    }
+
+    window.addEventListener('resize', onResize);
+    window.addEventListener('load', updateMarquee);
+
+    if (typeof Shopify !== 'undefined' && Shopify.designMode) {
+      document.addEventListener('shopify:section:load', (event) => {
+        if (event.detail && event.detail.sectionId === sectionId) {
+          originalItems = null;
+          updateMarquee();
+        }
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Custom Marquee",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "header",
+      "content": "Marquee Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_marquee",
+      "label": "Enable marquee on desktop",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_marquee_tablet",
+      "label": "Enable marquee on tablet",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_marquee_mobile",
+      "label": "Enable marquee on mobile",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on hover",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "min": 5,
+      "max": 50,
+      "step": 1,
+      "unit": "s",
+      "label": "Scroll speed",
+      "default": 25
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "desktop_font_size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop font size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_font_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile font size",
+      "default": 13
+    },
+    {
+      "type": "header",
+      "content": "General Settings"
+    },
+    {
+      "type": "number",
+      "id": "page_width",
+      "label": "Page Width",
+      "info": "Add PX number",
+      "default": 1440
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#0b1d33"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Desktop background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg_image",
+      "label": "Mobile background image"
+    },
+    {
+      "type": "header",
+      "content": "Desktop section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Tablet section padding"
+    },
+    {
+      "type": "range",
+      "id": "tablet_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "tablet_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Mobile section padding"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Custom attributes"
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom classes"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Free shipping over $100"
+        },
+        {
+          "type": "html",
+          "id": "icon_svg",
+          "label": "Custom Icon (SVG code)",
+          "info": "Leave blank to use default checkmark"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Custom Icon (Image)",
+          "info": "Used if SVG is blank"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Marquee",
+      "blocks": [
+        {
+          "type": "text",
+          "settings": {
+            "text": "Free shipping over $100"
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "text": "Hypoallergenic-friendly stainless steel styles"
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "text": "Giftable, on-trend designs at a great price point"
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "text": "Quick and easy returns available"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

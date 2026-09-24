@@ -1,0 +1,582 @@
+{{ 'component-product-inventory.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign product_id = product.id
+  assign animation_effect = settings.animations
+  assign animated = false
+  if animation_effect != 'none'
+    assign animated = true
+    if section.settings.animations != 'inherit'
+      assign animation_effect = section.settings.animations
+    endif
+  endif
+
+  assign remove_params = section.settings.remove_params
+
+  assign container = section.settings.container
+  if container == 'w-full'
+    assign container = 'container-full'
+  endif
+
+  assign classes = 'm-section m:block m-product-recommendations m-swiper-overflow m-gradient m-color-' | append: section.settings.color_scheme
+  if section.settings.custom_class != blank
+    assign classes = classes | append: ' ' | append: section.settings.custom_class
+  endif
+
+  assign pagination_type = 'bullets'
+  assign show_pagination = section.settings.show_pagination
+  assign show_navigation = section.settings.show_navigation
+
+  assign show_controls = false
+  if show_pagination or show_navigation
+    assign show_controls = true
+  endif
+-%}
+
+{%- capture gridClass -%}
+  m:grid-2-cols md:m:grid-{{ section.settings.columns | minus: 1 }}-cols xl:m:grid-{{ section.settings.columns }}-cols
+{%- endcapture -%}
+
+{%- style -%}
+    .pdp-recommendations-{{ section.id }} {
+      --column-gap: {{ section.settings.column_gap }}px;
+      --column-gap-mobile: 16px;
+      --row-gap: {{ section.settings.column_gap | plus: 10 }}px;
+      --row-gap-mobile: 30px;
+      --items: {{ section.settings.columns }};
+
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+
+    .pdp-recommendations-{{ section.id }} .swiper-button-custom {
+      display: none;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      background: #ffffff;
+      border: 1px solid #eaeaea;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+    .pdp-recommendations-{{ section.id }} .swiper-button-custom:hover {
+      background: #000000;
+      border-color: #000000;
+    }
+    .pdp-recommendations-{{ section.id }} .swiper-button-custom:hover svg {
+      fill: #ffffff;
+    }
+    .pdp-recommendations-{{ section.id }} .swiper-button-custom svg {
+      width: 16px;
+      height: 16px;
+      fill: #121212;
+      transition: fill 0.3s ease;
+    }
+    .m-product-card__content .m-product-card__action{
+      gap: 20px;
+    }
+  .m-product-card__content .m-product-card__action .m-product-form button,
+  .m-product-card__content button.m-product-form.m-product-quickview-button.m-spinner-button.m-button {
+      font-family: Inter;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 100%;
+      letter-spacing: 5%;
+      text-align: center;
+      text-transform: uppercase;
+      padding: 16px 20px;
+      border-radius: 0;
+      border: 1px solid #000000;
+      margin-top: 20px;
+      background: transparent;
+      color: #000;
+    }
+    .m-product-card.m-product-card--style-1 {
+      height: 100%;
+    }
+    .m-product-list .swiper-slide{
+      height: auto;
+      padding: 0 7px !important;
+    }
+    /* .m-product-recommendations__wrapper.m-slider-control-hover-inside.m-mixed-layout {
+      overflow: hidden;
+    } */
+    .pdp-recommendations-{{ section.id }} .swiper-button-prev-custom {
+      left: 10px;
+    }
+    .pdp-recommendations-{{ section.id }} .swiper-button-next-custom {
+      right: 10px;
+    }
+    .pdp-recommendations-{{ section.id }} .swiper-button-custom.swiper-button-disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    h3.m-product-card__title a{
+      font-family: Inter;
+      font-weight: 200;
+      font-size: 16px;
+      line-height: 120%;
+      letter-spacing: 0%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      color: #000000;
+    }
+    h2.m-section__heading {
+      font-family: Inter;
+      font-weight: 200;
+      font-size: 42px;
+      line-height: 100%;
+      letter-spacing: 0%;
+      text-align: center;
+      color: #000000;
+    }
+    .product-review {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 10px;
+    }
+    .product-review span {
+      font-family: Inter;
+      font-weight: 300;
+      font-size: 10px;
+      line-height: 100%;
+      letter-spacing: 0%;
+      color: #0A2540;
+    }
+    @media(max-width: 1100px){
+      .m-product-card__content{
+        height: auto;
+      }
+    }
+    @media screen and (max-width: 989px) {
+      .pdp-recommendations-{{ section.id }} {
+        padding-top: {{ section.settings.padding_top_tablet }}px;
+        padding-bottom: {{ section.settings.padding_bottom_tablet }}px;
+      }
+    }
+
+    @media screen and (max-width: 767px) {
+      .m-product-card__content .m-product-card__action .m-product-form button,
+      .m-product-card__content button.m-product-form.m-product-quickview-button.m-spinner-button.m-button{
+        padding: 12px 20px;
+        margin-top: 10px
+      }
+      .m-product-option--swatch .m-product-option--node__label {
+        width: 16px;
+        height: 16px;
+      }
+      h3.m-product-card__title a {
+        font-size: 11px;
+      }
+      .pdp-recommendations-{{ section.id }} {
+        padding-top: {{ section.settings.padding_top_mobile }}px;
+        padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+      }
+      .pdp-recommendations-{{ section.id }} .swiper-button-custom {
+        display: none;
+      }
+      .pdp-recommendations-{{ section.id }} .m-slider-controls__button {
+        display: flex !important;
+      }
+      .pdp-recommendations-{{ section.id }} .m-slider-controls {
+        margin: 40px 0 0;
+      }
+      h2.m-section__heading{
+        font-size: 30px;
+      }
+      .m-section__header.m\:text-center {
+        margin-bottom: 30px;
+      }
+    }
+{%- endstyle -%}
+
+<section
+  class="{{ classes }} pdp-recommendations-{{ section.id }}"
+>
+  <product-recommendations
+    data-items-per-page="{{ section.settings.columns }}"
+    data-enable-slider="{{ section.settings.enable_slider }}"
+    data-pagination-type="{{ pagination_type }}"
+    data-use-scroll-mobile="{% if section.settings.enable_slider %}false{% else %}{{ section.settings.use_scroll_mobile }}{% endif %}"
+    data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product_id }}&limit={{ section.settings.limit | default: 4 }}"
+  >
+    {% if recommendations.performed and recommendations.products_count > 0 %}
+      <div class="{{ container }} m-section-my m-section-py" style="position: relative;">
+        {% assign default_heading = 'products.product.product_recommendation_heading' | t %}
+        <div class="m-section__header m:text-{{ section.settings.text_align | default: 'left' }}">
+          <h2 class="m-section__heading {{ section.settings.heading_size }}{% if animated %} m-scroll-trigger animate--{{ animation_effect }}{% endif %}">
+            {{ section.settings.heading | default: default_heading }}
+          </h2>
+        </div>
+
+        <div class="m-product-recommendations__wrapper m-slider-control-hover-inside m-mixed-layout{% if section.settings.use_scroll_mobile and section.settings.enable_slider == false %} m-mixed-layout--mobile-scroll{% endif %}">
+          <div
+            class="m-product-list {% if section.settings.enable_slider %} swiper-container-{{ section.id }}{% endif %}"
+            style="overflow: hidden;"
+          >
+            <div class="m:grid {{ gridClass | strip_newlines }} m-mixed-layout__inner{% if section.settings.enable_slider %} swiper-wrapper{% endif %}">
+              {% for product in recommendations.products %}
+                <div class="m:column swiper-slide">
+                  {% liquid
+                    case settings.pcard_layout
+                      when '1'
+                        render 'product-card-1', product: product, index: forloop.index, animated: animated, animation_effect: animation_effect, remove_params: remove_params
+                      when '2'
+                        render 'product-card-2', product: product, index: forloop.index, animated: animated, animation_effect: animation_effect, remove_params: remove_params
+                      when '3'
+                        render 'product-card-3', product: product, index: forloop.index, animated: animated, animation_effect: animation_effect, remove_params: remove_params
+                      when '4'
+                        render 'product-card-4', product: product, index: forloop.index, animated: animated, animation_effect: animation_effect, remove_params: remove_params
+                      when '5'
+                        render 'product-card-5', product: product, index: forloop.index, animated: animated, animation_effect: animation_effect, remove_params: remove_params
+                    endcase
+                  %}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          {% if section.settings.enable_slider and show_navigation %}
+            <div class="swiper-button-custom swiper-button-prev-custom swiper-nav-prev-{{ section.id }}">
+              <svg viewBox="0 0 24 24">
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+              </svg>
+            </div>
+            <div class="swiper-button-custom swiper-button-next-custom swiper-nav-next-{{ section.id }}">
+              <svg viewBox="0 0 24 24">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+              </svg>
+            </div>
+          {% endif %}
+
+          {% if section.settings.enable_slider and show_controls %}
+            {% render 'slider-controls',
+              absolute: true,
+              show_nav: show_navigation,
+              show_pagination: show_pagination,
+              pagination_type: pagination_type,
+              container: section.settings.container,
+              nav_class: 'md:m:hidden'
+            %}
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+  </product-recommendations>
+</section>
+
+{% if section.settings.enable_slider %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const initSlider = () => {
+        const sliderElem = document.querySelector('.swiper-container-{{ section.id }}');
+        if (sliderElem && typeof Swiper !== 'undefined') {
+          new Swiper('.swiper-container-{{ section.id }}', {
+            slidesPerView: 3,
+            spaceBetween: 16,
+            navigation: {
+              nextEl: '.swiper-nav-next-{{ section.id }}, .pdp-recommendations-{{ section.id }} .swiper-button-next',
+              prevEl: '.swiper-nav-prev-{{ section.id }}, .pdp-recommendations-{{ section.id }} .swiper-button-prev',
+              disabledClass: 'swiper-button-disabled'
+            },
+            breakpoints: {
+              768: {
+                slidesPerView: {{ section.settings.columns | minus: 1 }},
+                spaceBetween: {{ section.settings.column_gap }}
+              },
+              990: {
+                slidesPerView: 3,
+                spaceBetween: {{ section.settings.column_gap }}
+              }
+            }
+          });
+        }
+      };
+
+      initSlider();
+      document.addEventListener('shopify:section:load', (e) => {
+        if (e.detail.sectionId === '{{ section.id }}') initSlider();
+      });
+    });
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Product recommendations",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Container type",
+      "default": "container",
+      "options": [
+        {
+          "value": "container-fluid",
+          "label": "Default"
+        },
+        {
+          "value": "w-full",
+          "label": "Full width"
+        },
+        {
+          "value": "container",
+          "label": "Use container box"
+        }
+      ]
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme"
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_params",
+      "label": "Remove URL params",
+      "default": false,
+      "info": "Remove param tracking in product URL"
+    },
+    {
+      "type": "header",
+      "content": "Header settings"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "You Might Also Like",
+      "placeholder": "Product recommendations"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "options": [
+        {
+          "value": "h3",
+          "label": "Medium"
+        },
+        {
+          "value": "h2",
+          "label": "Large"
+        }
+      ],
+      "default": "h3"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text alignment",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Grid settings"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "Products to show",
+      "default": 8,
+      "min": 3,
+      "max": 20
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Products per row",
+      "default": 4,
+      "min": 3,
+      "max": 8
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Column gap",
+      "default": 30,
+      "min": 0,
+      "max": 50,
+      "step": 2
+    },
+    {
+      "type": "header",
+      "content": "Slider settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_slider",
+      "label": "Enable slider",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination",
+      "label": "Show pagination",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_navigation",
+      "label": "Show navigation",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Mobile settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_scroll_mobile",
+      "label": "Use horizontal scrollbar",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Desktop Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "default": 50,
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "default": 50,
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Tablet Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_tablet",
+      "label": "Padding Top (Tablet)",
+      "default": 40,
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_tablet",
+      "label": "Padding Bottom (Tablet)",
+      "default": 40,
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "default": 30,
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "default": 30,
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Custom Attributes"
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom classes"
+    },
+    {
+      "type": "header",
+      "content": "Animations"
+    },
+    {
+      "type": "select",
+      "id": "animations",
+      "label": "Visible in the view animation",
+      "default": "inherit",
+      "options": [
+        {
+          "value": "inherit",
+          "label": "Inherit global setting"
+        },
+        {
+          "value": "fade-in",
+          "label": "Fade in"
+        },
+        {
+          "value": "fade-in-up",
+          "label": "Fade in up"
+        },
+        {
+          "value": "fade-in-left",
+          "label": "Fade in left"
+        },
+        {
+          "value": "fade-in-right",
+          "label": "Fade in right"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product recommendations"
+    }
+  ]
+}
+{% endschema %}

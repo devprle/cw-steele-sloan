@@ -1,0 +1,98 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<div class="product-gallery-swiper-wrapper">
+  
+  <div class="swiper product-main-swiper">
+    <div class="swiper-wrapper">
+      {%- for media in product.media -%}
+        <div class="swiper-slide" data-media-type="{{ media.media_type }}">
+          {%- case media.media_type -%}
+            {%- when 'image' -%}
+              <img src="{{ media | image_url }}" height="auto" width="auto" alt="{{ media.alt | escape }}" loading="lazy">
+            
+            {%- when 'video' -%}
+              <div class="swiper-video-container">
+                {{ media | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true }}
+              </div>
+              
+            {%- when 'external_video' -%}
+              <div class="swiper-video-container external">
+                {{ media | external_video_tag: autoplay: true, loop: true, muted: true, playsinline: true }}
+              </div>
+          {%- endcase -%}
+        </div>
+      {%- endfor -%}
+    </div>
+    
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <div class="swiper product-thumbs-swiper">
+    <div class="swiper-wrapper">
+      {%- for media in product.media -%}
+        <div class="swiper-slide">
+          <img src="{{ media | image_url }}" width="auto" height="auto" alt="Thumbnail" loading="lazy">
+          {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
+            <span class="thumb-video-icon">▶</span>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const thumbsSwiper = new Swiper(".product-thumbs-swiper", {
+    spaceBetween: 10,
+    slidesPerView: 7,
+    freeMode: true,
+    watchSlidesProgress: true,
+  });
+  const mainSwiper = new Swiper(".product-main-swiper", {
+    spaceBetween: 10,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    thumbs: {
+      swiper: thumbsSwiper,
+    },
+    on: {
+      init: function () {
+        handleSlideVideo(this);
+      },
+      slideChange: function () {
+        handleSlideVideo(this);
+      },
+    },
+  });
+
+  function handleSlideVideo(swiper) {
+    const allVideos = swiper.el.querySelectorAll("video");
+    allVideos.forEach((video) => {
+      video.pause();
+    });
+
+    const activeSlide = swiper.slides[swiper.activeIndex];
+    const activeVideo = activeSlide.querySelector("video");
+    
+    if (activeVideo) {
+      activeVideo.muted = true;
+      activeVideo.play().catch((error) => {
+        console.log("Autoplay prevented: ", error);
+      });
+    }
+  }
+});
+</script>

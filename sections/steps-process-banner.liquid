@@ -1,0 +1,431 @@
+{% style %}
+  #{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    position: relative;
+    background-color: {{ section.settings.background_color }};
+    {% if section.settings.bg_image != blank %}
+      background-image: url({{ section.settings.bg_image | image_url: width: 2000 }});
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    {% endif %}
+    min-height: {{ section.settings.desktop_height }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Overlay Layer for Readability */
+  #{{ section.id }}::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0, {{ section.settings.overlay_opacity | divided_by: 100.0 }});
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  #{{ section.id }} .process-banner-container {
+    max-width: {{ section.settings.page_width }}px;
+    margin: 0 auto;
+    padding: 0 60px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    text-align: {{ section.settings.text_alignment }};
+  }
+
+  #{{ section.id }} .process-main-title {
+    font-family: 'Inter', sans-serif;
+    color: #000;
+    margin: 0 0 80px 0;
+    font-weight: 200;
+    font-size: 42px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+  }
+
+  #{{ section.id }} .process-steps-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+  }
+
+  #{{ section.id }} .process-step-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  #{{ section.id }} .step-number-circle {
+    width: 80px;
+    height: 80px;
+    border: 1px solid {{ section.settings.text_color }};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    color: {{ section.settings.text_color }};
+    margin-bottom: 26px;
+    background: transparent;
+    font-weight: 200;
+    font-size: 32px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+  }
+
+  #{{ section.id }} .step-title {
+    font-family: 'Inter', sans-serif;
+    color: {{ section.settings.text_color }};
+    margin: 0 0 10px 0;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+  }
+
+  #{{ section.id }} .step-description {
+    font-family: 'Inter', sans-serif;
+    color: {{ section.settings.text_color }};
+    max-width: 230px;
+    margin: 0;
+    font-weight: 200;
+    font-size: 14px;
+    line-height: 160%;
+    letter-spacing: 0%;
+    text-align: center;
+  }
+
+  #{{ section.id }} .step-description p {
+    margin: 0;
+    color: inherit;
+  }
+
+  /* Tablet Responsive styling */
+  @media screen and (max-width: 1024px) {
+    #{{ section.id }} {
+      padding-top: {{ section.settings.tablet_padding_top }}px;
+      padding-bottom: {{ section.settings.tablet_padding_bottom }}px;
+    }
+    #{{ section.id }} .process-banner-container {
+      padding: 0 30px;
+    }
+    #{{ section.id }} .process-main-title {
+      font-size: 34px;
+      margin-bottom: 40px;
+    }
+    #{{ section.id }} .process-steps-grid {
+      gap: 25px;
+    }
+  }
+
+  /* Mobile Responsive styling */
+  @media screen and (max-width: 767px) {
+    #{{ section.id }} .step-number-circle {
+      width: 50px;
+      height: 50px;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    #{{ section.id }} {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+      min-height: {{ section.settings.mobile_height }}px;
+      {% if section.settings.mobile_bg_image != blank %}
+        background-image: url({{ section.settings.mobile_bg_image | image_url: width: 800 }});
+      {% endif %}
+    }
+    #{{ section.id }} .process-banner-container {
+      padding: 0 15px;
+    }
+    #{{ section.id }} .process-main-title {
+      font-size: 30px;
+      margin-bottom: 30px;
+    }
+    #{{ section.id }} .process-steps-grid {
+      gap: 16px;
+      flex-wrap: nowrap;
+    }
+    .process-step-item{
+      min-width: auto !important;
+    }
+    #{{ section.id }} .step-description {
+      font-size: 12px;
+    }
+    #{{ section.id }} .step-title {
+      font-size: 14px;
+    }
+  }
+{% endstyle %}
+
+<section id="{{ section.id }}" class="process-steps-section {{ section.settings.custom_class }}">
+  <div class="process-banner-container">
+    {%- if section.settings.main_title != blank -%}
+      <h2 class="process-main-title">{{ section.settings.main_title }}</h2>
+    {%- endif -%}
+    
+    <div class="process-steps-grid">
+      {%- for block in section.blocks -%}
+        <div class="process-step-item" {{ block.shopify_attributes }}>
+          {%- if block.settings.step_number != blank -%}
+            <div class="step-number-circle">
+              {{ block.settings.step_number }}
+            </div>
+          {%- endif -%}
+
+          {%- if block.settings.step_title != blank -%}
+            <h3 class="step-title">{{ block.settings.step_title }}</h3>
+          {%- endif -%}
+
+          {%- if block.settings.step_desc != blank -%}
+            <div class="step-description">
+              {{ block.settings.step_desc }}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Steps Process Banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Desktop Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg_image",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Overlay Opacity (Darkness)",
+      "default": 0,
+      "info": "Text barabar ukelay a mate pachal jiri dark color no pado avse. Image vagar 0 rakhvo."
+    },
+    {
+      "type": "number",
+      "id": "desktop_height",
+      "label": "Desktop Min Height (px)",
+      "default": 450
+    },
+    {
+      "type": "number",
+      "id": "mobile_height",
+      "label": "Mobile Min Height (px)",
+      "default": 350
+    },
+    {
+      "type": "header",
+      "content": "Section Title & Content"
+    },
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Section Main Title",
+      "default": "From outfit to game-day ready in seconds"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Style & Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f4f4f4"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#222222"
+    },
+    {
+      "type": "number",
+      "id": "page_width",
+      "label": "Page Width (px)",
+      "default": 1200
+    },
+    {
+      "type": "header",
+      "content": "Desktop Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Tablet Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "tablet_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "tablet_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Mobile Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 30
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS Class"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Process Step",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "step_number",
+          "label": "Step Number/Icon Text",
+          "default": "1"
+        },
+        {
+          "type": "text",
+          "id": "step_title",
+          "label": "Step Title",
+          "default": "Choose your style"
+        },
+        {
+          "type": "richtext",
+          "id": "step_desc",
+          "label": "Step Description",
+          "default": "<p>One clasp, one second, instant team spirit.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Steps Process Banner",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "1",
+            "step_title": "Choose your style",
+            "step_desc": "<p>One clasp, one second, instant team spirit.</p>"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "2",
+            "step_title": "Layer or solo",
+            "step_desc": "<p>Pairs with tees, jerseys, blazers, sundresses.</p>"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "3",
+            "step_title": "Cheer loud",
+            "step_desc": "<p>Tarnish-resistant shine through every quarter.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

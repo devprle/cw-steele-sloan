@@ -1,0 +1,355 @@
+{%- liquid 
+  assign padding_horizontal = section.settings.padding_horizontal
+  assign padding_horizontal_mobile = section.settings.padding_horizontal_mobile
+  assign padding_top = section.settings.padding_top
+  assign padding_bottom = section.settings.padding_bottom
+  assign border_color = section.settings.border_color
+  assign border_thickness = section.settings.border_thickness
+  assign margin_top = section.settings.margin_top
+  assign margin_bottom = section.settings.margin_bottom
+  assign background_color = section.settings.background_color
+  assign background_gradient = section.settings.background_gradient
+  assign full_width = section.settings.full_width
+  assign content_width = section.settings.content_width
+
+  assign slope_height = section.settings.slope_height
+  assign slope_height_mobile = section.settings.slope_height_mobile
+  assign slope_skew = section.settings.slope_skew
+  assign slope_skew_mobile = section.settings.slope_skew_mobile
+  assign slope_direction = section.settings.slope_direction
+  assign slope_direction_mobile = section.settings.slope_direction_mobile
+
+  assign bottom_bg_color = section.settings.bottom_bg_color
+  assign top_bg_color = section.settings.top_bg_color
+-%}
+
+{%- style -%}
+  
+  .section-{{ section.id }} {
+    border-top: solid {{ border_color }} {{ border_thickness }}px;
+    border-bottom: solid {{ border_color }} {{ border_thickness }}px;
+    margin-top: {{ margin_top | times: 0.75 | round: 0 }}px;
+    margin-bottom: {{ margin_bottom | times: 0.75 | round: 0 }}px;
+  }
+  
+  .section-{{ section.id }}-settings {
+    margin: 0 auto;
+    padding-top: {{ padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ padding_bottom | times: 0.75 | round: 0 }}px;
+    padding-left: {{ padding_horizontal_mobile }}rem;
+    padding-right: {{ padding_horizontal_mobile }}rem;
+  }
+
+  .slope-body-{{ section.id }} {
+    background-color: {{ bottom_bg_color }};
+    height: {{ slope_height_mobile }}px;
+  }
+
+  .slope-item-{{ section.id }} {
+    display: block !important;
+    background-color: {{ top_bg_color }};
+    width: 100%;
+    height: 101%;
+    position: relative;
+    clip-path: polygon(
+      0 0,
+      100% 0, 
+      100% 100%,
+      0 calc(100% - {{ slope_skew_mobile }}px)
+    );
+    z-index: 2;
+    top: -0.5%;
+  }
+  
+  @media(min-width: 1024px) {
+
+    .section-{{ section.id }} {
+      margin-top: {{ margin_top }}px;
+      margin-bottom: {{ margin_bottom }}px;
+    }
+    
+    .section-{{ section.id }}-settings {
+      padding: 0 5rem;
+      padding-top: {{ padding_top }}px;
+      padding-bottom: {{ padding_bottom }}px;
+      padding-left: {{ padding_horizontal }}rem;
+      padding-right: {{ padding_horizontal }}rem;
+    }
+
+    .slope-body-{{ section.id }} {
+      height: {{ slope_height }}px;
+    }
+
+    .slope-item-{{ section.id }} {
+      clip-path: polygon(
+        0 0,
+        100% 0, 
+        100% 100%,
+        0 calc(100% - {{ slope_skew }}px)
+      );
+    }
+  }
+  
+{%- endstyle -%}
+
+{% unless full_width %}
+  <style>
+    .section-{{ section.id }}-settings {
+      max-width: {{ content_width }}rem;
+    }
+  </style>
+{% endunless %}
+
+{% if slope_direction_mobile == "right" %}
+  <style>
+    .slope-item-{{ section.id }} {
+      transform: scaleX(-1);
+    }
+  </style>
+{% endif %}
+
+{% if slope_direction == "right" %}
+  <style>
+    @media(min-width: 1024px) {
+       .slope-item-{{ section.id }} {
+        transform: scaleX(-1);
+      } 
+    }
+  </style>
+{% else %}
+  <style>
+    @media(min-width: 1024px) {
+       .slope-item-{{ section.id }} {
+        transform: unset;
+      } 
+    }
+  </style>
+{% endif %}
+
+<div class="section-{{ section.id }} slope-{{ section.id }}" style="background-color:{{ background_color }}; background-image: {{ background_gradient }};">
+    <div class="section-{{ section.id }}-settings">
+      <div class="slope-body-{{ section.id }}">
+        <div class="slope-item-{{ section.id }}"></div>
+      </div>
+    </div>
+</div>
+
+{% schema %}
+  {
+    "name": "SS - Slope",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Slope Settings"
+      },
+      {
+        "type": "range",
+        "id": "slope_height",
+        "min": 20,
+        "max": 450,
+        "step": 5,
+        "unit": "px",
+        "label": "Slope Height",
+        "default": 100
+      },
+      {
+        "type": "range",
+        "id": "slope_height_mobile",
+        "min": 20,
+        "max": 450,
+        "step": 5,
+        "unit": "px",
+        "label": "Slope Height - Mobile",
+        "default": 100
+      },
+      {
+        "type": "range",
+        "id": "slope_skew",
+        "min": 20,
+        "max": 450,
+        "step": 5,
+        "unit": "px",
+        "label": "Slope Skew",
+        "default": 80
+      },
+      {
+        "type": "range",
+        "id": "slope_skew_mobile",
+        "min": 20,
+        "max": 450,
+        "step": 5,
+        "unit": "px",
+        "label": "Slope Skew - Mobile",
+        "default": 80
+      },
+      {
+        "type": "select",
+        "id": "slope_direction",
+        "label": "Slope Direction",
+        "default": "left",
+        "options": [
+          {
+            "label": "Left",
+            "value": "left"
+          },
+          {
+            "label": "Right",
+            "value": "right"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "slope_direction_mobile",
+        "label": "Slope Direction - Mobile",
+        "default": "left",
+        "options": [
+          {
+            "label": "Left",
+            "value": "left"
+          },
+          {
+            "label": "Right",
+            "value": "right"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Section Colors"
+      },
+      {
+        "type": "color",
+        "label": "Top Background Color",
+        "id": "top_bg_color",
+        "default": "#2B4141"
+      },
+      {
+        "type": "color",
+        "label": "Bottom Background Color",
+        "id": "bottom_bg_color",
+        "default": "#0EB1D2"
+      },
+      {
+        "type": "color",
+        "label": "Section background",
+        "id": "background_color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color_background",
+        "id": "background_gradient",
+        "label": "Section background gradient"
+      },
+      {
+        "type": "color",
+        "label": "Border",
+        "id": "border_color",
+        "default": "#000000"
+      },
+      {
+        "type": "header",
+        "content": "Section margin (outside)"
+      },
+      {
+        "type": "range",
+        "id": "margin_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Margin top",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "margin_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Margin bottom",
+        "default": 0
+      },
+      {
+        "type": "header",
+        "content": "Section padding (inside)"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding top",
+        "default": 36
+      },
+      {
+         "type": "range",
+         "id": "padding_bottom",
+         "min": 0,
+         "max": 100,
+         "step": 4,
+         "unit": "px",
+         "label": "Padding bottom",
+         "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_horizontal",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "rem",
+        "label": "Padding sides",
+        "default": 5
+      },
+      {
+        "type": "range",
+        "id": "padding_horizontal_mobile",
+        "min": 0,
+        "max": 15,
+        "step": 0.5,
+        "unit": "rem",
+        "label": "Padding sides mobile",
+        "default": 1.5
+      },
+      {
+        "type": "header",
+        "content": "Section Settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "full_width",
+        "label": "Full Width",
+        "default": false
+      },
+      {
+        "type": "range",
+        "id": "content_width",
+        "min": 0,
+        "max": 400,
+        "step": 10,
+        "unit": "rem",
+        "label": "Section content width",
+        "default": 120
+      },
+      {
+        "type": "range",
+        "id": "border_thickness",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "label": "Border thickness",
+        "default": 0
+      }
+    ],
+    "presets": [
+      {
+        "name": "SS - Slope"
+      }
+    ]
+  }
+{% endschema %}

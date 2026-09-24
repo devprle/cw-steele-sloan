@@ -1,0 +1,329 @@
+{% style %}
+  #{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    position: relative;
+    background-color: {{ section.settings.background_color }};
+    {% if section.settings.bg_image != blank %}
+      background-image: url({{ section.settings.bg_image | image_url: width: 2000 }});
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    {% endif %}
+    min-height: {{ section.settings.desktop_height }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Overlay opacity for text readability */
+  #{{ section.id }}::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0, {{ section.settings.overlay_opacity | divided_by: 100.0 }});
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  #{{ section.id }} .banner-container {
+    max-width: {{ section.settings.page_width }}px;
+    margin: 0 auto;
+    padding: 0 60px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    text-align: {{ section.settings.text_alignment }};
+  }
+
+  #{{ section.id }} .banner-title {
+    font-family: 'Inter', sans-serif;
+    color: {{ section.settings.text_color }};
+    font-family: 'Inter', sans-serif;
+    margin: 0 0 17px 0;
+    font-weight: 200;
+    font-size: 42px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+  }
+
+  #{{ section.id }} .banner-description {
+    font-family: 'Inter', sans-serif;
+    color: {{ section.settings.text_color }};
+    margin: 0;
+    max-width: 700px;
+    display: inline-block;
+    font-weight: 200;
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: 0%;
+    
+  }
+
+  /* Responsive styling */
+  @media screen and (max-width: 1024px) {
+    #{{ section.id }} {
+      padding-top: {{ section.settings.tablet_padding_top }}px;
+      padding-bottom: {{ section.settings.tablet_padding_bottom }}px;
+    }
+    #{{ section.id }} .banner-container {
+      padding: 0 30px;
+    }
+    #{{ section.id }} .banner-title {
+      font-size: 34px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    #{{ section.id }} {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+      min-height: {{ section.settings.mobile_height }}px;
+      {% if section.settings.mobile_bg_image != blank %}
+        background-image: url({{ section.settings.mobile_bg_image | image_url: width: 800 }});
+      {% endif %}
+    }
+    #{{ section.id }} .banner-container {
+      padding: 0 20px;
+      margin: auto auto 0;
+    }
+    #{{ section.id }} .banner-title {
+      font-size: 28px;
+      margin: 0 0 15px 0;
+    }
+  }
+{% endstyle %}
+
+{%- liquid
+  # Dynamic title handling
+  assign banner_title = section.settings.custom_title
+  if template.name == 'collection' and collection
+    if section.settings.show_collection_title or banner_title == blank
+      assign banner_title = collection.title
+    endif
+  endif
+
+  # Dynamic description handling
+  assign banner_desc = section.settings.custom_description
+  if template.name == 'collection' and collection
+    if section.settings.show_collection_desc or banner_desc == blank
+      assign banner_desc = collection.description
+    endif
+  endif
+-%}
+
+<section id="{{ section.id }}" class="collection-bg-banner {{ section.settings.custom_class }}">
+  <div class="banner-container">
+    {%- if banner_title != blank -%}
+      <h1 class="banner-title">{{ banner_title }}</h1>
+    {%- endif -%}
+    
+    {%- if banner_desc != blank -%}
+      <div class="banner-description">
+        {{ banner_desc }}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection Banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Desktop Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg_image",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Overlay Opacity (Darkness)",
+      "default": 20,
+      "info": "Text barabar ukelay a mate pachal jiri dark color no pado avse."
+    },
+    {
+      "type": "number",
+      "id": "desktop_height",
+      "label": "Desktop Min Height (px)",
+      "default": 350
+    },
+    {
+      "type": "number",
+      "id": "mobile_height",
+      "label": "Mobile Min Height (px)",
+      "default": 250
+    },
+    {
+      "type": "header",
+      "content": "Text Logic Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_title",
+      "label": "Use Collection Name as Title",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "custom_title",
+      "label": "Fallback / Custom Title",
+      "default": "University Collections"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_desc",
+      "label": "Use Collection Description",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "custom_description",
+      "label": "Fallback / Custom Description",
+      "default": "<p>Apparel, accessories and gifts for fans of Yale, Harvard, Vanderbilt, Columbia, Alabama, Stanford and more.</p>"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Style & Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Fallback Background Color",
+      "default": "#f4f4f4",
+      "info": "Jo image nahi hoy to aa color dekhase."
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "number",
+      "id": "page_width",
+      "label": "Page Width (px)",
+      "default": 1200
+    },
+    {
+      "type": "header",
+      "content": "Desktop Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Tablet Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "tablet_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "tablet_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Mobile Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 20
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS Class"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Banner"
+    }
+  ]
+}
+{% endschema %}

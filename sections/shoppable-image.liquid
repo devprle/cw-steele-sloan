@@ -1,0 +1,807 @@
+{% style %}
+    #{{ section.id }} {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+        position: relative;
+        {% if section.settings.background_color != blank %}
+        background-color: {{ section.settings.background_color }};
+        {% endif %}
+        {% if section.settings.bg_image != blank %}
+        background-image: url({{ section.settings.bg_image | image_url: width: 2000 }});
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        {% endif %}
+    }
+
+    #{{ section.id }}::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0, {{ section.settings.overlay_opacity | divided_by: 100.0 }});
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    #{{ section.id }} .page-width {
+        max-width: {{ section.settings.page_width }}px;
+        padding: 0 60px;
+        margin: 0 auto;
+        width: 100%;
+        position: relative;
+        z-index: 2;
+    }
+
+    .shoppable-image__container-{{ section.id }} {
+        display: flex;
+        align-items: center;
+        {% if section.settings.adapt_height and section.settings.bg_image != blank %}
+          min-height: {{ 100 | divided_by: section.settings.bg_image.aspect_ratio }}vw;
+        {% else %}
+          min-height: 650px;
+        {% endif %}
+        position: relative;
+    }
+
+    .shoppable-image__content-{{ section.id }} {
+        max-width: 500px;
+        color: {{ section.settings.text_color }};
+        position: relative;
+        z-index: 3;
+        padding-right: 40px;
+    }
+
+    #{{ section.id }} .shoppable-image__rating {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        margin-bottom: 22px;
+    }
+
+    #{{ section.id }} .shoppable-image__rating .stars {
+        letter-spacing: 2px;
+        font-size: 14px;
+        display: flex;
+    }
+    #{{ section.id }} span.rating-text{
+      font-family: 'Inter';
+      font-weight: 300;
+      font-size: 10px;
+      line-height: 100%;
+      letter-spacing: 0;
+    }
+    #{{ section.id }} span.rating-text strong{
+      font-weight: 700;
+    }
+    #{{ section.id }} .shoppable-image__title {
+        margin-bottom: 22px;
+        color: inherit;
+        font-family: 'Inter';
+        font-weight: 200;
+        font-size: 42px;
+        line-height: 100%;
+        letter-spacing: 0;
+    }
+    #{{ section.id }} .shoppable-image__subtitle {
+        margin-bottom: 22px;
+        font-family: 'inter';
+        font-weight: 200;
+        font-size: 16px;
+        line-height: normal;
+        letter-spacing: 0;
+    }
+
+    .shoppable-image__button-{{ section.id }} {
+        display: inline-block;
+        padding: 15.5px 35px;
+        background-color: {{ section.settings.button_bg }};
+        color: {{ section.settings.button_text_color }};
+        text-decoration: none;
+        transition: all 0.3s;
+        font-family: 'Inter';
+        font-weight: 200;
+        font-size: 14px;
+        line-height: normal;
+        letter-spacing: 5%;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    .shoppable-image__button-{{ section.id }}:hover {
+        opacity: 0.9;
+    }
+
+  /* Hotspots Container */
+    .shoppable-image__hotspots-{{ section.id }} {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    #{{ section.id }} .hotspot {
+        position: absolute;
+        pointer-events: auto;
+        transform: translate(-50%, -50%);
+    }
+
+    #{{ section.id }} .hotspot__dot {
+        width: 14px;
+        height: 14px;
+        background-color: #fff;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.4);
+        transition: transform 0.3s, box-shadow 0.3s;
+        position: relative;
+    }
+    #{{ section.id }} .hotspot:hover .hotspot__dot {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.6);
+    }
+
+    /* Product Card */
+    #{{ section.id }} .hotspot__product-card {
+        position: absolute;
+        top: calc(100% + 20px);
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+        background: #fff;
+        width: 320px;
+        display: flex;
+        padding: 15px;
+        gap: 15px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        z-index: 10;
+    }
+
+    #{{ section.id }} .hotspot__product-card::before {
+        content: '';
+        position: absolute;
+        top: -16px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 8px;
+        border-style: solid;
+        border-color: transparent transparent #fff transparent;
+    }
+
+    #{{ section.id }} .hotspot__product-card::after {
+        content: '';
+        position: absolute;
+        top: -25px;
+        left: 0;
+        width: 100%;
+        height: 25px;
+    }
+
+    #{{ section.id }} .hotspot:hover .hotspot__product-card {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    /* Auto-adjust positions for small screens */
+    #{{ section.id }} .hotspot.is-overflow-right .hotspot__product-card {
+        left: auto;
+        right: -10px;
+        transform: translateY(10px);
+    }
+    #{{ section.id }} .hotspot.is-overflow-right:hover .hotspot__product-card {
+        transform: translateY(0);
+    }
+    #{{ section.id }} .hotspot.is-overflow-right .hotspot__product-card::before {
+        left: auto;
+        right: 13px;
+        transform: none;
+    }
+
+    #{{ section.id }} .hotspot.is-overflow-left .hotspot__product-card {
+        left: -10px;
+        transform: translateY(10px);
+    }
+    #{{ section.id }} .hotspot.is-overflow-left:hover .hotspot__product-card {
+        transform: translateY(0);
+    }
+    #{{ section.id }} .hotspot.is-overflow-left .hotspot__product-card::before {
+        left: 13px;
+        transform: none;
+    }
+
+    #{{ section.id }} .hotspot-product__image {
+        width: 100px;
+        flex-shrink: 0;
+    }
+    #{{ section.id }} .hotspot-product__image img,
+    #{{ section.id }} .hotspot-product__image svg {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+    }
+    #{{ section.id }} .hotspot-product__info {
+        flex-grow: 1;
+        color: #000;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left;
+    }
+    #{{ section.id }} .hotspot-product__reviews {
+        font-size: 11px;
+        color: #666;
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+    #{{ section.id }} .hotspot-product__reviews .star {
+        color: #d1b06b;
+    }
+    #{{ section.id }} .hotspot-product__title {
+        margin: 0 0 10px;
+        font-family: 'Inter';
+        font-weight: 200;
+        font-size: 16px;
+        line-height: 100%;
+        letter-spacing: 0;
+        color: #0A2540;
+    }
+    #{{ section.id }} .hotspot-product__price {
+        font-family: 'Inter';
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 100%;
+        letter-spacing: 0;
+        color: #0A2540;
+    }
+    #{{ section.id }} .hotspot-product__link {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 11;
+    }
+    #{{ section.id }} .visually-hidden{
+        display: none;
+    }
+
+  {% for block in section.blocks %}
+    .hotspot-{{ block.id }} {
+      top: {{ block.settings.desktop_top }}%;
+      left: {{ block.settings.desktop_left }}%;
+    }
+  {% endfor %}
+
+  @media screen and (max-width: 1024px) {
+    #{{ section.id }} {
+      padding-top: {{ section.settings.tablet_padding_top }}px;
+      padding-bottom: {{ section.settings.tablet_padding_bottom }}px;
+    }
+    #{{ section.id }} .page-width {
+      padding: 0 15px;
+    }
+    .shoppable-image__container-{{ section.id }} {
+      {% if section.settings.adapt_height and section.settings.bg_image != blank %}
+        min-height: {{ 100 | divided_by: section.settings.bg_image.aspect_ratio }}vw;
+      {% else %}
+        min-height: 500px;
+      {% endif %}
+    }
+    #{{ section.id }} .shoppable-image__title {
+      font-size: 38px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    #{{ section.id }} {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+      {% if section.settings.mobile_bg_image != blank %}
+        background-image: url({{ section.settings.mobile_bg_image | image_url: width: 800 }});
+      {% endif %}
+      background-size: cover;
+      background-position: 100% 23%;
+    }
+    #{{ section.id }} .hotspot-product__title {
+        font-size: 12px;
+        font-weight: 300;
+    }
+    #{{ section.id }} .shoppable-image__rating {
+        justify-content: center;
+    }
+    .shoppable-image__content-{{ section.id }} {
+        text-align: center;
+    }
+    .shoppable-image__container-{{ section.id }} {
+      min-height: 150.058824vw;
+      align-items: flex-end;
+      padding-bottom: 30px;
+    }
+    .shoppable-image__content-{{ section.id }} {
+        max-width: 100%;
+        padding-right: 0;
+    }
+    #{{ section.id }} .shoppable-image__title {
+      font-size: 30px;
+    }
+    #{{ section.id }} .shoppable-image__subtitle {
+      font-size: 13px;
+    }
+    #{{ section.id }} .hotspot__product-card {
+      width: 280px;
+      padding: 10px;
+      gap: 10px;
+      align-items: center;
+    }
+    #{{ section.id }} .hotspot-product__image {
+      width: 75px;
+    }
+
+    /* Mobile: card centered on screen; pointer follows dot */
+    #{{ section.id }} .hotspot .hotspot__product-card {
+      left: 50%;
+      right: auto;
+      transform: translateX(calc(-50% + var(--card-offset-x, 0px))) translateY(10px);
+    }
+    #{{ section.id }} .hotspot:hover .hotspot__product-card {
+      transform: translateX(calc(-50% + var(--card-offset-x, 0px))) translateY(0);
+    }
+    #{{ section.id }} .hotspot.is-overflow-left .hotspot__product-card,
+    #{{ section.id }} .hotspot.is-overflow-right .hotspot__product-card {
+      left: 50%;
+      right: auto;
+      transform: translateX(calc(-50% + var(--card-offset-x, 0px))) translateY(10px);
+    }
+    #{{ section.id }} .hotspot.is-overflow-left:hover .hotspot__product-card,
+    #{{ section.id }} .hotspot.is-overflow-right:hover .hotspot__product-card {
+      transform: translateX(calc(-50% + var(--card-offset-x, 0px))) translateY(0);
+    }
+    #{{ section.id }} .hotspot .hotspot__product-card::before,
+    #{{ section.id }} .hotspot .hotspot__product-card::after {
+      left: calc(50% - var(--card-offset-x, 0px));
+      right: auto;
+      transform: translateX(-50%);
+    }
+    #{{ section.id }} .hotspot .hotspot__product-card::after {
+      width: 40px;
+    }
+    #{{ section.id }} .hotspot.is-overflow-left .hotspot__product-card::before,
+    #{{ section.id }} .hotspot.is-overflow-right .hotspot__product-card::before,
+    #{{ section.id }} .hotspot.is-overflow-left .hotspot__product-card::after,
+    #{{ section.id }} .hotspot.is-overflow-right .hotspot__product-card::after {
+      left: calc(50% - var(--card-offset-x, 0px));
+      right: auto;
+      transform: translateX(-50%);
+    }
+
+    {% for block in section.blocks %}
+      .hotspot-{{ block.id }} {
+        top: {{ block.settings.mobile_top }}%;
+        left: {{ block.settings.mobile_left }}%;
+      }
+    {% endfor %}
+  }
+  @media screen and (max-width: 425px) {
+    #{{ section.id }} {
+      background-size: cover;
+      background-position: 100% 23%;
+    }
+    .shoppable-image__container-{{ section.id }} {
+      min-height: 160vw;
+    }
+  }
+{% endstyle %}
+
+<section id="{{ section.id }}" class="shoppable-image-section {{ section.settings.custom_class }}">
+  <div class="page-width">
+    <div class="shoppable-image__container-{{ section.id }}">
+      <div class="shoppable-image__content-{{ section.id }}">
+        {% if section.settings.rating_text != blank %}
+          <div class="shoppable-image__rating">
+            <span class="stars">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                <path d="M1.9125 9.5L2.725 5.9875L0 3.625L3.6 3.3125L5 0L6.4 3.3125L10 3.625L7.275 5.9875L8.0875 9.5L5 7.6375L1.9125 9.5Z" fill="white"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                <path d="M1.9125 9.5L2.725 5.9875L0 3.625L3.6 3.3125L5 0L6.4 3.3125L10 3.625L7.275 5.9875L8.0875 9.5L5 7.6375L1.9125 9.5Z" fill="white"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                <path d="M1.9125 9.5L2.725 5.9875L0 3.625L3.6 3.3125L5 0L6.4 3.3125L10 3.625L7.275 5.9875L8.0875 9.5L5 7.6375L1.9125 9.5Z" fill="white"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                <path d="M1.9125 9.5L2.725 5.9875L0 3.625L3.6 3.3125L5 0L6.4 3.3125L10 3.625L7.275 5.9875L8.0875 9.5L5 7.6375L1.9125 9.5Z" fill="white"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                <path d="M1.9125 9.5L2.725 5.9875L0 3.625L3.6 3.3125L5 0L6.4 3.3125L10 3.625L7.275 5.9875L8.0875 9.5L5 7.6375L1.9125 9.5Z" fill="white"/>
+              </svg>
+            </span>
+            <span class="rating-text">{{ section.settings.rating_text }}</span>
+          </div>
+        {% endif %}
+
+        {% if section.settings.title != blank %}
+          <h2 class="shoppable-image__title">{{ section.settings.title }}</h2>
+        {% endif %}
+
+        {% if section.settings.subtitle != blank %}
+          <p class="shoppable-image__subtitle">{{ section.settings.subtitle }}</p>
+        {% endif %}
+
+        {% if section.settings.button_label != blank %}
+          <a href="{{ section.settings.button_link }}" class="shoppable-image__button-{{ section.id }}">
+            {{ section.settings.button_label }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="shoppable-image__hotspots-{{ section.id }}">
+    {% for block in section.blocks %}
+      <div class="hotspot hotspot-{{ block.id }}" {{ block.shopify_attributes }}>
+        <div class="hotspot__dot"></div>
+        {% if block.settings.product != blank %}
+          {% assign product = block.settings.product %}
+          <div class="hotspot__product-card">
+            <a href="{{ product.url }}" class="hotspot-product__link"
+              ><span class="visually-hidden">{{ product.title }}</span></a
+            >
+            <div class="hotspot-product__image">
+              {% if product.featured_image != blank %}
+                <img
+                  src="{{ product.featured_image | image_url: width: 200 }}"
+                  alt="{{ product.title | escape }}"
+                  loading="lazy"
+                  width="100"
+                  height="100"
+                >
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+            </div>
+            <div class="hotspot-product__info">
+              <div class="hotspot-product__reviews">
+                <span class="star">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path d="M1.9125 9.5L2.725 5.9875L0 3.625L3.6 3.3125L5 0L6.4 3.3125L10 3.625L7.275 5.9875L8.0875 9.5L5 7.6375L1.9125 9.5Z" fill="#D4AF77"/>
+                  </svg>
+                </span>
+                <span class="review-count">77 reviews</span>
+              </div>
+              <h3 class="hotspot-product__title">{{ product.title }}</h3>
+              <div class="hotspot-product__price">{{ product.price | money }}</div>
+            </div>
+          </div>
+        {% else %}
+          <div class="hotspot__product-card">
+            <div class="hotspot-product__image">
+              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+            <div class="hotspot-product__info">
+              <div class="hotspot-product__reviews">
+                <span class="star">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path d="M1.9125 9.5L2.725 5.9875L0 3.625L3.6 3.3125L5 0L6.4 3.3125L10 3.625L7.275 5.9875L8.0875 9.5L5 7.6375L1.9125 9.5Z" fill="#D4AF77"/>
+                  </svg>
+                </span>
+                <span class="review-count">0 reviews</span>
+              </div>
+              <h3 class="hotspot-product__title">Example Product</h3>
+              <div class="hotspot-product__price">$48.00</div>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const hotspots = document.querySelectorAll('#{{ section.id }} .hotspot');
+
+    function adjustHotspots() {
+      const isMobile = window.innerWidth <= 767;
+
+      hotspots.forEach((hotspot) => {
+        const card = hotspot.querySelector('.hotspot__product-card');
+        if (!card) return;
+
+        const dotRect = hotspot.getBoundingClientRect();
+        const dotCenter = dotRect.left + dotRect.width / 2;
+
+        if (isMobile) {
+          hotspot.classList.remove('is-overflow-left', 'is-overflow-right');
+          const offset = window.innerWidth / 2 - dotCenter;
+          hotspot.style.setProperty('--card-offset-x', `${offset}px`);
+          return;
+        }
+
+        hotspot.style.removeProperty('--card-offset-x');
+
+        const cardWidth = card.offsetWidth || 320;
+        const padding = 15;
+
+        if (dotCenter < cardWidth / 2 + padding) {
+          hotspot.classList.add('is-overflow-left');
+          hotspot.classList.remove('is-overflow-right');
+        } else if (dotCenter > window.innerWidth - cardWidth / 2 - padding) {
+          hotspot.classList.add('is-overflow-right');
+          hotspot.classList.remove('is-overflow-left');
+        } else {
+          hotspot.classList.remove('is-overflow-left', 'is-overflow-right');
+        }
+      });
+    }
+
+    // Adjust on load and resize
+    adjustHotspots();
+    window.addEventListener('resize', adjustHotspots);
+    // Also adjust when hovering just to be safe if scroll changes
+    hotspots.forEach((hotspot) => {
+      hotspot.addEventListener('mouseenter', adjustHotspots);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Shoppable Image",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "rating_text",
+      "label": "Rating Text",
+      "default": "Loved by 1,000 customers based on 193 reviews"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Trending jewellery you can wear on repeat"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Shop on-trend, versatile designs made with special care, with stainless steel favorites that are loved for their look and sensitive-skin friendliness."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "SHOP BEST SELLERS"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Overlay opacity",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "General settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "adapt_height",
+      "label": "Adapt section height to background image",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "page_width",
+      "label": "Page Width",
+      "info": "Add PX number",
+      "default": 1200
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Desktop background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg_image",
+      "label": "Mobile background image"
+    },
+    {
+      "type": "header",
+      "content": "Desktop section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Tablet section padding"
+    },
+    {
+      "type": "range",
+      "id": "tablet_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "tablet_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Mobile section padding"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Custom attributes"
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom classes"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "hotspot",
+      "name": "Hotspot",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "range",
+          "id": "desktop_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Desktop Top Position",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "desktop_left",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Desktop Left Position",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "mobile_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Mobile Top Position",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "mobile_left",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Mobile Left Position",
+          "default": 50
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shoppable Image",
+      "blocks": [
+        {
+          "type": "hotspot"
+        },
+        {
+          "type": "hotspot"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

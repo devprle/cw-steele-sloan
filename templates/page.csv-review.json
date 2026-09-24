@@ -1,0 +1,56 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "disabled": true,
+      "settings": {}
+    },
+    "csv_review_cards_k4Jb98": {
+      "type": "csv-review-cards",
+      "name": "CSV Review Cards",
+      "settings": {
+        "csv_url": "https://cdn.shopify.com/s/files/1/0760/9971/5325/files/book_2_-_Sheet1.csv?v=1782790885",
+        "heading": "Loved by Customers",
+        "subheading": "Beautiful products, and service that keeps people coming back",
+        "initial_review_limit": 24,
+        "page_size": 100,
+        "columns_desktop": 3,
+        "container_width": 1200,
+        "card_gap": 24,
+        "card_radius": 22,
+        "background_color": "#f4f4f4",
+        "card_background": "#ffffff",
+        "heading_color": "#000000",
+        "subheading_color": "#000000",
+        "star_color": "#ffa200",
+        "review_text_color": "#222222",
+        "author_color": "#222222",
+        "verified_color": "#666666",
+        "load_more_background": "#ffffff",
+        "load_more_text_color": "#222222",
+        "pagination_active_background": "#222222",
+        "pagination_active_text_color": "#ffffff",
+        "heading_size": 42,
+        "subheading_size": 18,
+        "star_size": 26,
+        "review_text_size": 16,
+        "author_size": 17,
+        "padding_top": 70,
+        "padding_bottom": 70
+      }
+    }
+  },
+  "order": [
+    "main",
+    "csv_review_cards_k4Jb98"
+  ]
+}

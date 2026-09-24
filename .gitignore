@@ -1,0 +1,29 @@
+# JetBrains IDEs (WebStorm, etc.)
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Shopify CLI
+.shopify/
+.env
+.env.*
+shopify.theme.toml
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+*.log
+
+# Editor backups/swap files
+*~
+*.swp
+*.swo

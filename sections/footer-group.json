@@ -1,0 +1,198 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "ss_wave_6A4zQP": {
+      "type": "SS-Wave",
+      "disabled": true,
+      "name": "SS - Wave #2",
+      "settings": {
+        "wave_height": 56,
+        "wave_height_mobile": 80,
+        "wave_animation": true,
+        "wave_rotate": false,
+        "wave_color": "#6a8fc2",
+        "background_color": "#ffffff",
+        "background_gradient": "",
+        "border_color": "#000000",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_horizontal": 0,
+        "padding_horizontal_mobile": 0,
+        "full_width": true,
+        "content_width": 120,
+        "border_thickness": 0
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "custom_text_MCAFyx": {
+          "type": "custom_text",
+          "settings": {
+            "title": "ABOUT US",
+            "image_max": "100px",
+            "description": "<p>I created Steele Sloan Designs to be the “go-to” shop for on-trend jewelry at a great price, without sacrificing quality. I design with versatility in mind, pieces you will love to wear again and again, whether you are celebrating a big moment or just dressing up an ordinary day.When you order, you are not just a number, you are part of our family. If you have questions while you are searching for the perfect item, reach out anytime, I am happy to help.<br/><br/></p>",
+            "width": "50%",
+            "order_first": false,
+            "open_default": false
+          }
+        },
+        "7b0bf4c6-3873-4222-b8d6-ce009e710078": {
+          "type": "newsletter",
+          "disabled": true,
+          "settings": {
+            "title": "Subscribe",
+            "description": "Enter your email below to be the first to know about new collections and product launches.",
+            "email_placeholder": "Enter your email",
+            "show_icon_input": false,
+            "button_label": "Subscribe now",
+            "button_position": "below",
+            "button_style": "m-button--primary",
+            "form_style": "bordered",
+            "show_social": false,
+            "show_agree_checkbox": false,
+            "width": "33%",
+            "order_first": true,
+            "open_default": true
+          }
+        },
+        "7ebc2f78-975b-4a81-b874-103c3355a866": {
+          "type": "menu",
+          "settings": {
+            "menu": "shop",
+            "title": "",
+            "width": "16%",
+            "order_first": false,
+            "open_default": false
+          }
+        },
+        "49e72833-c68f-4a7b-ab64-3ef0cae99bcb": {
+          "type": "menu",
+          "settings": {
+            "menu": "steel-sloan",
+            "title": "",
+            "width": "16%",
+            "order_first": false,
+            "open_default": false
+          }
+        },
+        "menu_Nx9PHj": {
+          "type": "menu",
+          "settings": {
+            "menu": "support",
+            "title": "",
+            "width": "16%",
+            "order_first": false,
+            "open_default": false
+          }
+        }
+      },
+      "block_order": [
+        "custom_text_MCAFyx",
+        "7b0bf4c6-3873-4222-b8d6-ce009e710078",
+        "7ebc2f78-975b-4a81-b874-103c3355a866",
+        "49e72833-c68f-4a7b-ab64-3ef0cae99bcb",
+        "menu_Nx9PHj"
+      ],
+      "custom_css": [
+        ".m-footer--block-spacing {width: 10%;}",
+        ".m-newsletter-form {margin-top: 24px;}",
+        ".m-footer--block-newsletter .m-footer--block-title {font-weight: 400; font-size: 25px;}",
+        "@media (min-width: 1280px) {.m-footer--block-newsletter .m-footer--block-title {font-size: 36px; margin-bottom: 12px; } .m-footer__copyright, .m-footer--bottom-menu {font-size: 14px; }}"
+      ],
+      "settings": {
+        "color_scheme": "scheme-253b48c2-de1b-4192-985c-0ec04cf64d4d",
+        "design": "footer-1",
+        "container": "container-fluid",
+        "bordered": false,
+        "copyright_logo_1": "shopify://shop_images/image_2_c8ba78df-5ed6-4d06-8488-31c8a26f6b27.png",
+        "copyright_logo_2": "shopify://shop_images/image_3_a6208a92-8535-4109-8255-118473d125ca.png",
+        "copyright": "© Copyright 2026. All rights reserved.",
+        "show_country_selector": false,
+        "show_currency_selector": false,
+        "show_language_selector": false,
+        "show_social_links": false,
+        "enable_follow_on_shop": true,
+        "show_payment_icons": true,
+        "payment_icons_width": 300,
+        "footer_bottom_color_scheme": "dark",
+        "footer_bottom_menu": "",
+        "show_menu_item_divider": true,
+        "padding_top": 100,
+        "padding_bottom": 110,
+        "tablet_padding_top": 80,
+        "tablet_padding_bottom": 80,
+        "mobile_padding_top": 50,
+        "mobile_padding_bottom": 50,
+        "custom_class": ""
+      }
+    },
+    "mobile-sticky-bar": {
+      "type": "mobile-sticky-bar",
+      "settings": {
+        "show_mobile_sticky": true,
+        "show_home_icon": true,
+        "show_collection_icon": true,
+        "show_cart_icon": true,
+        "show_search_icon": true,
+        "show_account_icon": false,
+        "show_wishlist_icon": false
+      }
+    },
+    "age-verifier-popup": {
+      "type": "age-verifier-popup",
+      "blocks": {
+        "block-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "Confirm your age"
+          }
+        },
+        "block-2": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Are you 18 years old or older?</p>"
+          }
+        },
+        "block-3": {
+          "type": "buttons",
+          "settings": {
+            "decline_button": "No, I'm not",
+            "approve_button": "Yes, I am"
+          }
+        }
+      },
+      "block_order": [
+        "block-1",
+        "block-2",
+        "block-3"
+      ],
+      "settings": {
+        "design_mode": false,
+        "enable": false,
+        "bg_blur": true,
+        "decline_heading": "Come back when you're older",
+        "decline_content": "<p>Sorry, the content of this store can't be seen by a younger audience. Come back when you're older.</p>",
+        "return_button": "Oops, I entered incorrectly"
+      }
+    }
+  },
+  "order": [
+    "ss_wave_6A4zQP",
+    "footer",
+    "mobile-sticky-bar",
+    "age-verifier-popup"
+  ]
+}

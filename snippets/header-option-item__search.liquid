@@ -1,0 +1,51 @@
+{%- liquid
+  assign search_display = header_settings.search
+  assign main_class = 'm-header__search'
+
+  if icon_left == true
+    assign main_class = main_class | append: ' m-search-form--icon-left'
+  endif
+
+  if search_display == 'show_full'
+    assign main_class = main_class | append: ' m-search-form--full'
+  endif
+
+  if box_size != blank
+    assign main_class = main_class | append: ' ' | append: box_size
+  endif
+
+  assign main_class = main_class | append: ' m:flex m:items-center'
+-%}
+
+{% unless search_display == 'hide' %}
+  <m-search-popup class="{{ main_class }}" data-open-search-popup>
+    {% if icon_left == true %}
+      <button
+        class="m-search-form__button m:flex m:items-center"
+        aria-label="{{ 'general.search.placeholder_short' | t }}"
+      >
+        <span class="m-tooltip m:block m-tooltip--bottom m-tooltip--style-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#0A2540" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 21L16.65 16.65" stroke="#0A2540" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="m-tooltip__content">{{ 'general.search.placeholder_short' | t }}</span>
+        </span>
+      </button>
+    {% endif %}
+    {%- if search_display == 'show_full' -%}
+      <span class="m-search-form__label">{{ 'general.search.placeholder' | t }}</span>
+    {%- endif -%}
+    {% if icon_left == blank or icon_left == false %}
+      <button type="submit" class="m-search-form__button" aria-label="{{ 'general.search.placeholder_short' | t }}">
+        <span class="m-tooltip m:block m-tooltip--bottom m-tooltip--style-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#0A2540" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 21L16.65 16.65" stroke="#0A2540" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="m-tooltip__content">{{ 'general.search.placeholder_short' | t }}</span>
+        </span>
+      </button>
+    {% endif %}
+  </m-search-popup>
+{% endunless %}

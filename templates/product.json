@@ -1,0 +1,919 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_marquee_ymPMhq": {
+      "type": "custom-marquee",
+      "blocks": {
+        "text_QKVdLR": {
+          "type": "text",
+          "settings": {
+            "text": "Free shipping over $40",
+            "icon_svg": ""
+          }
+        },
+        "text_Rywkhd": {
+          "type": "text",
+          "settings": {
+            "text": "Hypoallergenic-friendly stainless steel styles",
+            "icon_svg": ""
+          }
+        },
+        "text_j3D3iX": {
+          "type": "text",
+          "settings": {
+            "text": "Giftable, on-trend designs at a great price point",
+            "icon_svg": ""
+          }
+        },
+        "text_UGEXGT": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Quick and easy returns available",
+            "icon_svg": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_QKVdLR",
+        "text_Rywkhd",
+        "text_j3D3iX",
+        "text_UGEXGT"
+      ],
+      "name": "Custom Marquee",
+      "settings": {
+        "title": "",
+        "enable_marquee": false,
+        "enable_marquee_tablet": true,
+        "enable_marquee_mobile": true,
+        "pause_on_hover": false,
+        "scroll_speed": 25,
+        "text_color": "#ffffff",
+        "icon_color": "#ffffff",
+        "desktop_font_size": 12,
+        "mobile_font_size": 10,
+        "page_width": 1474,
+        "background_color": "#0a2540",
+        "padding_top": 12,
+        "padding_bottom": 12,
+        "tablet_padding_top": 12,
+        "tablet_padding_bottom": 12,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10,
+        "custom_class": ""
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "product_star_rating_badge_K4B3JQ": {
+          "type": "product_star_rating_badge",
+          "disabled": true,
+          "settings": {
+            "star_image": "shopify://shop_images/Frame_26_1.svg",
+            "rating_score": "4.9",
+            "reviews_count": "49 reviews"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_saving": false,
+            "sale_badge_type": "percentage"
+          }
+        },
+        "custom_text_hiBpgk": {
+          "type": "custom_text",
+          "settings": {
+            "content": "<ul><li>Sensitive-skin friendly, all-day comfort</li><li>Low-maintenance shine, no fuss required</li><li>The perfect Bama fan gift, ready to wrap</li></ul>"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "size_title": "Size"
+          }
+        },
+        "product_trust_hub_EV38R3": {
+          "type": "product_trust_hub",
+          "disabled": true,
+          "settings": {
+            "delivery_text_prefix": "Order now for guaranteed delivery by",
+            "delivery_days_offset": 5
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": false,
+            "show_atc_button": true,
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "product_highlights_fbMbNm": {
+          "type": "product_highlights",
+          "settings": {
+            "icon_1": "shopify://shop_images/truck_9_1.svg",
+            "text_1": "Free shipping over $100",
+            "icon_2": "shopify://shop_images/refresh-ccw_1_1.svg",
+            "text_2": "7-day happy returns"
+          }
+        },
+        "product_review_snippet_3fkjrM": {
+          "type": "product_review_snippet",
+          "disabled": true,
+          "settings": {
+            "star_image": "shopify://shop_images/Frame_26_1.svg",
+            "review_text": "Absolutely beautiful earrings! Fast delivery and they look even better in person. My daughter is obsessed!",
+            "review_author": "Sara, Boutique Ltd"
+          }
+        },
+        "product_faq_accordion_agaPyt": {
+          "type": "product_faq_accordion",
+          "settings": {
+            "heading": "PRODUCT DESCRIPTION",
+            "content": "{{ product.description }}",
+            "page_content": ""
+          }
+        },
+        "product_faq_accordion_a4AMxH": {
+          "type": "product_faq_accordion",
+          "disabled": true,
+          "settings": {
+            "heading": "SIZING INFORMATION",
+            "content": "<p>Alabama A Logo Silver Necklace on Chunky Silver Stainless Steel Chain Hypoallergenic Non-Tarnish Gift for Bama Fan Officially LicensedGreat way to add silver accessories to your Bama GameDay accessories and always a perfect gift for any Bama Fan!  Necklace measures 15 1/2  inches with 2 inch extension or 18 inches with 2 inch extension and Alabama A Logo measures approx 1 inch height by 3/4 inch width- SUPER CUTE!    This is an Officially Licensed Product.As shown in last picture with our </p>",
+            "page_content": ""
+          }
+        },
+        "product_faq_accordion_FgmHVR": {
+          "type": "product_faq_accordion",
+          "disabled": true,
+          "settings": {
+            "heading": "shipping and returns",
+            "content": "<p>Add details about sizing, fit, or materials here.</p>",
+            "page_content": ""
+          }
+        },
+        "product_faq_accordion_JfqTMb": {
+          "type": "product_faq_accordion",
+          "disabled": true,
+          "settings": {
+            "heading": "shipping and returns",
+            "content": "<p>Add details about sizing, fit, or materials here.</p>",
+            "page_content": ""
+          }
+        },
+        "addons": {
+          "type": "addons",
+          "disabled": true,
+          "settings": {
+            "show_atcp": false,
+            "show_ask_a_question": false,
+            "show_social": true
+          }
+        },
+        "description_TMy3Bj": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        },
+        "frequently_bought_app_block_ktNNCW": {
+          "type": "shopify://apps/frequently-bought/blocks/app-block/b1a8cbea-c844-4842-9529-7c62dbab1b1f",
+          "settings": {}
+        },
+        "product_instagram_slider_JaYREd": {
+          "type": "product_instagram_slider",
+          "disabled": true,
+          "settings": {
+            "heading": "SEE HOW PEOPLE ARE WEARING THEM",
+            "image_1": "shopify://shop_images/Rectangle_14_3bd517f2-9055-483c-acb7-361aef5d7d7c.png",
+            "image_2": "shopify://shop_images/Rectangle_14_3bd517f2-9055-483c-acb7-361aef5d7d7c.png",
+            "image_3": "shopify://shop_images/Rectangle_14_3bd517f2-9055-483c-acb7-361aef5d7d7c.png",
+            "image_4": "shopify://shop_images/Rectangle_14_3bd517f2-9055-483c-acb7-361aef5d7d7c.png"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "product_star_rating_badge_K4B3JQ",
+        "price",
+        "custom_text_hiBpgk",
+        "variant_picker",
+        "product_trust_hub_EV38R3",
+        "buy_buttons",
+        "product_highlights_fbMbNm",
+        "product_review_snippet_3fkjrM",
+        "product_faq_accordion_agaPyt",
+        "product_faq_accordion_a4AMxH",
+        "product_faq_accordion_FgmHVR",
+        "product_faq_accordion_JfqTMb",
+        "addons",
+        "description_TMy3Bj",
+        "frequently_bought_app_block_ktNNCW",
+        "product_instagram_slider_JaYREd"
+      ],
+      "settings": {
+        "container": "container",
+        "layout": "layout-4",
+        "show_atwl": false,
+        "enable_history_state": true,
+        "enable_variant_group_images": false,
+        "disable_selected_variant_default": false,
+        "show_featured_media": true,
+        "show_zoom_button": true,
+        "enable_video_autoplay": true,
+        "show_nav_media_mobile": false,
+        "show_pagination_mobile": true,
+        "use_sticky_atc": true,
+        "use_sticky_atc_on_mobile": true,
+        "enable_dynamic_checkout": false,
+        "sticky_atc_wishtlist": false,
+        "sticky_atc_compare": false
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "container": "container-fluid",
+        "color_scheme": "",
+        "remove_params": false,
+        "heading": "You may also be interested in...",
+        "heading_size": "h3",
+        "text_align": "center",
+        "limit": 8,
+        "columns": 5,
+        "column_gap": 30,
+        "enable_slider": true,
+        "show_pagination": false,
+        "show_navigation": true,
+        "use_scroll_mobile": true,
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 60,
+        "padding_top_tablet": 50,
+        "padding_bottom_tablet": 50,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "image_features_grid_iGDgMW": {
+      "type": "image-features-grid",
+      "blocks": {
+        "feature_6cRgkM": {
+          "type": "feature",
+          "settings": {
+            "title": "Sensitive-skin friendly:",
+            "description": "<p>hypoallergenic comfort for all-day wear</p>"
+          }
+        },
+        "feature_VdQDVt": {
+          "type": "feature",
+          "settings": {
+            "title": "Giftable favorite",
+            "description": "<p>a reliable win for Alabama fans</p>"
+          }
+        },
+        "feature_bPfK7W": {
+          "type": "feature",
+          "settings": {
+            "title": "Low-maintenance shine",
+            "description": "<p>stainless steel chain designed to resist tarnish</p>"
+          }
+        },
+        "feature_PakGKJ": {
+          "type": "feature",
+          "settings": {
+            "title": "Easy statement",
+            "description": "<p>chunky chain look, minimalist vibe</p>"
+          }
+        }
+      },
+      "block_order": [
+        "feature_6cRgkM",
+        "feature_VdQDVt",
+        "feature_bPfK7W",
+        "feature_PakGKJ"
+      ],
+      "name": "Features Image Grid",
+      "settings": {
+        "image": "shopify://shop_images/Rectangle_39.png",
+        "title": "Why you'll love it",
+        "description": "<p>Bring on-trend, giftable styles to your shelves, with great quality and pricing, plus the kind of service that keeps retailers coming back<br/><br/>Please check out our <a href=\"/pages/faqs\" title=\"FAQS\">FAQ's</a> page and <a href=\"https://steelesloandesigns.com/policies/shipping-policy\" title=\"https://steelesloandesigns.com/policies/shipping-policy\">Shipping policy </a>for more information<br/><br/>If you have any questions please contact us at : info@steelesloandesigns</p>",
+        "text_alignment": "left",
+        "background_color": "#ffffff",
+        "text_color": "#000000",
+        "border_color": "#dddddd",
+        "page_width": 1420,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "tablet_padding_top": 40,
+        "tablet_padding_bottom": 40,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "custom_class": ""
+      }
+    },
+    "steps_process_banner_Lxpnbi": {
+      "type": "steps-process-banner",
+      "blocks": {
+        "step_eJwdcd": {
+          "type": "step",
+          "settings": {
+            "step_number": "1",
+            "step_title": "Choose your style",
+            "step_desc": "<p>One clasp, one second, instant team spirit.</p>"
+          }
+        },
+        "step_twntcD": {
+          "type": "step",
+          "settings": {
+            "step_number": "2",
+            "step_title": "Layer or solo",
+            "step_desc": "<p>Pairs with tees, jerseys, blazers, sundresses.</p>"
+          }
+        },
+        "step_8QQGTb": {
+          "type": "step",
+          "settings": {
+            "step_number": "3",
+            "step_title": "Cheer loud",
+            "step_desc": "<p>Tarnish-resistant shine through every quarter.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "step_eJwdcd",
+        "step_twntcD",
+        "step_8QQGTb"
+      ],
+      "name": "Steps Process Banner",
+      "settings": {
+        "overlay_opacity": 0,
+        "desktop_height": 450,
+        "mobile_height": 350,
+        "main_title": "From outfit to game-day ready in seconds",
+        "text_alignment": "center",
+        "background_color": "#f4f4f4",
+        "text_color": "#000000",
+        "page_width": 1000,
+        "padding_top": 106,
+        "padding_bottom": 86,
+        "tablet_padding_top": 50,
+        "tablet_padding_bottom": 50,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "custom_class": ""
+      }
+    },
+    "product_specifications_table_A9FBG9": {
+      "type": "product-specifications-table",
+      "blocks": {
+        "spec_row_tNdLfM": {
+          "type": "spec_row",
+          "settings": {
+            "label": "MATERIAL",
+            "value": "<p>Chunky silver stainless steel chain</p>"
+          }
+        },
+        "spec_row_xGeGer": {
+          "type": "spec_row",
+          "settings": {
+            "label": "FINISH",
+            "value": "<p>Hypoallergenic, tarnish-resistant</p>"
+          }
+        },
+        "spec_row_gwQCKj": {
+          "type": "spec_row",
+          "settings": {
+            "label": "CLOSURE",
+            "value": "<p>Lobster clasp with 2\" extender</p>"
+          }
+        },
+        "spec_row_4WFyki": {
+          "type": "spec_row",
+          "settings": {
+            "label": "DIMENSIONS",
+            "value": "<p>Charm approx 1\" H x 3/4\" W</p>"
+          }
+        },
+        "spec_row_y38XMw": {
+          "type": "spec_row",
+          "settings": {
+            "label": "LENGTH",
+            "value": "<p>15.5\" or 18\", both with 2\" extender</p>"
+          }
+        },
+        "spec_row_F8KVRB": {
+          "type": "spec_row",
+          "settings": {
+            "label": "CARE",
+            "value": "<p>Wipe with a soft cloth, store flat and dry</p>"
+          }
+        }
+      },
+      "block_order": [
+        "spec_row_tNdLfM",
+        "spec_row_xGeGer",
+        "spec_row_gwQCKj",
+        "spec_row_4WFyki",
+        "spec_row_y38XMw",
+        "spec_row_F8KVRB"
+      ],
+      "disabled": true,
+      "name": "Product Specifications",
+      "settings": {
+        "subheading": "SPECIFICATIONS",
+        "title": "Specifications",
+        "description": "<p>Bring on-trend, giftable styles to your shelves, with great quality and pricing, plus the kind of service that keeps retailers coming back</p>",
+        "background_color": "#f2f2f2",
+        "text_color": "#000000",
+        "border_color": "#d1d1d1",
+        "page_width": 1220,
+        "padding_top": 116,
+        "padding_bottom": 116,
+        "tablet_padding_top": 40,
+        "tablet_padding_bottom": 40,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "custom_class": ""
+      }
+    },
+    "testimonials_grid_RwCw9G": {
+      "type": "testimonials-grid",
+      "blocks": {
+        "testimonial_Uzem8y": {
+          "type": "testimonial",
+          "disabled": true,
+          "settings": {
+            "star_rating": "5",
+            "review_text": "<p>These earrings are stunning! The quality is fantastic and they make a perfect gift. My niece loves them!</p>",
+            "avatar": "shopify://shop_images/Ellipse_16_5050c815-ff54-44bb-a701-94cddc72e9d1.png",
+            "user_name": "Emily",
+            "review_date": "25 Mar, 2026"
+          }
+        },
+        "testimonial_pfWnHd": {
+          "type": "testimonial",
+          "disabled": true,
+          "settings": {
+            "star_rating": "5",
+            "review_text": "<p>Absolutely beautiful earrings! They are perfect for any occasion and arrived in great condition. Very happy with my purchase.</p>",
+            "avatar": "shopify://shop_images/Ellipse_16_5050c815-ff54-44bb-a701-94cddc72e9d1.png",
+            "user_name": "Mark",
+            "review_date": "26 Mar, 2026"
+          }
+        },
+        "testimonial_HhjjQg": {
+          "type": "testimonial",
+          "disabled": true,
+          "settings": {
+            "star_rating": "5",
+            "review_text": "<p>The craftsmanship of these earrings is remarkable! My daughter wears them every day and they still look brand new.</p>",
+            "avatar": "shopify://shop_images/Ellipse_16_5050c815-ff54-44bb-a701-94cddc72e9d1.png",
+            "user_name": "Sophia",
+            "review_date": "27 Mar, 2026"
+          }
+        },
+        "testimonial_cFiHjB": {
+          "type": "testimonial",
+          "disabled": true,
+          "settings": {
+            "star_rating": "5",
+            "review_text": "<p>I was impressed with the fast shipping! The earrings are even more beautiful in person. Will definitely buy again!</p>",
+            "avatar": "shopify://shop_images/Ellipse_16_5050c815-ff54-44bb-a701-94cddc72e9d1.png",
+            "user_name": "Liam",
+            "review_date": "28 Mar, 2026"
+          }
+        },
+        "testimonial_BRewhJ": {
+          "type": "testimonial",
+          "disabled": true,
+          "settings": {
+            "star_rating": "5",
+            "review_text": "<p>I was impressed with the fast shipping! The earrings are even more beautiful in person. Will definitely buy again!</p>",
+            "avatar": "shopify://shop_images/Ellipse_16_5050c815-ff54-44bb-a701-94cddc72e9d1.png",
+            "user_name": "Liam",
+            "review_date": "28 Mar, 2026"
+          }
+        },
+        "testimonial_V6BrYm": {
+          "type": "testimonial",
+          "disabled": true,
+          "settings": {
+            "star_rating": "5",
+            "review_text": "<p>I was impressed with the fast shipping! The earrings are even more beautiful in person. Will definitely buy again!</p>",
+            "avatar": "shopify://shop_images/Ellipse_16_5050c815-ff54-44bb-a701-94cddc72e9d1.png",
+            "user_name": "Liam",
+            "review_date": "28 Mar, 2026"
+          }
+        },
+        "testimonial_dm4QqK": {
+          "type": "testimonial",
+          "disabled": true,
+          "settings": {
+            "star_rating": "5",
+            "review_text": "<p>I was impressed with the fast shipping! The earrings are even more beautiful in person. Will definitely buy again!</p>",
+            "avatar": "shopify://shop_images/Ellipse_16_5050c815-ff54-44bb-a701-94cddc72e9d1.png",
+            "user_name": "Liam",
+            "review_date": "28 Mar, 2026"
+          }
+        },
+        "testimonial_UBBqKi": {
+          "type": "testimonial",
+          "disabled": true,
+          "settings": {
+            "star_rating": "5",
+            "review_text": "<p>I was impressed with the fast shipping! The earrings are even more beautiful in person. Will definitely buy again!</p>",
+            "avatar": "shopify://shop_images/Ellipse_16_5050c815-ff54-44bb-a701-94cddc72e9d1.png",
+            "user_name": "Liam",
+            "review_date": "28 Mar, 2026"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_Uzem8y",
+        "testimonial_pfWnHd",
+        "testimonial_HhjjQg",
+        "testimonial_cFiHjB",
+        "testimonial_BRewhJ",
+        "testimonial_V6BrYm",
+        "testimonial_dm4QqK",
+        "testimonial_UBBqKi"
+      ],
+      "name": "Testimonials Grid",
+      "settings": {
+        "show_badge": true,
+        "badge_text": "4.9/5 based on 3700 reviews",
+        "title": "Loved by customers",
+        "description": "Beautiful products, and service that keeps people coming back",
+        "background_color": "#ffffff",
+        "text_color": "#000000",
+        "star_color": "#000000",
+        "page_width": 1440,
+        "padding_top": 60,
+        "padding_bottom": 0,
+        "tablet_padding_top": 50,
+        "tablet_padding_bottom": 50,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "custom_class": ""
+      }
+    },
+    "17823102759d0b116c": {
+      "type": "apps",
+      "blocks": {
+        "loox_reviews_loox_dynamic_section_GXkz76": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-dynamic-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "reviews_to_display": "",
+            "default_tab": "automatic",
+            "only_photos": false,
+            "aggregated": false,
+            "limit": 20,
+            "hide_thumbnails": false,
+            "maxwidth": 1080,
+            "is_sample": true
+          }
+        }
+      },
+      "block_order": [
+        "loox_reviews_loox_dynamic_section_GXkz76"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "header_alignment": "center",
+        "container": "container",
+        "background_color": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": ""
+      }
+    },
+    "custom_faq_MepwJA": {
+      "type": "custom-faq",
+      "blocks": {
+        "faq_item_6PwQfC": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Why Stainless Steel?",
+            "answer": "<p>Our jewelry is crafted from high-quality surgical-grade stainless steel,<br/><br/>It is <strong>hypoallergenic</strong> and nickel-free, making it safe and comfortable for sensitive skin — even for those who react to other metals.<br/><br/>Unlike gold-plated, brass, or dipped jewelry that can tarnish, fade, or cause skin discoloration within months, stainless steel is highly resistant to tarnish and corrosion. With proper care, your Steele Sloan Designs pieces will maintain their beautiful shine<br/><br/>and color for years, even with daily wear. This durability makes it perfect for busy women who want elegant, worry-free jewelry that celebrates their team spirit.</p>"
+          }
+        },
+        "faq_item_JiYF4V": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Care Instructions",
+            "answer": "<p>Our stainless steel jewelry is designed for everyday wear and low maintenance. To keep your pieces looking their best:</p><ul><li>Gently clean with warm water and mild soap using a soft cloth.</li><li>Rinse thoroughly and pat dry with a soft towel.</li><li>Avoid harsh chemicals (perfume, lotions, chlorine, or cleaning products).</li><li>Remove before swimming in pools or the ocean, exercising, or applying beauty products.</li><li>Store in a dry place, ideally in the original pouch or a jewelry box to prevent scratches.</li></ul><p>With these simple steps, your hypoallergenic, tarnish-resistant pieces will continue to look beautiful for years.</p>"
+          }
+        },
+        "faq_item_nNU4kM": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are your products officially licensed?",
+            "answer": "<p>Yes! Steele Sloan Designs is an authorized licensee for officially licensed collegiate and greek products through CLC, Affinity and Fanatics. We proudly offer authentic jewelry featuring your favorite schools.<br/><br/> All licensed designs are produced with permission and meet official licensing standards.</p>"
+          }
+        },
+        "faq_item_iVwiGi": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Why don't you have my school listed?",
+            "answer": "<p>We adhere to licensing with all of our schools and it is a process - time-wise and financially.  If you don't see a certain school please let us know that you are interested.  We always add new school updates to our instagram so please follow us for updates! </p>"
+          }
+        },
+        "faq_item_9mNWVN": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>We want you to love your purchase! Returns are accepted within 7 days of delivery for unworn items in original packaging with tags attached. Customized or personalized items, clearance products, and certain licensed items<br/><br/> may be non-returnable. Shipping costs are non-refundable. Defective or damaged items are eligible for replacement — please contact us with photos and your order number.</p>"
+          }
+        },
+        "faq_item_qH37X9": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer gift wrapping or gift messages?",
+            "answer": "<p>Many items are perfect graduation, birthday, or “just because” gifts. We do not offer gift wrapping but items come in a white jewelry box or organza bag and we are happy to add a gift note- just let us know!</p>"
+          }
+        },
+        "faq_item_DxiFbU": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I know what size to order?",
+            "answer": "<p>Each product page includes detailed sizing information. For earrings, we offer standard post sizes. Necklaces and bracelets include adjustable or multiple length options. If you’re unsure, feel free to contact us — we’re happy to help!</p>"
+          }
+        },
+        "faq_item_hqDHKf": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What if I accidentally order the wrong item or wrong color?",
+            "answer": "<p>Mistakes happen!  We will happily exchange within the 7 day time frame - please email us and let us know - you will just be responsible for the cost of return shipping the item back to us and the correct item back to you. </p>"
+          }
+        },
+        "faq_item_JTcyUM": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is your jewelry waterproof or safe for everyday wear?",
+            "answer": "<p>Our stainless steel pieces are highly water-resistant and suitable for daily wear. However, we recommend removing them before swimming in chlorinated pools, hot tubs, or the ocean to preserve the finish and extend the life of any plated elements.</p>"
+          }
+        },
+        "faq_item_3jPjmQ": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer customization or personalization?",
+            "answer": "<p>Select items can be customized but only in larger quantities - we do not do custom one time products. Contact us for details or special requests.</p>"
+          }
+        },
+        "faq_item_hMnAFW": {
+          "type": "faq_item",
+          "settings": {
+            "question": "I have sensitive skin — will your jewelry cause irritation?",
+            "answer": "<p>Our 316L stainless steel is hypoallergenic and nickel-free, making it one of the best choices for sensitive skin. Many customers with metal allergies wear our jewelry comfortably all day.</p>"
+          }
+        },
+        "faq_item_ArtHK9": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I contact customer service?",
+            "answer": "<p>We’re here to help! Email us at info@steelesloandesigns.com or use the contact form on the website. We typically respond within 24–48 hours.</p>"
+          }
+        },
+        "faq_item_fXcmyD": {
+          "type": "faq_item",
+          "settings": {
+            "question": "HOW LONG DOES SHIPPING TAKE?",
+            "answer": "<p>Standard US shipping takes 3-5 business days. Free over $75. International orders typically arrive within 7-14 business days.</p>"
+          }
+        },
+        "faq_item_hMF6Pe": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Where are your products made?",
+            "answer": "<p>Our jewelry is designed in the USA and responsibly manufactured with high-quality materials to meet our strict standards for durability, safety, and style.</p>"
+          }
+        },
+        "faq_item_ab97qx": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Shipping Questions?",
+            "answer": "<p>Most items are shipped same or next day - please see our \"Shipping\" Section for more details</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_6PwQfC",
+        "faq_item_JiYF4V",
+        "faq_item_nNU4kM",
+        "faq_item_iVwiGi",
+        "faq_item_9mNWVN",
+        "faq_item_qH37X9",
+        "faq_item_DxiFbU",
+        "faq_item_hqDHKf",
+        "faq_item_JTcyUM",
+        "faq_item_3jPjmQ",
+        "faq_item_hMnAFW",
+        "faq_item_ArtHK9",
+        "faq_item_fXcmyD",
+        "faq_item_hMF6Pe",
+        "faq_item_ab97qx"
+      ],
+      "disabled": true,
+      "name": "Custom FAQ",
+      "settings": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Fast shipping, beautiful products, and service that keeps people coming back",
+        "background_color": "#f2f2f2",
+        "text_color": "#121212",
+        "question_color": "#666666",
+        "answer_color": "#121212",
+        "divider_color": "#e8e8e8",
+        "page_width": 1200,
+        "padding_top": 90,
+        "padding_bottom": 40,
+        "tablet_padding_top": 60,
+        "tablet_padding_bottom": 60,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "custom_class": ""
+      }
+    },
+    "product-details-tabs": {
+      "type": "product-details-tabs",
+      "blocks": {
+        "description": {
+          "type": "description",
+          "settings": {
+            "header": "Product description"
+          }
+        },
+        "tab": {
+          "type": "tab",
+          "settings": {
+            "header": "Shipping & Return",
+            "content": "<p>Shipping cost is based on weight. Just add products to your cart and use the Shipping Calculator to see the shipping price.</p><p>We want you to be 100% satisfied with your purchase. Items can be returned or exchanged within 30 days of delivery.</p>",
+            "content_page": ""
+          }
+        }
+      },
+      "block_order": [
+        "description",
+        "tab"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".m-tabs__header {justify-content: flex-start;}"
+      ],
+      "settings": {
+        "container": "container",
+        "color_scheme": "",
+        "default_open": true,
+        "padding_top": 0,
+        "padding_bottom": 50,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "recent-viewed-products": {
+      "type": "recent-viewed-products",
+      "disabled": true,
+      "settings": {
+        "container": "container-fluid",
+        "color_scheme": "",
+        "heading": "Recently Viewed Products",
+        "heading_size": "h3",
+        "text_align": "center",
+        "limit": 8,
+        "columns": 5,
+        "column_gap": 30,
+        "pcard_layout": "",
+        "pcard_image_ratio": "",
+        "show_vendor": false,
+        "hide_title": false,
+        "enable_slider": true,
+        "show_pagination": false,
+        "show_navigation": false,
+        "mobile_disable_slider": false,
+        "use_scroll_mobile": true,
+        "item_gap_mobile": 16,
+        "padding_top": 0,
+        "padding_bottom": 100,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "custom_newsletter_3bdWnr": {
+      "type": "custom-newsletter",
+      "name": "Custom Newsletter",
+      "settings": {
+        "heading": "Subscribe for promotions, deals, and new product drops",
+        "placeholder": "Enter your email address",
+        "button_label": "SIGN UP NOW",
+        "subtext": "No spam, just the good stuff. Unsubscribe anytime.",
+        "show_icon": false,
+        "text_color": "#0a2540",
+        "button_bg": "#0a2540",
+        "button_text": "#ffffff",
+        "page_width": 1474,
+        "background_color": "#ffffff",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "tablet_padding_top": 40,
+        "tablet_padding_bottom": 40,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "custom_class": ""
+      }
+    },
+    "custom_marquee_6QDEbY": {
+      "type": "custom-marquee",
+      "blocks": {
+        "text_ChP6ck": {
+          "type": "text",
+          "settings": {
+            "text": "Free shipping over $40",
+            "icon_svg": ""
+          }
+        },
+        "text_F8TnNN": {
+          "type": "text",
+          "settings": {
+            "text": "Hypoallergenic stainless steel",
+            "icon_svg": ""
+          }
+        },
+        "text_RwggEM": {
+          "type": "text",
+          "settings": {
+            "text": "Wholesale prices available",
+            "icon_svg": ""
+          }
+        },
+        "text_BJE4qa": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Hassle-free returns within 5 days",
+            "icon_svg": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_ChP6ck",
+        "text_F8TnNN",
+        "text_RwggEM",
+        "text_BJE4qa"
+      ],
+      "name": "Custom Marquee",
+      "settings": {
+        "title": "",
+        "enable_marquee": false,
+        "enable_marquee_tablet": true,
+        "enable_marquee_mobile": true,
+        "pause_on_hover": false,
+        "scroll_speed": 25,
+        "text_color": "#ffffff",
+        "icon_color": "#ffffff",
+        "desktop_font_size": 12,
+        "mobile_font_size": 10,
+        "page_width": 1474,
+        "background_color": "#0a2540",
+        "padding_top": 12,
+        "padding_bottom": 12,
+        "tablet_padding_top": 12,
+        "tablet_padding_bottom": 12,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10,
+        "custom_class": ""
+      }
+    }
+  },
+  "order": [
+    "custom_marquee_ymPMhq",
+    "main",
+    "product-recommendations",
+    "image_features_grid_iGDgMW",
+    "steps_process_banner_Lxpnbi",
+    "product_specifications_table_A9FBG9",
+    "testimonials_grid_RwCw9G",
+    "17823102759d0b116c",
+    "custom_faq_MepwJA",
+    "product-details-tabs",
+    "recent-viewed-products",
+    "custom_newsletter_3bdWnr",
+    "custom_marquee_6QDEbY"
+  ]
+}

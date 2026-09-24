@@ -1,0 +1,773 @@
+<section
+  class="csv-reviews-section csv-reviews-section-{{ section.id }}"
+  style="
+    background: {{ section.settings.background_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="csv-reviews-header">
+    {% if section.settings.heading != blank %}
+      <h2>{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    {% if section.settings.subheading != blank %}
+      <p>{{ section.settings.subheading }}</p>
+    {% endif %}
+  </div>
+
+  <div
+    id="csvReviewsGrid-{{ section.id }}"
+    class="csv-reviews-grid"
+    data-csv-url="{{ section.settings.csv_url }}"
+    data-initial-limit="{{ section.settings.initial_review_limit }}"
+    data-page-size="{{ section.settings.page_size }}"
+  >
+    <p class="csv-reviews-loading">Loading reviews...</p>
+  </div>
+
+  <div class="csv-reviews-actions">
+    <button
+      type="button"
+      id="csvReviewsShowMore-{{ section.id }}"
+      class="csv-reviews-button"
+      hidden
+    >
+      Show more reviews
+    </button>
+
+    <div
+      id="csvReviewsPagination-{{ section.id }}"
+      class="csv-reviews-pagination"
+      hidden
+    ></div>
+  </div>
+</section>
+
+<style>
+  .csv-reviews-section-{{ section.id }} {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .csv-reviews-section-{{ section.id }} .csv-reviews-header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+
+  .csv-reviews-section-{{ section.id }} .csv-reviews-header h2 {
+    margin: 0 0 10px;
+    font-size: {{ section.settings.heading_size }}px;
+    line-height: 1.1;
+    font-weight: 700;
+    color: {{ section.settings.heading_color }};
+  }
+
+  .csv-reviews-section-{{ section.id }} .csv-reviews-header p {
+    margin: 0;
+    font-size: {{ section.settings.subheading_size }}px;
+    color: {{ section.settings.subheading_color }};
+  }
+
+  .csv-reviews-section-{{ section.id }} .csv-reviews-grid {
+    max-width: {{ section.settings.container_width }}px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.columns_desktop }}, minmax(0, 1fr));
+    gap: {{ section.settings.card_gap }}px;
+  }
+
+  .csv-reviews-section-{{ section.id }} .csv-review-card {
+    background: {{ section.settings.card_background }};
+    border-radius: {{ section.settings.card_radius }}px;
+    padding: 28px 26px;
+    min-height: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .csv-reviews-section-{{ section.id }} .csv-review-stars {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 18px;
+    font-size: {{ section.settings.star_size }}px;
+    line-height: 1;
+    color: {{ section.settings.star_color }};
+  }
+
+  .csv-reviews-section-{{ section.id }} .csv-review-stars .empty-star {
+    opacity: 0.2;
+  }
+
+  .csv-reviews-section-{{ section.id }} .csv-review-body {
+    margin: 0 0 24px;
+    font-size: {{ section.settings.review_text_size }}px;
+    line-height: 1.6;
+    color: {{ section.settings.review_text_color }};
+  }
+
+  .csv-reviews-section-{{ section.id }} .csv-review-author {
+    margin: 0;
+    font-size: {{ section.settings.author_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.author_color }};
+  }
+
+  .csv-reviews-section-{{ section.id }} .csv-review-verified {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: {{ section.settings.verified_color }};
+  }
+
+  .csv-reviews-section-{{ section.id }} .csv-reviews-loading {
+    grid-column: 1 / -1;
+    color: {{ section.settings.heading_color }};
+    text-align: center;
+    font-size: 18px;
+  }
+
+  .csv-reviews-section-{{ section.id }} .csv-reviews-actions {
+    text-align: center;
+    margin-top: 36px;
+  }
+
+  .csv-reviews-section-{{ section.id }} .csv-reviews-button,
+  .csv-reviews-section-{{ section.id }} .csv-reviews-page-button {
+    appearance: none;
+    border: 0;
+    border-radius: 999px;
+    background: {{ section.settings.load_more_background }};
+    color: {{ section.settings.load_more_text_color }};
+    padding: 14px 30px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s ease;
+  }
+
+  .csv-reviews-section-{{ section.id }} .csv-reviews-button:hover,
+  .csv-reviews-section-{{ section.id }} .csv-reviews-page-button:hover {
+    transform: translateY(-1px);
+  }
+
+  .csv-reviews-section-{{ section.id }} .csv-reviews-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .csv-reviews-section-{{ section.id }} .csv-reviews-page-button {
+    padding: 11px 17px;
+    font-size: 14px;
+    min-width: 44px;
+  }
+
+  .csv-reviews-section-{{ section.id }} .csv-reviews-page-button.active {
+    background: {{ section.settings.pagination_active_background }};
+    color: {{ section.settings.pagination_active_text_color }};
+  }
+
+  .csv-reviews-section-{{ section.id }} .csv-reviews-page-button[disabled] {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .csv-reviews-section-{{ section.id }} .csv-reviews-pagination-dots {
+    color: {{ section.settings.heading_color }};
+    padding: 0 4px;
+    font-weight: 700;
+  }
+
+  @media screen and (max-width: 989px) {
+    .csv-reviews-section-{{ section.id }} .csv-reviews-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .csv-reviews-section-{{ section.id }} .csv-reviews-header h2 {
+      font-size: 34px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .csv-reviews-section-{{ section.id }} {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .csv-reviews-section-{{ section.id }} .csv-reviews-grid {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .csv-reviews-section-{{ section.id }} .csv-review-card {
+      border-radius: 18px;
+      padding: 24px 22px;
+      min-height: auto;
+    }
+
+    .csv-reviews-section-{{ section.id }} .csv-reviews-header h2 {
+      font-size: 30px;
+    }
+
+    .csv-reviews-section-{{ section.id }} .csv-reviews-header p {
+      font-size: 16px;
+    }
+
+    .csv-reviews-section-{{ section.id }} .csv-reviews-page-button {
+      padding: 10px 14px;
+      min-width: 40px;
+    }
+  }
+</style>
+
+<script>
+(function () {
+  const reviewsGrid = document.getElementById('csvReviewsGrid-{{ section.id }}');
+  const showMoreButton = document.getElementById('csvReviewsShowMore-{{ section.id }}');
+  const paginationWrap = document.getElementById('csvReviewsPagination-{{ section.id }}');
+
+  if (!reviewsGrid) return;
+
+  const csvUrl = reviewsGrid.dataset.csvUrl;
+  const initialLimit = parseInt(reviewsGrid.dataset.initialLimit, 10) || 24;
+  const pageSize = parseInt(reviewsGrid.dataset.pageSize, 10) || 100;
+
+  let allReviews = [];
+  let currentPage = 1;
+  let paginationMode = false;
+
+  if (!csvUrl) {
+    reviewsGrid.innerHTML = '<p class="csv-reviews-loading">Please add your CSV file URL.</p>';
+    return;
+  }
+
+  function parseCSV(text) {
+    const rows = [];
+    let currentRow = [];
+    let currentValue = '';
+    let insideQuotes = false;
+
+    for (let i = 0; i < text.length; i++) {
+      const char = text[i];
+      const nextChar = text[i + 1];
+
+      if (char === '"' && insideQuotes && nextChar === '"') {
+        currentValue += '"';
+        i++;
+      } else if (char === '"') {
+        insideQuotes = !insideQuotes;
+      } else if (char === ',' && !insideQuotes) {
+        currentRow.push(currentValue);
+        currentValue = '';
+      } else if ((char === '\n' || char === '\r') && !insideQuotes) {
+        if (currentValue || currentRow.length) {
+          currentRow.push(currentValue);
+          rows.push(currentRow);
+          currentRow = [];
+          currentValue = '';
+        }
+
+        if (char === '\r' && nextChar === '\n') {
+          i++;
+        }
+      } else {
+        currentValue += char;
+      }
+    }
+
+    if (currentValue || currentRow.length) {
+      currentRow.push(currentValue);
+      rows.push(currentRow);
+    }
+
+    return rows;
+  }
+
+  function escapeHTML(value) {
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function getStars(rating) {
+    const ratingNumber = Math.max(0, Math.min(5, parseInt(rating, 10) || 0));
+    let stars = '';
+
+    for (let i = 1; i <= 5; i++) {
+      stars += i <= ratingNumber
+        ? '<span>★</span>'
+        : '<span class="empty-star">★</span>';
+    }
+
+    return stars;
+  }
+
+  function normalizeHeader(header) {
+    return String(header || '')
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, '_');
+  }
+
+  function renderReviewCard(review) {
+    const rating = review.rating || review.stars || '5';
+    const author = review.author || review.name || review.customer_name || 'Customer';
+    const body = review.body || review.review || review.review_text || review.content || '';
+    const verified = review.verified_purchase || review.verified || '';
+
+    return `
+      <div class="csv-review-card">
+        <div>
+          <div class="csv-review-stars">
+            ${getStars(rating)}
+          </div>
+
+          <p class="csv-review-body">
+            ${escapeHTML(body)}
+          </p>
+        </div>
+
+        <div>
+          <p class="csv-review-author">
+            ${escapeHTML(author)}
+          </p>
+
+          ${
+            String(verified).toLowerCase() === 'true' ||
+            String(verified).toLowerCase() === 'yes' ||
+            String(verified).toLowerCase() === 'verified'
+              ? '<p class="csv-review-verified">Verified Buyer</p>'
+              : ''
+          }
+        </div>
+      </div>
+    `;
+  }
+
+  function scrollToSection() {
+    const section = document.querySelector('.csv-reviews-section-{{ section.id }}');
+
+    if (section) {
+      section.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  }
+
+  function renderInitialReviews() {
+    const visibleReviews = allReviews.slice(0, initialLimit);
+
+    reviewsGrid.innerHTML = visibleReviews.map(renderReviewCard).join('');
+
+    if (showMoreButton && allReviews.length > initialLimit) {
+      showMoreButton.hidden = false;
+    }
+
+    if (paginationWrap) {
+      paginationWrap.hidden = true;
+    }
+  }
+
+  function renderPaginationReviews() {
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    const visibleReviews = allReviews.slice(startIndex, endIndex);
+
+    reviewsGrid.innerHTML = visibleReviews.map(renderReviewCard).join('');
+
+    renderPagination();
+  }
+
+  function createPageButton(label, page, isActive, isDisabled) {
+    const button = document.createElement('button');
+
+    button.type = 'button';
+    button.className = 'csv-reviews-page-button';
+    button.textContent = label;
+
+    if (isActive) {
+      button.classList.add('active');
+    }
+
+    if (isDisabled) {
+      button.disabled = true;
+    }
+
+    if (!isDisabled && page) {
+      button.addEventListener('click', function () {
+        currentPage = page;
+        renderPaginationReviews();
+        scrollToSection();
+      });
+    }
+
+    return button;
+  }
+
+  function createDots() {
+    const dots = document.createElement('span');
+    dots.className = 'csv-reviews-pagination-dots';
+    dots.textContent = '...';
+    return dots;
+  }
+
+  function renderPagination() {
+    if (!paginationWrap) return;
+
+    const totalPages = Math.ceil(allReviews.length / pageSize);
+
+    paginationWrap.innerHTML = '';
+
+    if (totalPages <= 1) {
+      paginationWrap.hidden = true;
+      return;
+    }
+
+    paginationWrap.hidden = false;
+
+    paginationWrap.appendChild(
+      createPageButton('Prev', currentPage - 1, false, currentPage === 1)
+    );
+
+    const pagesToShow = [];
+
+    pagesToShow.push(1);
+
+    if (currentPage > 3) {
+      pagesToShow.push('dots-before');
+    }
+
+    for (let page = currentPage - 1; page <= currentPage + 1; page++) {
+      if (page > 1 && page < totalPages) {
+        pagesToShow.push(page);
+      }
+    }
+
+    if (currentPage < totalPages - 2) {
+      pagesToShow.push('dots-after');
+    }
+
+    if (totalPages > 1) {
+      pagesToShow.push(totalPages);
+    }
+
+    pagesToShow.forEach(function (page) {
+      if (page === 'dots-before' || page === 'dots-after') {
+        paginationWrap.appendChild(createDots());
+      } else {
+        paginationWrap.appendChild(
+          createPageButton(String(page), page, page === currentPage, false)
+        );
+      }
+    });
+
+    paginationWrap.appendChild(
+      createPageButton('Next', currentPage + 1, false, currentPage === totalPages)
+    );
+  }
+
+  if (showMoreButton) {
+    showMoreButton.addEventListener('click', function () {
+      paginationMode = true;
+      currentPage = 1;
+      showMoreButton.hidden = true;
+      renderPaginationReviews();
+    });
+  }
+
+  fetch(csvUrl)
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error('CSV file could not be loaded.');
+      }
+
+      return response.text();
+    })
+    .then(function (csvText) {
+      const rows = parseCSV(csvText);
+
+      if (!rows.length) {
+        reviewsGrid.innerHTML = '<p class="csv-reviews-loading">No reviews found.</p>';
+        return;
+      }
+
+      const headers = rows[0].map(normalizeHeader);
+      const dataRows = rows.slice(1);
+
+      allReviews = dataRows.map(function (row) {
+        const review = {};
+
+        headers.forEach(function (header, index) {
+          review[header] = row[index] || '';
+        });
+
+        return review;
+      }).filter(function (review) {
+        return review.body || review.review || review.review_text || review.content;
+      });
+
+      if (!allReviews.length) {
+        reviewsGrid.innerHTML = '<p class="csv-reviews-loading">No valid reviews found.</p>';
+        return;
+      }
+
+      renderInitialReviews();
+    })
+    .catch(function (error) {
+      console.error(error);
+      reviewsGrid.innerHTML = '<p class="csv-reviews-loading">Reviews could not be loaded.</p>';
+    });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "CSV Review Cards",
+  "settings": [
+    {
+      "type": "text",
+      "id": "csv_url",
+      "label": "CSV file URL",
+      "info": "Upload the CSV in Shopify Files, then paste the file URL here."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Customer Reviews"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "See what our customers are saying."
+    },
+    {
+      "type": "range",
+      "id": "initial_review_limit",
+      "label": "Initial reviews to show",
+      "min": 3,
+      "max": 50,
+      "step": 1,
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "page_size",
+      "label": "Reviews per page after Show more",
+      "min": 24,
+      "max": 200,
+      "step": 4,
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Cards per row on desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "label": "Container width",
+      "min": 900,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "label": "Card gap",
+      "min": 10,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card border radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#f9685d"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "review_text_color",
+      "label": "Review text color",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "author_color",
+      "label": "Author color",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "verified_color",
+      "label": "Verified text color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "load_more_background",
+      "label": "Button background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "load_more_text_color",
+      "label": "Button text",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "pagination_active_background",
+      "label": "Active pagination background",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "pagination_active_text_color",
+      "label": "Active pagination text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 24,
+      "max": 70,
+      "step": 1,
+      "unit": "px",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "star_size",
+      "label": "Star size",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "review_text_size",
+      "label": "Review text size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "author_size",
+      "label": "Author size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 17
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 160,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 160,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    }
+  ],
+  "presets": [
+    {
+      "name": "CSV Review Cards"
+    }
+  ]
+}
+{% endschema %}

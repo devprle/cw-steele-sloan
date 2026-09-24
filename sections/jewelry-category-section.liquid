@@ -1,0 +1,526 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'" />
+
+{% style %}
+  #{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    {% if section.settings.background_color != blank %}
+      background-color: {{ section.settings.background_color }};
+    {% endif %}
+    {% if section.settings.bg_image != blank %}
+      background-image: url({{ section.settings.bg_image | image_url }});
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    {% endif %}
+  }
+
+  #{{ section.id }} .page-width {
+    max-width: {{ section.settings.page_width }}px;
+    padding: 0 60px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  #{{ section.id }} .jc-heading {
+    text-align: center;
+    margin-bottom: 97px;
+  }
+  #{{ section.id }} .section-heading {
+    font-family: var(--font-stack-body);
+    font-weight: 200;
+    font-size: 42px;
+    line-height: 100%;
+    letter-spacing: 2.5px;
+    text-align: center;
+    margin: 0;
+    color: #0A2540;
+  }
+
+  #{{ section.id }} .jc-slider-main {
+    position: relative;
+  }
+  #{{ section.id }} .jc-grid {
+    gap: 16px;
+  }
+
+  #{{ section.id }} .swiper-wrapper {
+    align-items: stretch;
+  }
+  @media screen and (min-width: 768px) {
+    #{{ section.id }} .desktop-slider:not(.slider-active) .swiper-wrapper.jc-grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      transform: none !important;
+    }
+
+    #{{ section.id }} .desktop-slider:not(.slider-active) .swiper-slide {
+      width: 100% !important;
+      margin-right: 0 !important;
+    }
+  }
+
+  /* Desktop Grid when only 4 cards */
+  @media screen and (min-width: 1024px) {
+    #{{ section.id }} .desktop-slider:not(.slider-active) .swiper-wrapper.jc-grid {
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+      transform: none !important;
+    }
+  }
+    #{{ section.id }} .swiper-wrapper {
+      align-items: stretch;
+    }
+
+    #{{ section.id }} .swiper-slide {
+      height: auto;
+    }
+
+    #{{ section.id }} .jc-card {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    #{{ section.id }} .jc-card-image {
+      position: absolute;
+      inset: 0;
+    }
+
+    #{{ section.id }} .jc-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    #{{ section.id }} .jc-card-overlay {
+      /* position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0,0,0,0.05) 0%,
+        rgba(0,0,0,0.45) 100%
+      );
+      z-index: 1; */
+    }
+
+    #{{ section.id }} .jc-card-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 248px 20px 61px;
+      text-align: center;
+    }
+
+    #{{ section.id }} .jc-card-title {
+      color: #ffffff;
+      margin: 0 0 25px;
+      font-family: var(--font-stack-body);
+      font-weight: 200;
+      font-size: 36px;
+      line-height: 1.42;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+
+    #{{ section.id }} .jc-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 17px 44.4px;
+      background: #ffffff;
+      color: #0A2540;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-family: var(--font-stack-body);
+      font-weight: 200;
+      font-size: 14px;
+      line-height: 100%;
+      letter-spacing: 5%;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    #{{ section.id }} .jc-btn:hover {
+      background: #0A2540;
+      color: #ffffff;
+    }
+
+    #{{ section.id }} .swiper-button-next,
+    #{{ section.id }} .swiper-button-prev {
+      width: 42px;
+      height: 42px;
+      border-radius: 100%;
+      background: #ffffff;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      color: #000;
+    }
+
+    #{{ section.id }} .swiper-button-next:after,
+    #{{ section.id }} .swiper-button-prev:after {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    #{{ section.id }} .desktop-slider .swiper-button-next,
+    #{{ section.id }} .desktop-slider .swiper-button-prev {
+      display: none;
+    }
+
+    #{{ section.id }} .desktop-slider.slider-active .swiper-button-next,
+    #{{ section.id }} .desktop-slider.slider-active .swiper-button-prev {
+      display: flex;
+    }
+
+    @media screen and (max-width: 1024px) {
+      #{{ section.id }} {
+        padding-top: {{ section.settings.tablet_padding_top }}px;
+        padding-bottom: {{ section.settings.tablet_padding_bottom }}px;
+      }
+      #{{ section.id }} .page-width {
+        padding: 0 15px;
+      }
+
+      #{{ section.id }} .jc-card {
+        min-height: 450px;
+      }
+      #{{ section.id }} .jc-heading {
+        text-align: center;
+        margin-bottom: 55px;
+      } 
+    }
+
+  @media screen and (max-width: 767px) {
+    #{{ section.id }} {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+
+      {% if section.settings.mobile_bg_image != blank %}
+        background-image: url({{ section.settings.mobile_bg_image | image_url }});
+      {% endif %}
+    }
+    #{{ section.id }} .section-heading {
+      font-size: 28px;
+    }
+    #{{ section.id }} .jc-grid {
+      gap: 0px;
+    }
+    #{{ section.id }} .jc-heading {
+      margin-bottom: 30px;
+    }
+    /* IMPORTANT */
+    #{{ section.id }} .swiper {
+      overflow: visible;
+    }
+
+    #{{ section.id }} .swiper-wrapper {
+      display: flex;
+    }
+    #{{ section.id }} .jc-card-content {
+      padding: 248px 20px 37px;
+    }
+    #{{ section.id }} .jc-card-title {
+      margin: 0 0 21px;
+    }
+
+    #{{ section.id }} .swiper-slide {
+      width: 78% !important;
+      flex-shrink: 0;
+      height: auto;
+    }
+
+    #{{ section.id }} .jc-card {
+      min-height: 440px;
+    }
+
+    #{{ section.id }} .swiper-button-next,
+    #{{ section.id }} .swiper-button-prev {
+      display: none;
+    }
+    #{{ section.id }} .swiper-wrapper.jc-grid {
+      display: flex !important;
+      transform: translate3d(0,0,0);
+    }
+  }
+{% endstyle %}
+
+<section id="{{ section.id }}" class="jewelry-category-section {{ section.settings.custom_class }}">
+  <div class="page-width">
+    {% if section.settings.heading != blank %}
+      <div class="jc-heading">
+        <h2 class="section-heading">
+          {{ section.settings.heading }}
+        </h2>
+      </div>
+    {% endif %}
+
+    <div class="jc-slider-main desktop-slider {% if section.blocks.size > 4 %}slider-active{% endif %}">
+      <div class="swiper jewelry-category-slider-{{ section.id }}">
+        <div class="swiper-wrapper jc-grid">
+          {% for block in section.blocks %}
+            {% assign selected_collection = block.settings.collection %}
+
+            {% assign final_title = '' %}
+            {% assign final_image = '' %}
+            {% assign final_url = '#' %}
+
+            {% if block.settings.custom_title != blank %}
+              {% assign final_title = block.settings.custom_title %}
+            {% elsif selected_collection != blank %}
+              {% assign final_title = selected_collection.title %}
+            {% endif %}
+
+            {% if block.settings.custom_image != blank %}
+              {% assign final_image = block.settings.custom_image %}
+            {% elsif selected_collection.featured_image != blank %}
+              {% assign final_image = selected_collection.featured_image %}
+            {% endif %}
+
+            {% if block.settings.button_url != blank %}
+              {% assign final_url = block.settings.button_url %}
+            {% elsif selected_collection.url != blank %}
+              {% assign final_url = selected_collection.url %}
+            {% endif %}
+
+            <div class="swiper-slide" {{ block.shopify_attributes }}>
+              <div class="jc-card">
+                <div class="jc-card-image">
+                  {% if final_image != blank %}
+                    <img
+                      src="{{ final_image | image_url: width: 1000 }}"
+                      alt="{{ final_title }}"
+                      width="auto"
+                      height="auto"
+                    >
+                  {% endif %}
+                </div>
+
+                <div class="jc-card-overlay"></div>
+
+                <div class="jc-card-content">
+                  {% if final_title != blank %}
+                    <h3 class="jc-card-title">
+                      {{ final_title }}
+                    </h3>
+                  {% endif %}
+
+                  {% if block.settings.button_label != blank %}
+                    <a href="{{ final_url }}" class="jc-btn">
+                      {{ block.settings.button_label }}
+                    </a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer="defer"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const slider = document.querySelector('.jewelry-category-slider-{{ section.id }}');
+    if (!slider) return;
+    const enableDesktopSlider = {{ section.blocks.size }} > 4;
+    new Swiper(slider, {
+      slidesPerView: 'auto',
+      spaceBetween: 16,
+      freeMode: true,
+      navigation: {
+        nextEl: '#{{ section.id }} .swiper-button-next',
+        prevEl: '#{{ section.id }} .swiper-button-prev',
+      },
+      breakpoints: {
+        0: {
+          enabled: true,
+          slidesPerView: 1.2,
+          spaceBetween: 8,
+          freeMode: true,
+        },
+        768: {
+          enabled: enableDesktopSlider,
+          slidesPerView: 4,
+          spaceBetween: 20,
+          freeMode: false,
+        }
+
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Jewelry Category",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General settings"
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom class"
+    },
+    {
+      "type": "number",
+      "id": "page_width",
+      "label": "Page width",
+      "info": "Add px number",
+      "default": 1440
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Desktop background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg_image",
+      "label": "Mobile background image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Jewelry that fits your life, not the other way around."
+    },
+
+    {
+      "type": "header",
+      "content": "Desktop section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 80
+    },
+
+    {
+      "type": "header",
+      "content": "Tablet section padding"
+    },
+    {
+      "type": "range",
+      "id": "tablet_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "tablet_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    },
+
+    {
+      "type": "header",
+      "content": "Mobile section padding"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 40
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "Custom image"
+        },
+
+        {
+          "type": "text",
+          "id": "custom_title",
+          "label": "Custom title"
+        },
+
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "SHOP NOW"
+        },
+
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button url"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Jewelry Category"
+    }
+  ]
+}
+{% endschema %}

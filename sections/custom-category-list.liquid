@@ -1,0 +1,407 @@
+{%- style -%}
+  #{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    {% if section.settings.background_color != blank %}
+      background-color: {{ section.settings.background_color }};
+    {% endif %}
+    {% if section.settings.bg_image != blank %}
+      background-image: url({{ section.settings.bg_image | image_url }});
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    {% endif %}
+    overflow: hidden;
+  }
+
+  #{{ section.id }} .page-width {
+    max-width: {{ section.settings.page_width }}px;
+    padding: 0 60px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .category-list-wrapper-{{ section.id }} {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 37px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin; /* Firefox */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Custom Scrollbar for Desktop */
+  .category-list-wrapper-{{ section.id }}::-webkit-scrollbar {
+    height: 6px;
+  }
+  .category-list-wrapper-{{ section.id }}::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.03);
+    border-radius: 10px;
+  }
+  .category-list-wrapper-{{ section.id }}::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.15);
+    border-radius: 10px;
+  }
+  .category-list-wrapper-{{ section.id }}::-webkit-scrollbar-thumb:hover {
+    background: rgba(0,0,0,0.3);
+  }
+
+  .category-item-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    text-decoration: none;
+    color: inherit;
+    flex: 0 0 calc(20% - 24px); /* Show exactly 5 items (accounting for 30px gap) */
+    scroll-snap-align: start;
+  }
+
+  .category-image-wrapper-{{ section.id }} {
+    width: {{ section.settings.image_size_desktop }}px;
+    height: {{ section.settings.image_size_desktop }}px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    background-color: #f4f4f4; /* Placeholder background */
+  }
+
+  .category-image-wrapper-{{ section.id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .category-text-{{ section.id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .category-title-{{ section.id }} {
+    font-size: 16px;
+    color: #0A2540;
+    font-weight: 400;
+    margin: 0;
+    letter-spacing: 0.3px;
+  }
+
+  .category-subtitle-{{ section.id }} {
+    font-size: 12px;
+    color: #0A2540;
+    line-height: 1.4;
+    margin: 0;
+    font-weight: 200;
+  }
+
+  @media screen and (max-width: 1200px) {
+    .category-list-wrapper-{{ section.id }} {
+        display: flex;
+    }
+    .category-item-{{ section.id }} {
+        flex: 0 0 calc(270px - 24px);
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    #{{ section.id }} {
+      padding-top: {{ section.settings.tablet_padding_top }}px;
+      padding-bottom: {{ section.settings.tablet_padding_bottom }}px;
+    }
+    #{{ section.id }} .page-width {
+      max-width: {{ section.settings.page_width }}px;
+      padding: 0 15px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    #{{ section.id }} {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+      {% if section.settings.mobile_bg_image != blank %}
+        background-image: url({{ section.settings.mobile_bg_image | image_url }});
+      {% endif %}
+    }
+    .category-item-{{ section.id }} {
+        flex: 0 0 calc(36% - 24px);
+    }
+    .category-list-wrapper-{{ section.id }} {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; /* Hide scrollbar Firefox */
+      margin: 0 -15px; /* Bleed to edge */
+      padding: 0 15px 10px 15px; /* Padding for bleed and shadow */
+      gap: 15px;
+      justify-content: space-between;
+    }
+
+    .category-list-wrapper-{{ section.id }}::-webkit-scrollbar {
+      display: none; /* Hide scrollbar Chrome/Safari */
+    }
+
+    .category-item-{{ section.id }} {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 8px;
+      min-width: {{ section.settings.image_size_mobile | plus: 10 }}px;
+      scroll-snap-align: start;
+      flex: 0 0 auto;
+    }
+
+    .category-image-wrapper-{{ section.id }} {
+      width: {{ section.settings.image_size_mobile }}px;
+      height: {{ section.settings.image_size_mobile }}px;
+    }
+
+    .category-subtitle-{{ section.id }} {
+      display: none; /* Hide subtitle on mobile as per design */
+    }
+
+    .category-title-{{ section.id }} {
+      font-size: 12px;
+      font-weight: 300;
+    }
+  }
+{%- endstyle -%}
+
+<section id="{{ section.id }}" class="custom-category-list {{ section.settings.custom_class }}">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+      <h2 style="text-align: center; margin-bottom: 30px;">{{ section.settings.title }}</h2>
+    {% endif %}
+
+    <div class="category-list-wrapper-{{ section.id }}">
+      {% for block in section.blocks %}
+        {%- assign collection = block.settings.collection -%}
+        {%- assign final_title = block.settings.title | default: collection.title -%}
+        {%- assign final_link = block.settings.link | default: collection.url | default: '#' -%}
+        {%- assign final_image = block.settings.image
+          | default: collection.image
+          | default: collection.products.first.featured_image
+        -%}
+
+        <a href="{{ final_link }}" class="category-item-{{ section.id }}" {{ block.shopify_attributes }}>
+          <div class="category-image-wrapper-{{ section.id }}">
+            {% if final_image != blank %}
+              {{ final_image | image_url: width: 200 | image_tag: loading: 'lazy' }}
+            {% endif %}
+          </div>
+          <div class="category-text-{{ section.id }}">
+            {% if final_title != blank %}
+              <h3 class="category-title-{{ section.id }}">{{ final_title }}</h3>
+            {% endif %}
+            {% if block.settings.subtitle != blank %}
+              <p class="category-subtitle-{{ section.id }}">{{ block.settings.subtitle }}</p>
+            {% endif %}
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Category List",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "header",
+      "content": "Image Settings"
+    },
+    {
+      "type": "range",
+      "id": "image_size_desktop",
+      "min": 40,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Image size (Desktop)",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "image_size_mobile",
+      "min": 40,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "label": "Image size (Mobile)",
+      "default": 70
+    },
+    {
+      "type": "header",
+      "content": "General settings"
+    },
+    {
+      "type": "number",
+      "id": "page_width",
+      "label": "Page Width",
+      "info": "Add PX number",
+      "default": 1440
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Desktop background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg_image",
+      "label": "Mobile background image"
+    },
+    {
+      "type": "header",
+      "content": "Desktop section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Tablet section padding"
+    },
+    {
+      "type": "range",
+      "id": "tablet_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "tablet_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Mobile section padding"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Custom attributes"
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom classes"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom Image",
+          "info": "Overrides collection image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Custom Title",
+          "info": "Overrides collection title"
+        },
+        {
+          "type": "textarea",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Layerable pieces that get compliments."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Custom Link",
+          "info": "Overrides collection link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Category List",
+      "blocks": [
+        {
+          "type": "category"
+        },
+        {
+          "type": "category"
+        },
+        {
+          "type": "category"
+        },
+        {
+          "type": "category"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

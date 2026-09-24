@@ -1,0 +1,518 @@
+<!-- Swiper CSS CDN (માત્ર સ્લાઈડર ચલાવવા માટે) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+{% style %}
+  #{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.background_color }};
+  }
+
+  #{{ section.id }} .testimonials-container {
+    max-width: {{ section.settings.page_width }}px;
+    margin: 0 auto;
+    padding: 0 40px;
+    width: 100%;
+    position: relative;
+  }
+
+  #{{ section.id }} .testimonials-header {
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  #{{ section.id }} .testimonials-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 15px;
+    font-family: 'Inter', sans-serif;
+    color: {{ section.settings.text_color }};
+    font-weight: 300;
+    font-size: 10px;
+    line-height: 100%;
+    letter-spacing: 0%;
+  }
+  
+  #{{ section.id }} span.badge-label b {
+    font-weight: 700;
+  }
+
+  #{{ section.id }} .testimonials-badge .badge-stars {
+    color: {{ section.settings.star_color }};
+    letter-spacing: 2px;
+  }
+
+  #{{ section.id }} .testimonials-main-title {
+    font-family: 'Inter', sans-serif;
+    color: {{ section.settings.text_color }};
+    font-size: 46px;
+    font-weight: 200;
+    margin: 0 0 22px 0;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+  }
+
+  #{{ section.id }} .testimonials-sub-desc {
+    font-family: 'Inter', sans-serif;
+    color: {{ section.settings.text_color }};
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.5;
+    margin: 0;
+    opacity: 0.6;
+  }
+
+  /* Desktop Grid CSS */
+  #{{ section.id }} .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 60px 40px;
+  }
+
+  #{{ section.id }} .testimonial-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: auto;
+  }
+
+  #{{ section.id }} .card-stars {
+    color: {{ section.settings.star_color }};
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+
+  #{{ section.id }} .card-text {
+    font-family: 'Inter', sans-serif;
+    color: {{ section.settings.text_color }};
+    margin: 0 0 14px 0;
+    font-weight: 200;
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: 0%;
+    text-align: center;
+  }
+
+  #{{ section.id }} .card-text p {
+    margin: 0;
+  }
+
+  #{{ section.id }} .card-user-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: auto; /* બધી કાર્ડની સાઈઝ સરખી રાખવા માટે */
+  }
+
+  #{{ section.id }} .user-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+  }
+
+  #{{ section.id }} .user-avatar-placeholder {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    display: block;
+  }
+
+  #{{ section.id }} .user-info-text {
+    font-family: 'Inter', sans-serif;
+    color: {{ section.settings.text_color }};
+    font-weight: 200;
+    font-size: 12px;
+    line-height: 160%;
+    letter-spacing: 0%;
+    text-align: center;
+  }
+
+  /* Pagination Bullet Styles */
+  #{{ section.id }} .swiper-pagination {
+    display: none;
+    position: relative;
+    margin-top: 30px;
+    bottom: 0 !important;
+  }
+
+  #{{ section.id }} .swiper-pagination-bullet-active {
+    background: {{ section.settings.text_color }};
+  }
+  #{{ section.id }} .swiper-pagination.swiper-pagination-clickable{
+    display: none;
+  }
+
+  /* Tablet Layout (1024px સુધી) */
+  @media screen and (max-width: 1024px) {
+    #{{ section.id }} {
+      padding-top: {{ section.settings.tablet_padding_top }}px;
+      padding-bottom: {{ section.settings.tablet_padding_bottom }}px;
+    }
+    #{{ section.id }} .testimonials-container {
+      padding: 0 30px;
+    }
+    #{{ section.id }} .testimonials-main-title {
+      font-size: 36px;
+    }
+    #{{ section.id }} .testimonials-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 35px 25px;
+    }
+  }
+
+  /* Mobile Layout Control (767px સુધી) */
+  @media screen and (max-width: 767px) {
+    #{{ section.id }} {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+    #{{ section.id }} .testimonials-container {
+      padding: 0 20px;
+    }
+    #{{ section.id }} .testimonials-header {
+      margin-bottom: 40px;
+    }
+    #{{ section.id }} .testimonials-main-title {
+      font-size: 30px;
+      margin-bottom: 15px
+    }
+    #{{ section.id }} .testimonials-sub-desc{
+      font-size: 13px;
+    }
+  }
+
+  /* 575px કે તેથી નાની સ્ક્રીન માટે ખાસ Swiper Slider મોડ */
+  @media screen and (max-width: 575px) {
+    #{{ section.id }} .testimonials-grid {
+      display: flex !important; /* Grid બંધ કરીને Flex (Swiper જરૂરીયાત) ચાલુ કરવું */
+      gap: 0;
+    }
+    #{{ section.id }} .testimonial-card {
+      max-width: 100%;
+      padding: 0 15px;
+      box-sizing: border-box;
+    }
+    #{{ section.id }} .swiper-pagination {
+      display: block; /* ડોટ્સ દર્શાવવા માટે */
+    }
+    #{{ section.id }} .testimonials-container {
+      overflow: hidden; /* સ્લાઈડર બહાર ન નીકળી જાય તે માટે */
+    }
+  }
+{% endstyle %}
+
+<section id="{{ section.id }}" class="testimonials-grid-section {{ section.settings.custom_class }}">
+  <div class="testimonials-container swiper-{{ section.id }}">
+    
+    <!-- Top Header Area -->
+    <div class="testimonials-header">
+      {%- if section.settings.show_badge -%}
+        <div class="testimonials-badge">
+          <span class="badge-stars">★★★★★</span>
+          {%- if section.settings.badge_text != blank -%}
+            <span class="badge-label">{{ section.settings.badge_text }}</span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.title != blank -%}
+        <h2 class="testimonials-main-title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.description != blank -%}
+        <div class="testimonials-sub-desc">
+          {{ section.settings.description }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <!-- Testimonials Layout Grid / Swiper Wrapper -->
+    <div class="testimonials-grid swiper-wrapper">
+      {%- for block in section.blocks -%}
+        <div class="testimonial-card swiper-slide" {{ block.shopify_attributes }}>
+          
+          <!-- Rating Stars -->
+          <div class="card-stars">
+            {%- assign rating = block.settings.star_rating | plus: 0 -%}
+            {%- for i in (1..5) -%}
+              {%- if i <= rating -%}★{%- else -%}☆{%- endif -%}
+            {%- endfor -%}
+          </div>
+
+          <!-- Review Body Text -->
+          {%- if block.settings.review_text != blank -%}
+            <div class="card-text">
+              {{ block.settings.review_text }}
+            </div>
+          {%- endif -%}
+
+          <!-- User Meta Info -->
+          <div class="card-user-meta">
+            {%- if block.settings.avatar != blank -%}
+              <img 
+                src="{{ block.settings.avatar | image_url: width: 60, height: 60, crop: 'center' }}" 
+                alt="{{ block.settings.user_name | escape }}"
+                class="user-avatar"
+                loading="lazy"
+              >
+            {%- else -%}
+              <div class="user-avatar-placeholder"></div>
+            {%- endif -%}
+
+            <div class="user-info-text">
+              {%- if block.settings.user_name != blank -%}
+                <span class="user-name">{{ block.settings.user_name }}</span>
+              {%- endif -%}
+              {%- if block.settings.review_date != blank -%}
+                <span class="user-date"> on {{ block.settings.review_date }}</span>
+              {%- endif -%}
+            </div>
+          </div>
+
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <!-- Mobile Pagination Dots -->
+    <div class="swiper-pagination"></div>
+
+  </div>
+</section>
+
+<!-- Swiper JS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let swiperInstance = null;
+
+    function initSwiper() {
+      const screenWidth = window.innerWidth;
+      
+      // જો સ્ક્રીન 575px કે તેથી નાની હોય અને સ્લાઈડર ચાલુ ન હોય તો જ શરૂ કરવું
+      if (screenWidth <= 575) {
+        if (!swiperInstance) {
+          swiperInstance = new Swiper('.swiper-{{ section.id }}', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            pagination: {
+              el: '#{{ section.id }} .swiper-pagination',
+              clickable: true,
+            },
+          });
+        }
+      } else {
+        // જો સ્ક્રીન મોટી થાય તો સ્લાઈડર ડિસ્ટ્રોય (બંધ) કરી દેવું જેથી ગ્રીડ પાછી આવી જાય
+        if (swiperInstance) {
+          swiperInstance.destroy(true, true);
+          swiperInstance = null;
+        }
+      }
+    }
+
+    // પેજ લોડ વખતે ચેક કરશે
+    initSwiper();
+
+    // સ્ક્રીન નાની-મોટી (Resize) થાય ત્યારે પણ ચેક કરશે
+    window.addEventListener('resize', initSwiper);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Testimonials Grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Top Header Info Block"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "Show Trust Badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Trust Badge Text",
+      "default": "Loved by 1,000 customers based on 193 reviews"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Heading",
+      "default": "Loved by customers, trusted by boutiques."
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Sub-description",
+      "default": "Fast shipping, beautiful products, and service that keeps people coming back"
+    },
+    {
+      "type": "header",
+      "content": "Style & Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star Colors",
+      "default": "#000000"
+    },
+    {
+      "type": "number",
+      "id": "page_width",
+      "label": "Page Width (px)",
+      "default": 1300
+    },
+    {
+      "type": "header",
+      "content": "Desktop Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0, "max": 150, "step": 2, "unit": "px", "label": "Top Padding", "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0, "max": 150, "step": 2, "unit": "px", "label": "Bottom Padding", "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Tablet Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "tablet_padding_top",
+      "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Top Padding", "default": 50
+    },
+    {
+      "type": "range",
+      "id": "tablet_padding_bottom",
+      "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Bottom Padding", "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Mobile Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Top Padding", "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Bottom Padding", "default": 40
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS Class"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial Card",
+      "settings": [
+        {
+          "type": "select",
+          "id": "star_rating",
+          "label": "Star Rating",
+          "options": [
+            { "value": "5", "label": "5 Stars" },
+            { "value": "4", "label": "4 Stars" },
+            { "value": "3", "label": "3 Stars" }
+          ],
+          "default": "5"
+        },
+        {
+          "type": "richtext",
+          "id": "review_text",
+          "label": "Review Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "User Avatar"
+        },
+        {
+          "type": "text",
+          "id": "user_name",
+          "label": "User Name"
+        },
+        {
+          "type": "text",
+          "id": "review_date",
+          "label": "Review Date",
+          "info": "e.g. 25 Mar, 2026"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials Grid",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "user_name": "Emily",
+            "review_date": "25 Mar, 2026",
+            "review_text": "<p>These earrings are stunning! The quality is fantastic and they make a perfect gift. My niece loves them!</p>"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "user_name": "Mark",
+            "review_date": "26 Mar, 2026",
+            "review_text": "<p>Absolutely beautiful earrings! They are perfect for any occasion and arrived in great condition. Very happy with my purchase.</p>"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "user_name": "Sophia",
+            "review_date": "27 Mar, 2026",
+            "review_text": "<p>The craftsmanship of these earrings is remarkable! My daughter wears them every day and they still look brand new.</p>"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "user_name": "Liam",
+            "review_date": "28 Mar, 2026",
+            "review_text": "<p>I was impressed with the fast shipping! The earrings are even more beautiful in person. Will definitely buy again!</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
