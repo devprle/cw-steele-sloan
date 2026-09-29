@@ -79,9 +79,9 @@
           "settings": {
             "slide_image": "shopify://shop_images/Rectangle_1.png",
             "slide_mobile_image": "shopify://shop_images/Rectangle_1_1.png",
-            "review_text": "<strong>4.9/5</strong> based on <strong>3700</strong> reviews",
-            "title": "The Perfect Gifts at the Perfect Price to Celebrate in Style!",
-            "subtitle": "Steele Sloan Designs — unique, hypoallergenic stainless steel jewelry for everyday and gift-giving, including officially licensed collegiate styles. Great prices, built to last.",
+            "review_text": "Loved by <strong>1,000</strong> customers based on <strong>193</strong> reviews",
+            "title": "Trending jewellery you can wear on repeat",
+            "subtitle": "Shop on-trend, versatile designs made with special care, with stainless steel favorites that are loved for their look and sensitive-skin friendliness.",
             "button_label": "SHOP BEST SELLERS",
             "button_link": "shopify://collections",
             "logo_1": "shopify://shop_images/image_2.png",
@@ -93,13 +93,14 @@
           "settings": {
             "slide_image": "shopify://shop_images/hero-2.png",
             "slide_mobile_image": "shopify://shop_images/hero-2-mobile.png",
-            "review_text": "Loved by <strong>5000+ </strong>customers",
-            "title": "Jewelry for every gift, every style — collegiate included",
-            "subtitle": "Shop on-trend, versatile designs made with special care, with stainless steel favorites that are loved for their look and sensitive-skin friendliness.",
+            "review_text": "Loved by <strong>1,000</strong> customers based on <strong>193</strong> reviews",
+            "title": "Every gift, every style, collegiate included",
+            "content_position": "right",
+            "subtitle": "Hypoallergenic stainless steel jewelry for everyday and gift-giving. Great prices, built to last.",
             "button_label": "SHOP BEST SELLERS",
             "button_link": "shopify://collections/all-products",
-            "logo_1": "shopify://shop_images/image_3_a6208a92-8535-4109-8255-118473d125ca.png",
-            "logo_2": "shopify://shop_images/image_2_c8ba78df-5ed6-4d06-8488-31c8a26f6b27.png"
+            "logo_1": "shopify://shop_images/image_2_c8ba78df-5ed6-4d06-8488-31c8a26f6b27.png",
+            "logo_2": "shopify://shop_images/image_3_a6208a92-8535-4109-8255-118473d125ca.png"
           }
         },
         "slide_rcrmDe": {
@@ -143,7 +144,7 @@
             "collection": "necklace",
             "image": "shopify://shop_images/Ellipse_6.png",
             "title": "Necklaces",
-            "subtitle": "Layerable pieces that get compliments",
+            "subtitle": "Layerable pieces that get compliments.",
             "link": ""
           }
         },
@@ -153,7 +154,7 @@
             "collection": "earrings",
             "image": "shopify://shop_images/Ellipse_6_1.png",
             "title": "Earrings",
-            "subtitle": "From subtle studs to statement hoops",
+            "subtitle": "Stainless steel favorites for everyday wear.",
             "link": ""
           }
         },
@@ -163,7 +164,7 @@
             "collection": "bracelets-1",
             "image": "shopify://shop_images/Ellipse_6_2.png",
             "title": "Bracelets",
-            "subtitle": "Dainty to statement, made to mix",
+            "subtitle": "Dainty to statement, made to mix.",
             "link": ""
           }
         },
@@ -172,8 +173,9 @@
           "settings": {
             "collection": "under-20",
             "image": "shopify://shop_images/Ellipse_6_3.png",
-            "title": "Gifts Under $25",
-            "subtitle": "Easy wins for birthdays and \"thinking of you\"",
+            "title": "Gifts Under $20",
+            "mobile_title": "Gifts under",
+            "subtitle": "Easy wins for birthdays and “thinking of you.”",
             "link": ""
           }
         },
@@ -183,7 +185,7 @@
             "collection": "",
             "image": "shopify://shop_images/Ellipse_6_4.png",
             "title": "New Arrivals",
-            "subtitle": "The latest styles, just landed",
+            "subtitle": "Fresh trends, just added.",
             "link": ""
           }
         }
@@ -198,8 +200,8 @@
       "name": "Custom Category List",
       "settings": {
         "title": "",
-        "image_size_desktop": 80,
-        "image_size_mobile": 70,
+        "image_size_desktop": 67,
+        "image_size_mobile": 67,
         "page_width": 1474,
         "background_color": "",
         "padding_top": 25,
@@ -214,6 +216,13 @@
     "custom_tabbed_collection_hiLiqX": {
       "type": "custom-tabbed-collection",
       "blocks": {
+        "collection_bestSl": {
+          "type": "collection",
+          "settings": {
+            "collection": "best-sellers",
+            "tab_title": "Best Sellers"
+          }
+        },
         "collection_wfpz3c": {
           "type": "collection",
           "settings": {
@@ -409,6 +418,7 @@
         }
       },
       "block_order": [
+        "collection_bestSl",
         "collection_wfpz3c",
         "collection_HcNwLx",
         "collection_X3cQ3K",
@@ -513,23 +523,27 @@
         "title": "Style, Value, and Team Spirit",
         "heading_color": "#0a2540",
         "text_color": "#0a2540",
-        "icon_border_color": "#d9b375",
+        "icon_border_color": "#d4af77",
         "icon_color": "#d9b375",
         "heading_size_desktop": 42,
         "heading_size_mobile": 28,
         "columns_desktop": 4,
         "columns_mobile": "2",
-        "icon_size": 90,
-        "floating_image_1_size": 210,
+        "icon_size": 80,
+        "floating_image_1": "shopify://shop_images/small-1.png",
+        "floating_image_1_size": 215,
+        "floating_image_1_size_mobile": 150,
+        "floating_image_2": "shopify://shop_images/small-2.png",
         "floating_image_2_size": 210,
+        "floating_image_2_size_mobile": 130,
         "page_width": 904,
         "background_color": "#ffffff",
         "padding_top": 80,
         "padding_bottom": 110,
         "tablet_padding_top": 130,
         "tablet_padding_bottom": 100,
-        "mobile_padding_top": 100,
-        "mobile_padding_bottom": 100,
+        "mobile_padding_top": 106,
+        "mobile_padding_bottom": 144,
         "custom_class": ""
       }
     },
@@ -963,22 +977,21 @@
         "text_WQ7fDm": {
           "type": "text",
           "settings": {
-            "text": "Hypoallergenic stainless steel",
+            "text": "Hypoallergenic-friendly stainless steel styles",
             "icon_svg": ""
           }
         },
         "text_TQi3VT": {
           "type": "text",
           "settings": {
-            "text": "Wholesale prices available",
+            "text": "Giftable, on-trend designs at a great price point",
             "icon_svg": ""
           }
         },
         "text_QTNaKw": {
           "type": "text",
-          "disabled": true,
           "settings": {
-            "text": "Hassle-free returns within 5 days",
+            "text": "Quick and easy returns available",
             "icon_svg": ""
           }
         }
@@ -997,16 +1010,16 @@
         "enable_marquee_mobile": true,
         "pause_on_hover": false,
         "scroll_speed": 25,
-        "text_color": "#ffffff",
-        "icon_color": "#ffffff",
+        "text_color": "#0a2540",
+        "icon_color": "#0a2540",
         "desktop_font_size": 12,
         "mobile_font_size": 10,
         "page_width": 1474,
-        "background_color": "#0a2540",
-        "padding_top": 12,
-        "padding_bottom": 12,
-        "tablet_padding_top": 12,
-        "tablet_padding_bottom": 12,
+        "background_color": "#d4af77",
+        "padding_top": 11,
+        "padding_bottom": 13,
+        "tablet_padding_top": 11,
+        "tablet_padding_bottom": 13,
         "mobile_padding_top": 10,
         "mobile_padding_bottom": 10,
         "custom_class": ""

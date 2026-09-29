@@ -1,4 +1,5 @@
 {{ 'header.css' | asset_url | stylesheet_tag }}
+{{ 'header-steele.css' | asset_url | stylesheet_tag }}
 
 <script src="{{ 'mega-menu.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'header.js' | asset_url }}" defer="defer"></script>
@@ -85,7 +86,7 @@
   {% if request.design_mode == true %}
     data-design-mode="true"
   {% endif %}
-  class="m-header m:block{% if transparent_on_top %} transparent-on-top{% endif %}"
+  class="m-header m-header--steele m:block{% if transparent_on_top %} transparent-on-top{% endif %}"
   data-transparent="{{ transparent_on_top }}"
   data-sticky="{{ section.settings.sticky_header }}"
 >
@@ -97,11 +98,18 @@
       data-screen="m-header__mobile"
       data-transparent="{{ transparent_on_top }}"
     >
-      <span class="m-menu-button m:flex m:flex-1 m:w-3/12">
-        <div class="m-hamburger-box">
-          <div class="m-hamburger-box__inner"></div>
-        </div>
-      </span>
+      <div class="m-menu-button m:flex m:flex-1 m:w-3/12">
+        <button
+          type="button"
+          class="m-hamburger-box"
+          aria-label="Menu"
+          aria-controls="m-menu-drawer"
+          aria-expanded="false"
+        >
+          <img src="{{ 'header-menu.svg' | asset_url }}" width="24" height="24" alt="">
+          <span class="m-hamburger-box__inner"></span>
+        </button>
+      </div>
       {% comment %} Header-logo-mobile {% endcomment %}
       {% liquid
         assign class = 'm-logo m-logo--mobile m:justify-center ' | append: 'm:w-6/12'
@@ -225,18 +233,10 @@
       {% if show_cart_icon or search_settings != 'hide' %}
         <div class="m-header__mobile-right m:w-3/12 m:flex m:flex-1 m:justify-end">
           {% if search_settings != 'hide' %}
-            <m-search-popup class="m:flex m:justify-center m:items-center" data-open-search-popup>
-              <span class="m-header__search-icon">
-                <svg class="m-svg-icon--medium" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="#0A2540" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M3 6H21" stroke="#0A2540" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="#0A2540" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-            </m-search-popup>
+            {% render 'header-option-item__search', header_settings: section.settings, icon_left: true, icon_asset: 'header-search-mobile.svg' %}
           {% endif %}
           {% if show_cart_icon %}
-            {% render 'cart' %}
+            {% render 'cart', icon_asset: 'header-bag.svg' %}
           {% endif %}
         </div>
       {% endif %}
@@ -299,49 +299,31 @@
         {% when 'both-center' %}
           <div class="m-header__container {{ container }}">
             <div class="m-header__inner">
-              {% comment %} <div class="m-header__left m:w-2/12">
-                {% liquid
-                  if show_language_switcher
-                    render 'language-switcher', box_size: 'm:hidden xl:m:block'
-                  endif
-
-                  if show_currency_switcher
-                    render 'currency-switcher', box_size: 'm:hidden xl:m:block'
-                  endif
-
-                  if show_country_selector
-                    render 'country-selector', box_size: 'm:hidden xl:m:block'
-                  endif
-
-                  render 'header-option-item__search', header_settings: section.settings, icon_left: true
-                %}
-              </div> {% endcomment %}
-              <div class="m-header__center m:w-10/12">
-                {% render 'header-main-menu-container', section: section %}
-                {% render 'header-logo', header_settings: section.settings %}
-                {% render 'header-main-menu-container', section: section, menu: 'secondary_menu' %}
+              <div class="m-header__left">
+                {% render 'header-main-menu-container', section: section, custom_classes: 'm-header__menu--primary' %}
               </div>
-              <div class="m-header__right m:w-2/12">
-                {% liquid
-
-                  render 'header-option-item__search', header_settings: section.settings, icon_left: true
-
-                  if show_account_icon
-                    render 'header-option-item__account', display_by: 'icon'
-                  endif
-
-                  if show_wishlist_icon
-                    render 'header-option-item__wishlist', display_by: 'icon'
-                  endif
-
-                  if show_compare_icon
-                    render 'header-option-item__compare', display_by: 'icon'
-                  endif
-
-                  if show_cart_icon
-                    render 'cart'
-                  endif
-                %}
+              <div class="m-header__center">
+                {% render 'header-logo', header_settings: section.settings %}
+              </div>
+              <div class="m-header__right">
+                {% render 'header-main-menu-container', section: section, menu: 'secondary_menu', custom_classes: 'm-header__menu--secondary' %}
+                <div class="m-header__actions">
+                  {% liquid
+                    render 'header-option-item__search', header_settings: section.settings, icon_left: true, icon_asset: 'header-search.svg'
+                    if show_account_icon
+                      render 'header-option-item__account', display_by: 'icon', icon_asset: 'header-account.svg'
+                    endif
+                    if show_wishlist_icon
+                      render 'header-option-item__wishlist', display_by: 'icon'
+                    endif
+                    if show_compare_icon
+                      render 'header-option-item__compare', display_by: 'icon'
+                    endif
+                    if show_cart_icon
+                      render 'cart', icon_asset: 'header-bag.svg'
+                    endif
+                  %}
+                </div>
               </div>
             </div>
           </div>

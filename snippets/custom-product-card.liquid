@@ -63,6 +63,23 @@
     assign show_on_sale_badge = true
   endif
 
+  assign low_stock = false
+  if sold_out == false
+    assign total_inventory = 0
+    assign tracks_inventory = false
+    for variant in product.variants
+      if variant.inventory_management != blank
+        assign tracks_inventory = true
+      endif
+      if variant.inventory_quantity > 0
+        assign total_inventory = total_inventory | plus: variant.inventory_quantity
+      endif
+    endfor
+    if tracks_inventory and total_inventory > 0 and total_inventory <= settings.low_inventory_threshold
+      assign low_stock = true
+    endif
+  endif
+
   assign quick_add_text = 'ADD TO CART'
   unless product.has_only_default_variant
     capture quick_add_text
@@ -347,6 +364,12 @@
   {% if product.tags contains 'new' %}
     <span class="m-product-card__tag-name m-product-tag custom-product-badge custom-product-badge--new">
       New Arrival
+    </span>
+  {% endif %}
+
+  {% if low_stock %}
+    <span class="m-product-card__tag-name m-product-tag custom-product-badge custom-product-badge--low-stock">
+      Low stock
     </span>
   {% endif %}
 
@@ -690,6 +713,11 @@
 .custom-product-badge--best {
   background: #0A2540;
   color: #ffffff;
+}
+
+.custom-product-badge--low-stock {
+  background: #D4AF77;
+  color: #000000;
 }
 
 

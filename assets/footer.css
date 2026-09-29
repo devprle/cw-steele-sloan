@@ -20,10 +20,10 @@ ul.m-footer--block-content li.m-link-lists--item {
 .m-accordion--item-content.m-footer--block-content .block-text p {
     font-family: Inter;
     font-weight: 300;
-    font-size: 12px;
-    line-height: 120%;
+    font-size: 14px;
+    line-height: 150%;
     letter-spacing: 0.4%;
-    max-width: 534px;
+    max-width: 580px;
 }
 .m-accordion--item-content.m-footer--block-content .block-text p a {
     text-decoration: underline;

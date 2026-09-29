@@ -41,7 +41,12 @@ class Megamenu {
       } else {
         this.openMenu();
       }
-      this.domNodes.hamburgerButtons.classList.toggle("active");
+    });
+    this.domNodes.headerMobile.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && this.open) {
+        this.closeMenu();
+        this.domNodes.hamburgerButtons.focus();
+      }
     });
     this.domNodes.backDrop.addEventListener("click", (e) => {
       this.closeMenu();
@@ -167,11 +172,14 @@ class Megamenu {
     document.documentElement.classList.add("prevent-scroll");
     this.domNodes.menuDrawer.classList.add("open");
     this.domNodes.headerMobile.classList.add("header-drawer-open");
+    this.domNodes.hamburgerButtons.classList.add("active");
+    this.domNodes.hamburgerButtons.setAttribute("aria-expanded", "true");
     this.open = true;
   }
 
   closeMenu() {
     const { menuDrawer, menu, megaMenuMobile, hamburgerButtons } = this.domNodes;
+    hamburgerButtons.setAttribute("aria-expanded", "false");
 
     setTimeout(() => {
       megaMenuMobile.forEach((container) => {

@@ -22,32 +22,27 @@
   }
 
   .category-list-wrapper-{{ section.id }} {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 37px;
-    flex-wrap: nowrap;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: thin; /* Firefox */
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
+    /* Room for the hover scale, since overflow-x also clips vertically */
+    padding-block: 8px;
+    margin-block: -8px;
   }
 
-  /* Custom Scrollbar for Desktop */
   .category-list-wrapper-{{ section.id }}::-webkit-scrollbar {
-    height: 6px;
+    display: none;
   }
-  .category-list-wrapper-{{ section.id }}::-webkit-scrollbar-track {
-    background: rgba(0,0,0,0.03);
-    border-radius: 10px;
-  }
-  .category-list-wrapper-{{ section.id }}::-webkit-scrollbar-thumb {
-    background: rgba(0,0,0,0.15);
-    border-radius: 10px;
-  }
-  .category-list-wrapper-{{ section.id }}::-webkit-scrollbar-thumb:hover {
-    background: rgba(0,0,0,0.3);
+
+  .category-list-wrapper-{{ section.id }}:focus-visible,
+  .category-item-{{ section.id }}:focus-visible {
+    outline: 2px solid #0A2540;
+    outline-offset: -2px;
   }
 
   .category-item-{{ section.id }} {
@@ -56,7 +51,7 @@
     gap: 25px;
     text-decoration: none;
     color: inherit;
-    flex: 0 0 calc(20% - 24px); /* Show exactly 5 items (accounting for 30px gap) */
+    flex: 0 0 auto;
     scroll-snap-align: start;
   }
 
@@ -67,6 +62,14 @@
     overflow: hidden;
     flex-shrink: 0;
     background-color: #f4f4f4; /* Placeholder background */
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  @media (hover: hover) {
+    .category-item-{{ section.id }}:hover .category-image-wrapper-{{ section.id }} {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(10, 37, 64, 0.15);
+    }
   }
 
   .category-image-wrapper-{{ section.id }} img {
@@ -79,33 +82,33 @@
   .category-text-{{ section.id }} {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 5px;
+    width: 133px;
+    font-family: Inter, sans-serif;
   }
 
   .category-title-{{ section.id }} {
     font-size: 16px;
     color: #0A2540;
-    font-weight: 400;
+    font-weight: 200;
     margin: 0;
-    letter-spacing: 0.3px;
+    letter-spacing: normal;
+    line-height: normal;
+    font-family: inherit;
+  }
+
+  .category-title-mobile-{{ section.id }} {
+    display: none;
   }
 
   .category-subtitle-{{ section.id }} {
     font-size: 12px;
     color: #0A2540;
-    line-height: 1.4;
+    line-height: normal;
     margin: 0;
     font-weight: 200;
   }
 
-  @media screen and (max-width: 1200px) {
-    .category-list-wrapper-{{ section.id }} {
-        display: flex;
-    }
-    .category-item-{{ section.id }} {
-        flex: 0 0 calc(270px - 24px);
-    }
-  }
   @media screen and (max-width: 1024px) {
     #{{ section.id }} {
       padding-top: {{ section.settings.tablet_padding_top }}px;
@@ -125,33 +128,30 @@
         background-image: url({{ section.settings.mobile_bg_image | image_url }});
       {% endif %}
     }
-    .category-item-{{ section.id }} {
-        flex: 0 0 calc(36% - 24px);
-    }
     .category-list-wrapper-{{ section.id }} {
-      flex-wrap: nowrap;
-      overflow-x: auto;
+      justify-content: flex-start;
+      gap: 0;
       scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none; /* Hide scrollbar Firefox */
-      margin: 0 -15px; /* Bleed to edge */
-      padding: 0 15px 10px 15px; /* Padding for bleed and shadow */
-      gap: 15px;
-      justify-content: space-between;
-    }
-
-    .category-list-wrapper-{{ section.id }}::-webkit-scrollbar {
-      display: none; /* Hide scrollbar Chrome/Safari */
+      scroll-padding-inline: 15px;
+      margin: 0 -15px;
+      padding: 0 15px;
     }
 
     .category-item-{{ section.id }} {
       flex-direction: column;
-      align-items: center;
       text-align: center;
-      gap: 8px;
-      min-width: {{ section.settings.image_size_mobile | plus: 10 }}px;
-      scroll-snap-align: start;
-      flex: 0 0 auto;
+      gap: 10px;
+      flex: 0 0 95px;
+      min-width: {{ section.settings.image_size_mobile }}px;
+      margin-inline-end: -7px;
+    }
+
+    .category-item-{{ section.id }}:last-child {
+      margin-inline-end: 0;
+    }
+
+    .category-text-{{ section.id }} {
+      width: 100%;
     }
 
     .category-image-wrapper-{{ section.id }} {
@@ -161,6 +161,14 @@
 
     .category-subtitle-{{ section.id }} {
       display: none; /* Hide subtitle on mobile as per design */
+    }
+
+    .category-title-desktop-{{ section.id }} {
+      display: none;
+    }
+
+    .category-title-mobile-{{ section.id }} {
+      display: inline;
     }
 
     .category-title-{{ section.id }} {
@@ -176,7 +184,12 @@
       <h2 style="text-align: center; margin-bottom: 30px;">{{ section.settings.title }}</h2>
     {% endif %}
 
-    <div class="category-list-wrapper-{{ section.id }}">
+    <div
+      class="category-list-wrapper-{{ section.id }}"
+      tabindex="0"
+      role="region"
+      aria-label="{{ section.settings.title | default: 'Shop by category' | escape }}"
+    >
       {% for block in section.blocks %}
         {%- assign collection = block.settings.collection -%}
         {%- assign final_title = block.settings.title | default: collection.title -%}
@@ -194,7 +207,14 @@
           </div>
           <div class="category-text-{{ section.id }}">
             {% if final_title != blank %}
-              <h3 class="category-title-{{ section.id }}">{{ final_title }}</h3>
+              <h3 class="category-title-{{ section.id }}">
+                {%- if block.settings.mobile_title != blank -%}
+                  <span class="category-title-desktop-{{ section.id }}">{{ final_title | escape }}</span>
+                  <span class="category-title-mobile-{{ section.id }}">{{ block.settings.mobile_title | escape }}</span>
+                {%- else -%}
+                  {{ final_title | escape }}
+                {%- endif -%}
+              </h3>
             {% endif %}
             {% if block.settings.subtitle != blank %}
               <p class="category-subtitle-{{ section.id }}">{{ block.settings.subtitle }}</p>
@@ -222,22 +242,22 @@
     {
       "type": "range",
       "id": "image_size_desktop",
-      "min": 40,
+      "min": 50,
       "max": 150,
-      "step": 5,
+      "step": 1,
       "unit": "px",
       "label": "Image size (Desktop)",
-      "default": 80
+      "default": 67
     },
     {
       "type": "range",
       "id": "image_size_mobile",
       "min": 40,
       "max": 120,
-      "step": 5,
+      "step": 1,
       "unit": "px",
       "label": "Image size (Mobile)",
-      "default": 70
+      "default": 67
     },
     {
       "type": "header",
@@ -368,6 +388,12 @@
           "id": "title",
           "label": "Custom Title",
           "info": "Overrides collection title"
+        },
+        {
+          "type": "text",
+          "id": "mobile_title",
+          "label": "Mobile title",
+          "info": "Optional shorter title for mobile. Leave blank to use the main title."
         },
         {
           "type": "textarea",

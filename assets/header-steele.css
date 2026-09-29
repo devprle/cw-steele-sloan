@@ -1,0 +1,248 @@
+/* Steele Sloan header: Figma desktop and mobile layouts. */
+.m-header--steele {
+  --steele-header-ink: #0a2540;
+}
+
+.m-header--steele .m-header__desktop,
+.m-header--steele .m-header__mobile {
+  color: var(--steele-header-ink);
+  background: #fff;
+}
+
+.m-header--steele .both-center .m-header__container {
+  padding-inline: clamp(24px, 4.1667vw, 60px);
+}
+
+.m-header--steele .both-center .m-header__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--logo-width-desktop) minmax(0, 1fr);
+  column-gap: clamp(24px, calc((100vw - 1100px) * 0.365), 124px);
+  min-height: 85px;
+  max-width: 1321px;
+  margin-inline: auto;
+}
+
+.m-header--steele .both-center .m-header__center {
+  display: flex;
+  justify-content: center;
+}
+
+.m-header--steele .both-center .m-header__logo {
+  padding: 0;
+  margin: 0;
+}
+
+.m-header--steele .both-center .m-logo__image-default {
+  display: flex;
+  align-items: center;
+  min-height: 85px;
+}
+
+.m-header--steele .both-center .m-logo img {
+  width: 100%;
+  height: auto;
+  max-height: 85px;
+  object-fit: contain;
+}
+
+.m-header--steele .both-center .m-header__right {
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.m-header--steele .both-center .m-header__menu--secondary {
+  width: 183px;
+  max-width: 100%;
+}
+
+.m-header--steele .both-center .m-header__menu .m-menu {
+  --main-link-px: 0px;
+  --main-link-py: 33px;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 24px;
+}
+
+.m-header--steele .both-center .m-header__menu .m-menu__link--main {
+  font-family: Inter, sans-serif;
+  font-weight: 200;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: var(--steele-header-ink);
+}
+
+.m-header--steele .both-center .m-menu__arrow {
+  display: flex;
+  flex: 0 0 16px;
+  margin-left: 10px;
+}
+
+.m-header--steele .m-header__actions {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 20px;
+}
+
+.m-header--steele .m-header__actions .m-search-form__button,
+.m-header--steele .m-header__actions .m-header__account,
+.m-header--steele .m-header__actions .m-cart-icon-bubble {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  min-height: 44px;
+}
+
+.m-header--steele .m-header__actions img,
+.m-header--steele .m-header__mobile-right img {
+  display: block;
+  max-width: none;
+}
+
+.m-header--steele .m-header__actions .m-cart-count,
+.m-header--steele .m-header__mobile-right .m-cart-count {
+  top: 0;
+  right: -10px;
+}
+
+.m-header--steele .m-header__mobile {
+  position: relative;
+  height: 82px;
+  padding: 0 18px;
+  justify-content: space-between;
+}
+
+.m-header--steele .m-header__mobile .m-logo {
+  position: absolute;
+  left: calc(50% - 0.5px);
+  top: 13px;
+  transform: translateX(-50%);
+  width: var(--logo-width-mobile);
+  height: 56px;
+  padding: 0;
+}
+
+.m-header--steele .m-header__mobile .m-logo img {
+  width: 100%;
+  height: auto;
+  max-height: 56px;
+  object-fit: contain;
+}
+
+.m-header--steele .m-menu-button {
+  flex: 0 0 44px;
+  width: 44px;
+}
+
+.m-header--steele .m-hamburger-box {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 44px;
+  height: 44px;
+  padding: 0 0 0 8px;
+  background: transparent;
+}
+
+
+.m-header--steele .m-hamburger-box__inner {
+  display: none;
+  left: 8px;
+  width: 24px;
+  height: 1px;
+}
+
+.m-header--steele .m-hamburger-box__inner::before,
+.m-header--steele .m-hamburger-box__inner::after {
+  height: 1px;
+}
+
+.m-header--steele .m-hamburger-box.active img {
+  display: none;
+}
+
+.m-header--steele .m-hamburger-box.active .m-hamburger-box__inner {
+  display: block;
+}
+
+.m-header--steele .m-header__mobile-right {
+  flex: 0 0 auto;
+  width: auto;
+  gap: 18px;
+  margin-left: auto;
+}
+
+.m-header--steele .m-header__mobile-right m-search-popup {
+  display: flex;
+  padding: 0;
+}
+
+.m-header--steele .m-header__mobile-right .m-search-form__button,
+.m-header--steele .m-header__mobile-right .m-cart-icon-bubble {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 44px;
+  padding: 0;
+  margin: 0;
+}
+
+/* Extend touch targets without changing the icon spacing. */
+.m-header--steele .m-header__mobile-right .m-search-form__button::after,
+.m-header--steele .m-header__mobile-right .m-cart-icon-bubble::after {
+  content: "";
+  position: absolute;
+  inset: 0 -9px;
+}
+
+.m-header--steele .m-header__mobile-right .m-search-form__label {
+  display: none;
+}
+
+.m-header--steele .m-header__mobile-right .m-search-form--full {
+  border: 0;
+  height: auto;
+}
+
+.m-header--steele :is(button, a):focus-visible {
+  outline: 2px solid var(--steele-header-ink);
+  outline-offset: 4px;
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .m-header--steele .both-center .m-header__inner {
+    column-gap: 24px;
+  }
+
+  .m-header--steele .both-center .m-header__menu .m-menu {
+    column-gap: 10px;
+  }
+
+  .m-header--steele .both-center .m-menu__arrow {
+    margin-left: 8px;
+  }
+
+  .m-header--steele .both-center .m-header__menu .m-menu__link--main {
+    font-size: 12px;
+    letter-spacing: 0.6px;
+  }
+
+  .m-header--steele .both-center .m-header__menu--secondary {
+    width: 150px;
+  }
+
+  .m-header--steele .m-header__actions {
+    gap: 16px;
+  }
+}
+
+.m-header--steele .m-header__actions .m-tooltip,
+.m-header--steele .m-header__mobile-right .m-tooltip {
+  padding: 0;
+}

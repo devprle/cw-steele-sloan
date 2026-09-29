@@ -55,21 +55,27 @@
     padding-bottom: 10px;
   }
 
+  .tabs-preview-{{ section.id }} {
+    position: relative;
+    max-height: 182px;
+    overflow: hidden;
+    transition: max-height 0.6s ease;
+  }
+
   .tabs-nav-{{ section.id }} {
-    display: grid;
-    grid-template-columns: repeat(16, 1fr);
-    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
     width: 100%;
-    max-width: 1100px;
     margin: 0 auto;
-    overflow: visible;
-    max-height: none;
   }
 
   .tab-btn-{{ section.id }} {
-    grid-column: span 2;
-    width: 100%;
-    aspect-ratio: 1 / 1;
+    flex: 0 0 auto;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     border: none;
     background: #e5e7eb;
@@ -82,12 +88,53 @@
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   }
 
-  .tabs-nav-{{ section.id }} .tab-btn-{{ section.id }}:nth-child(1) {
-    grid-column: 2 / span 2;
+  .tabs-fade-{{ section.id }} {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 55%;
+    background: linear-gradient(to bottom, rgba(242, 242, 242, 0) 0%, {{ section.settings.background_color | default: '#f2f2f2' }} 90%);
+    pointer-events: none;
+    transition: opacity 0.4s ease;
   }
 
-  .tabs-nav-{{ section.id }} .tab-btn-{{ section.id }}:nth-child(8) {
-    grid-column: 1 / span 2;
+  .view-all-teams-{{ section.id }} {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: 1px solid #c8c8c8;
+    height: 50px;
+    padding: 14px 34px;
+    font-family: var(--font-stack-body);
+    font-weight: 200;
+    font-size: 14px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    color: #0A2540;
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+
+  .view-all-teams-{{ section.id }}:hover {
+    box-shadow: unset;
+  }
+
+  .tabs-preview-{{ section.id }}.is-expanded {
+    max-height: 4000px;
+  }
+
+  .tabs-preview-{{ section.id }}.is-expanded .tabs-fade-{{ section.id }},
+  .tabs-preview-{{ section.id }}.is-expanded .view-all-teams-{{ section.id }} {
+    opacity: 0;
+    pointer-events: none;
   }
 
   .tab-btn-{{ section.id }}.active,
@@ -116,7 +163,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 6px;
     transition: background 0.3s ease;
   }
 
@@ -126,11 +173,12 @@
 
   .tab-text-{{ section.id }} {
     color: #ffffff;
-    font-size: 16px;
+    font-size: 11px;
     font-weight: 500;
     text-align: center;
     line-height: 1.2;
     text-shadow: 0px 1px 4px rgba(0,0,0,0.7);
+    word-break: break-word;
   }
 
   .tab-pane-{{ section.id }} {
@@ -186,12 +234,12 @@
 
   .swiper-button-next-{{ section.id }},
   .swiper-button-prev-{{ section.id }} {
-    color: #0A2540;
-    background: #fff;
-    width: 40px;
-    height: 40px;
+    color: #ffffff;
+    background: #0A2540;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 14px rgba(10,37,64,0.35);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -199,14 +247,33 @@
     top: 40%;
     z-index: 10;
     cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .swiper-button-next-{{ section.id }}:hover,
+  .swiper-button-prev-{{ section.id }}:hover {
+    transform: scale(1.06);
+    box-shadow: 0 6px 18px rgba(10,37,64,0.45);
+  }
+
+  .swiper-button-next-{{ section.id }} svg,
+  .swiper-button-prev-{{ section.id }} svg {
+    width: 10px;
+    height: 18px;
+  }
+
+  .swiper-button-next-{{ section.id }} svg path,
+  .swiper-button-prev-{{ section.id }} svg path {
+    stroke: #ffffff;
+    stroke-width: 1.5;
   }
 
   .swiper-button-prev-{{ section.id }} {
-    left: 10px;
+    left: -10px;
   }
 
   .swiper-button-next-{{ section.id }} {
-    right: 10px;
+    right: -10px;
   }
 
   .swiper-button-next-{{ section.id }}::after,
@@ -283,14 +350,59 @@
     color: #0A2540;
   }
 
+  #{{ section.id }} button.m-add-to-cart.m-spinner-button,
+  #{{ section.id }} button.m-product-form.m-product-quickview-button.m-spinner-button.m-button.m-button--secondary {
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
   #{{ section.id }} button.m-add-to-cart.m-spinner-button:hover,
   #{{ section.id }} button.m-product-form.m-product-quickview-button.m-spinner-button.m-button.m-button--secondary:hover {
     box-shadow: unset;
-    background: transparent;
+    background: #0A2540;
+    color: #ffffff;
+  }
+
+  #{{ section.id }} .m-product-option--node__label {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  #{{ section.id }} .m-product-option--node__label:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 1px #ffffff, 0 0 0 2px #0A2540;
+  }
+
+  #{{ section.id }} .m-product-option--dropdown-select {
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+  }
+
+  #{{ section.id }} .m-product-option--dropdown-select:hover {
+    border-color: #0A2540;
   }
 
   #{{ section.id }} .m-product-card--style-4 .m-product-card__content .m-product-card__action-wrapper {
     margin: 0;
+  }
+
+  #{{ section.id }} .custom-product-badge {
+    border-radius: 0;
+    padding: 6px 16px 7px 15px;
+    font-family: 'Inter', var(--font-stack-body);
+    font-weight: 300;
+    font-size: 10px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  #{{ section.id }} .custom-product-badge--best,
+  #{{ section.id }} .custom-product-badge--new {
+    background: #ffffff;
+    color: #0A2540;
+  }
+
+  #{{ section.id }} .m-product-option--swatch .m-product-option--node__label {
+    border-radius: 50%;
   }
 
   @media screen and (max-width: 1024px) {
@@ -306,12 +418,40 @@
     #{{ section.id }} .page-width {
       padding: 0 15px;
     }
+
+    #{{ section.id }} .swiper-button-next-{{ section.id }},
+    #{{ section.id }} .swiper-button-prev-{{ section.id }} {
+      display: none !important;
+    }
   }
 
-  @media screen and (min-width: 768px) {
-    #{{ section.id }} a.show-view-all.m-button.m-button--secondary {
-      display: none;
-    }
+  #{{ section.id }} a.show-view-all.m-button.m-button--secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    padding: 14px 34px;
+    border: 1px solid #c8c8c8;
+    background: #ffffff;
+    font-family: var(--font-stack-body);
+    font-weight: 200;
+    font-size: 14px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    color: #0A2540;
+    text-decoration: none;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+
+  #{{ section.id }} a.show-view-all.m-button.m-button--secondary:hover {
+    box-shadow: unset;
+    background: #0A2540;
+    border-color: #0A2540;
+    color: #ffffff;
+  }
+
+  .show-view-all-mobile-label-{{ section.id }} {
+    display: none;
   }
 
   @media screen and (max-width: 767px) {
@@ -339,19 +479,27 @@
 
     #{{ section.id }} a.show-view-all.m-button.m-button--secondary {
       width: 100%;
-      border: 1px solid #C8C8C8;
+      height: auto;
       padding: 14.5px 10px;
       font-size: 14px;
-      color: #0A2540;
       line-height: normal;
       font-family: 'Inter';
-      text-transform: uppercase;
-      font-weight: 200;
-      background: #Fff;
     }
 
-    #{{ section.id }} a.show-view-all.m-button.m-button--secondary:hover {
-      box-shadow: unset;
+    .show-view-all-desktop-label-{{ section.id }} {
+      display: none;
+    }
+
+    .show-view-all-mobile-label-{{ section.id }} {
+      display: inline;
+    }
+
+    #{{ section.id }} .swiper-slide.mobile-extra-{{ section.id }} {
+      display: none !important;
+    }
+
+    #{{ section.id }} .swiper-slide.mobile-extra-{{ section.id }}.is-revealed {
+      display: block !important;
     }
 
     .swiper-container-{{ section.id }} .m-product-card__content {
@@ -375,36 +523,41 @@
       font-size: 13px;
     }
 
+    .tabs-preview-{{ section.id }} {
+      max-height: 154px;
+    }
+
     .tabs-nav-{{ section.id }} {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 18px 12px;
-      width: 100%;
-      max-width: 100%;
-      margin: 0 auto;
+      gap: 8px;
       padding: 0;
-      overflow: visible;
-      max-height: none;
     }
 
     .tab-btn-{{ section.id }} {
-      grid-column: auto !important;
-      width: 75px;
-      height: 75px;
-      aspect-ratio: 1 / 1;
-      justify-self: center;
+      width: 73px;
+      height: 73px;
       box-sizing: border-box;
     }
 
-    .tabs-nav-{{ section.id }} .tab-btn-{{ section.id }}:nth-child(1),
-    .tabs-nav-{{ section.id }} .tab-btn-{{ section.id }}:nth-child(7),
-    .tabs-nav-{{ section.id }} .tab-btn-{{ section.id }}:nth-child(8) {
-      grid-column: auto !important;
+    .view-all-teams-{{ section.id }} {
+      height: 38px;
+      padding: 10px 34px;
     }
 
-    .swiper-button-next-{{ section.id }},
-    .swiper-button-prev-{{ section.id }} {
-      display: none;
+    .swiper-container-{{ section.id }} > .swiper-wrapper {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: {{ section.settings.item_gap_mobile }}px !important;
+      transform: none !important;
+    }
+
+    .swiper-container-{{ section.id }} > .swiper-wrapper > .swiper-slide {
+      width: 100% !important;
+      height: auto !important;
+      flex-shrink: initial !important;
+    }
+
+    .swiper-container-{{ section.id }} .m-product-card__media {
+      overflow: hidden;
     }
   }
 {%- endstyle -%}
@@ -425,29 +578,41 @@
 
     {% if section.blocks.size > 1 %}
       <div class="tabs-content-{{ section.id }} top-slider">
-        <div class="tabs-nav-{{ section.id }}">
-          {% for block in section.blocks %}
-            {% assign col = collections[block.settings.collection] %}
-            {% assign title = block.settings.tab_title | default: col.title | default: 'Collection' %}
-            {% assign img = block.settings.tab_image | default: col.image | default: col.products.first.featured_image %}
+        <div class="tabs-preview-{{ section.id }}">
+          <div class="tabs-nav-{{ section.id }}">
+            {% for block in section.blocks %}
+              {% assign col = collections[block.settings.collection] %}
+              {% assign title = block.settings.tab_title | default: col.title | default: 'Collection' %}
+              {% assign img = block.settings.tab_image | default: col.image | default: col.products.first.featured_image %}
 
+              <button
+                class="tab-btn-{{ section.id }} {% if forloop.first %}active{% endif %}"
+                data-target="tab-pane-{{ section.id }}-{{ forloop.index }}"
+                {{ block.shopify_attributes }}
+              >
+                {% assign tab_img_class = 'tab-img-' | append: section.id %}
+                {% if img != blank %}
+                  {{ img | image_url: width: 200 | image_tag: class: tab_img_class, loading: 'lazy' }}
+                {% else %}
+                  {{ 'collection-1' | placeholder_svg_tag: tab_img_class }}
+                {% endif %}
+
+                <div class="tab-overlay-{{ section.id }}">
+                  <span class="tab-text-{{ section.id }}">{{ title }}</span>
+                </div>
+              </button>
+            {% endfor %}
+          </div>
+
+          {% if section.settings.show_view_all_teams %}
+            <div class="tabs-fade-{{ section.id }}"></div>
             <button
-              class="tab-btn-{{ section.id }} {% if forloop.first %}active{% endif %}"
-              data-target="tab-pane-{{ section.id }}-{{ forloop.index }}"
-              {{ block.shopify_attributes }}
+              type="button"
+              class="view-all-teams-{{ section.id }} js-expand-tabs-{{ section.id }}"
             >
-              {% assign tab_img_class = 'tab-img-' | append: section.id %}
-              {% if img != blank %}
-                {{ img | image_url: width: 200 | image_tag: class: tab_img_class, loading: 'lazy' }}
-              {% else %}
-                {{ 'collection-1' | placeholder_svg_tag: tab_img_class }}
-              {% endif %}
-
-              <div class="tab-overlay-{{ section.id }}">
-                <span class="tab-text-{{ section.id }}">{{ title }}</span>
-              </div>
+              {{ section.settings.view_all_teams_text | default: 'View more' }}
             </button>
-          {% endfor %}
+          {% endif %}
         </div>
       </div>
     {% endif %}
@@ -464,13 +629,14 @@
             <div class="swiper-wrapper">
               {% if col != blank and col.products.size > 0 %}
                 {% for product in col.products limit: section.settings.product_to_show %}
-                  <div class="swiper-slide">
+                  <div class="swiper-slide{% if forloop.index > 4 %} mobile-extra-{{ section.id }}{% endif %}">
                     {% render 'custom-product-card',
                       product: product,
                       image_ratio: image_ratio,
                       show_vendor: show_vendor,
                       hide_title: hide_title,
-                      show_cart_button: section.settings.show_cart_button
+                      show_cart_button: section.settings.show_cart_button,
+                      show_variant_options: true
                     %}
                   </div>
                 {% endfor %}
@@ -514,8 +680,12 @@
 
           {% if section.settings.show_view_all and col != blank %}
             <div style="text-align: center; margin-top: 30px;">
-              <a href="{{ col.url }}" class="show-view-all m-button m-button--secondary">
-                View All Products
+              <a
+                href="{{ col.url }}"
+                class="show-view-all show-view-all-{{ section.id }} m-button m-button--secondary"
+              >
+                <span class="show-view-all-desktop-label-{{ section.id }}">View All Products</span>
+                <span class="show-view-all-mobile-label-{{ section.id }}">Load More Products</span>
               </a>
             </div>
           {% endif %}
@@ -532,32 +702,52 @@
 
     const swipers = [];
     const swiperContainers = section.querySelectorAll('.swiper-container-{{ section.id }}');
+    const desktopMql = window.matchMedia('(min-width: 768px)');
 
-    swiperContainers.forEach(container => {
-      const swiper = new Swiper(container, {
-        slidesPerView: 2,
-        spaceBetween: {{ section.settings.item_gap_mobile }},
-        pagination: {
-          el: container.querySelector('.swiper-pagination-{{ section.id }}'),
-          clickable: true,
-        },
-        navigation: {
-          nextEl: container.querySelector('.swiper-button-next-{{ section.id }}'),
-          prevEl: container.querySelector('.swiper-button-prev-{{ section.id }}'),
-        },
-        breakpoints: {
-          768: {
+    function syncSwiper(container) {
+      if (desktopMql.matches) {
+        if (!container.swiperInstance) {
+          const swiper = new Swiper(container, {
             slidesPerView: 3,
             spaceBetween: {{ section.settings.item_gap }},
-          },
-          1024: {
-            slidesPerView: {{ section.settings.items_per_row }},
-            spaceBetween: {{ section.settings.item_gap }},
-          }
-        }
-      });
+            loop: true,
+            observer: true,
+            observeParents: true,
+            pagination: {
+              el: container.querySelector('.swiper-pagination-{{ section.id }}'),
+              clickable: true,
+            },
+            navigation: {
+              nextEl: container.querySelector('.swiper-button-next-{{ section.id }}'),
+              prevEl: container.querySelector('.swiper-button-prev-{{ section.id }}'),
+            },
+            breakpoints: {
+              1024: {
+                slidesPerView: {{ section.settings.items_per_row }},
+                spaceBetween: {{ section.settings.item_gap }},
+              }
+            }
+          });
 
-      swipers.push(swiper);
+          container.swiperInstance = swiper;
+          swipers.push(swiper);
+        }
+      } else if (container.swiperInstance) {
+        const index = swipers.indexOf(container.swiperInstance);
+        if (index > -1) swipers.splice(index, 1);
+        container.swiperInstance.destroy(true, true);
+        container.swiperInstance = null;
+      }
+    }
+
+    swiperContainers.forEach(syncSwiper);
+
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        swiperContainers.forEach(syncSwiper);
+      }, 200);
     });
 
     const tabs = section.querySelectorAll('.tab-btn-{{ section.id }}');
@@ -583,6 +773,32 @@
               swiperContainer.swiper.update();
             }, 50);
           }
+        }
+      });
+    });
+
+    const expandBtn = section.querySelector('.js-expand-tabs-{{ section.id }}');
+    if (expandBtn) {
+      expandBtn.addEventListener('click', () => {
+        const preview = expandBtn.closest('.tabs-preview-{{ section.id }}');
+        if (preview) preview.classList.add('is-expanded');
+      });
+    }
+
+    const mobileMql = window.matchMedia('(max-width: 767px)');
+    const viewAllLinks = section.querySelectorAll('.show-view-all-{{ section.id }}');
+
+    viewAllLinks.forEach(link => {
+      link.addEventListener('click', function (event) {
+        if (!mobileMql.matches) return;
+
+        const pane = link.closest('.tab-pane-{{ section.id }}');
+        if (!pane) return;
+
+        const hiddenExtras = pane.querySelectorAll('.mobile-extra-{{ section.id }}:not(.is-revealed)');
+        if (hiddenExtras.length > 0) {
+          event.preventDefault();
+          hiddenExtras.forEach(el => el.classList.add('is-revealed'));
         }
       });
     });
@@ -634,6 +850,23 @@
           "label": "Center"
         }
       ]
+    },
+    {
+      "type": "header",
+      "content": "Tab Preview / View More"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all_teams",
+      "label": "Show 'View more' overlay",
+      "info": "Shows the first two rows of tabs with a fade and a button that expands to reveal the rest.",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_all_teams_text",
+      "label": "Button label",
+      "default": "View more"
     },
     {
       "type": "header",

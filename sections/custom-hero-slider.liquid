@@ -1,9 +1,10 @@
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
 {%- style -%}
   #{{ section.id }} {
+    width: 100%;
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
     {% if section.settings.background_color != blank %}
@@ -72,7 +73,7 @@
     }
     {% if section.settings.adapt_height and adapt_mobile_image != blank %}
       #{{ section.id }} {
-        aspect-ratio: {{ adapt_mobile_image.aspect_ratio }};
+        aspect-ratio: auto;
       }
     {% else %}
       #{{ section.id }} {
@@ -126,64 +127,88 @@
   }
 
   .slide-content-{{ section.id }} {
-    max-width: 580px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    width: 700px;
+    max-width: 60%;
     text-align: center;
-    padding: 40px 0px;
-    margin: 0 10% 0 auto;
+    padding: 0;
+    margin: 35px 5% 0 auto;
+    font-family: Inter, sans-serif;
   }
 
   .slide-review-{{ section.id }} {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    margin-bottom: 22px;
-    font-size: 10px;
+    gap: 10px;
+    margin: 0;
+    font-size: 15px;
     color: #0A2540;
-    font-weight: 300;
-    font-family: var(--font-stack-body);
+    font-weight: 400;
+    line-height: normal;
+    font-family: Inter, sans-serif;
   }
   .slide-review-{{ section.id }} strong{
     font-weight: 700;
   }
 
   .slide-stars-{{ section.id }} {
-    color: #d69e2e;
-    letter-spacing: 2px;
+    display: flex;
+    flex: 0 0 auto;
+    gap: 1px;
+    align-items: center;
+  }
+
+  .slide-stars-{{ section.id }} img {
+    display: block;
+    width: 15px;
+    height: 15px;
   }
 
   .slide-title-{{ section.id }} {
-    margin-bottom: 22px;
+    width: 100%;
+    margin: 0;
     color: #0A2540;
-    font-family: var(--font-stack-body);
-    font-weight: 200;
-    font-size: 52px;
-    line-height: 100%;
-    letter-spacing: 0%;
+    font-family: Inter, sans-serif;
+    font-weight: 300;
+    font-size: 60px;
+    line-height: normal;
+    letter-spacing: normal;
+    text-wrap: balance;
     text-align: center;
-    padding: 0 10px;
+    padding: 0;
   }
 
   .slide-subtitle-{{ section.id }} {
-    font-size: 16px;
-    line-height: 1.6;
-    font-family: var(--font-stack-body);
+    width: 100%;
+    max-width: 600px;
+    font-size: 19px;
+    line-height: 1.45;
+    font-family: Inter, sans-serif;
     color: #0A2540;
-    margin-bottom: 30px;
-    font-weight: 200;
+    margin: 0;
+    font-weight: 300;
   }
 
   .slide-button-{{ section.id }} {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    min-height: 48px;
     background-color: #0A2540;
     color: #ffffff;
-    padding: 14px 32px;
+    padding: 14px 20px;
     text-decoration: none;
-    font-family: var(--font-stack-body);
-    font-size: 14px;
-    font-weight: 200;
+    font-family: Inter, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.7px;
+    line-height: normal;
     transition: background-color 0.3s ease;
   }
 
@@ -191,20 +216,31 @@
     background-color: #2d3748;
   }
 
+  .slide-button-{{ section.id }}:focus-visible {
+    outline: 2px solid #0A2540;
+    outline-offset: 4px;
+  }
+
   .slide-logos-{{ section.id }} {
     position: absolute;
-    bottom: 30px;
-    right: 30px;
+    bottom: 27px;
+    right: 27px;
     display: flex;
-    gap: 15px;
+    gap: 20px;
     align-items: center;
     z-index: 10;
   }
 
   .slide-logos-{{ section.id }} img {
-    height: 45px;
-    width: auto;
+    height: 59px;
+    width: 59px;
     object-fit: contain;
+  }
+
+  .slide-logos-{{ section.id }} .slide-logo-primary {
+    width: 107px;
+    height: 45px;
+    mix-blend-mode: multiply;
   }
 
   /* Pagination */
@@ -235,7 +271,16 @@
     gap: 15px;
   }   
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (min-width: 1025px) {
+    .swiper-slide-{{ section.id }}[data-content-position="right"] .slide-content-{{ section.id }} {
+      margin-right: 0;
+    }
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    #{{ section.id }} {
+      min-height: 480px;
+    }
     .slide-content-{{ section.id }} {
       margin: 0 5% 0 auto;
     }
@@ -246,7 +291,7 @@
       max-width: 480px;
     }
     .slide-title-{{ section.id }} {
-      font-size: 42px;
+      font-size: 46px;
     }
   }
 
@@ -265,41 +310,79 @@
       z-index: -1;
     }
     .swiper-{{ section.id }} .swiper-pagination.swiper-pagination-clickable {
-        display: none;
+      display: flex;
     }
     .slide-review-{{ section.id }} {
-        font-size: 10px;
-        margin: 0 0 15px;
+      margin: 0;
+    }
+    .swiper-{{ section.id }} {
+      position: relative;
+      height: auto;
+    }
+    .swiper-{{ section.id }} .swiper-wrapper {
+      align-items: stretch;
+    }
+    .swiper-slide-{{ section.id }} {
+      height: auto;
     }
     .slide-content-container-{{ section.id }} {
       justify-content: center;
-      align-items: flex-end; /* Or center based on need */
+      align-items: flex-end;
+      padding: 224px 10px 27px;
+      {% if section.settings.adapt_height and adapt_mobile_image != blank %}
+        min-height: calc(100vw / {{ adapt_mobile_image.aspect_ratio }});
+      {% else %}
+        min-height: 532px;
+      {% endif %}
     }
 
     .slide-content-{{ section.id }} {
-      padding: 30px 0px;
-      margin: 150px 0 0; /* Push down to avoid covering top image on mobile */
+      width: 100%;
+      max-width: 320px;
+      gap: 15px;
+      padding: 0;
+      margin: 0;
+    }
+    .slide-review-{{ section.id }} {
+        font-size: 13px;
+    }
+    .slide-stars-{{ section.id }} img {
+        width: 13px;
+        height: 13px;
     }
     .slide-subtitle-{{ section.id }} {
-        font-size: 13px;
-        margin: 0 0 15px;
+        font-size: 15px;
+        margin: 0;
     }
     .slide-title-{{ section.id }} {
-        font-size: 30px;
+        font-size: 34px;
         padding: 0;
-        margin: 0 0 15px;
+        margin: 0;
     }
 
     .slide-logos-{{ section.id }} {
       position: static;
       justify-content: center;
-      margin-top: 30px;
+      gap: 15px;
+      margin: 0;
+    }
+
+    .slide-logos-{{ section.id }} img {
+      width: 42px;
+      height: 41px;
+      order: 1;
+    }
+
+    .slide-logos-{{ section.id }} .slide-logo-primary {
+      width: 76px;
+      height: 32px;
+      order: 2;
     }
 
     .swiper-{{ section.id }} .swiper-pagination {
-      text-align: center;
-      padding-left: 0;
-      bottom: 15px !important;
+      text-align: left;
+      padding-left: 10px;
+      bottom: 8px !important;
     }
   }
 {%- endstyle -%}
@@ -310,7 +393,7 @@
   <div class="swiper swiper-{{ section.id }}">
     <div class="swiper-wrapper">
       {% for block in section.blocks %}
-        <div class="swiper-slide swiper-slide-{{ section.id }}" {{ block.shopify_attributes }}>
+        <div class="swiper-slide swiper-slide-{{ section.id }}" data-content-position="{{ block.settings.content_position | default: 'inset' }}" {{ block.shopify_attributes }}>
           {%- assign bg_class = 'slide-bg-' | append: section.id -%}
           {%- assign mobile_bg_class = 'slide-mobile-bg-' | append: section.id -%}
           {%- if block.settings.slide_image != blank -%}
@@ -335,7 +418,14 @@
             <div class="slide-content-{{ section.id }}">
               {% if block.settings.review_text != blank %}
                 <div class="slide-review-{{ section.id }}">
-                  <span class="slide-stars-{{ section.id }}">★★★★★</span>
+                  <span class="slide-stars-{{ section.id }}" aria-hidden="true">
+                    {% for star in (1..5) %}
+                      <picture>
+                        <source media="(max-width: 767px)" srcset="{{ 'hero-star-mobile.svg' | asset_url }}">
+                        <img src="{{ 'hero-star.svg' | asset_url }}" width="12" height="12" alt="">
+                      </picture>
+                    {% endfor %}
+                  </span>
                   <span>{{ block.settings.review_text }}</span>
                 </div>
               {% endif %}
@@ -357,7 +447,7 @@
               {% if block.settings.logo_1 != blank or block.settings.logo_2 != blank %}
                 <div class="slide-logos-{{ section.id }}">
                   {% if block.settings.logo_1 != blank %}
-                    {{ block.settings.logo_1 | image_url: width: 150 | image_tag: loading: 'lazy' }}
+                    {{ block.settings.logo_1 | image_url: width: 214 | image_tag: class: 'slide-logo-primary', loading: 'lazy' }}
                   {% endif %}
                   {% if block.settings.logo_2 != blank %}
                     {{ block.settings.logo_2 | image_url: width: 150 | image_tag: loading: 'lazy' }}
@@ -541,6 +631,16 @@
           "id": "title",
           "label": "Heading",
           "default": "Trending jewellery you can wear on repeat"
+        },
+        {
+          "type": "select",
+          "id": "content_position",
+          "label": "Desktop text position",
+          "default": "inset",
+          "options": [
+            { "value": "inset", "label": "Inset right" },
+            { "value": "right", "label": "Right" }
+          ]
         },
         {
           "type": "textarea",
