@@ -66,6 +66,11 @@
             assign picker_type = 'swatch_color'
           endif
         endif
+
+        # Product page design uses buttons (e.g. Length) instead of dropdowns
+        if template.name == 'product' and picker_type == 'dropdown'
+          assign picker_type = 'button'
+        endif
       %}
       <div
         class="m-product-option m-product-option--{{ picker_type }}"
@@ -79,7 +84,7 @@
         >
           <div class="m-product-option--label">
             <label class="option-label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
-              <span class="option-label--title">{{ option_label }}:</span>
+              <span class="option-label--title">{{ option_label }}{% unless template.name == 'product' %}:{% endunless %}</span>
               <span class="option-label--selected">{{ option.selected_value }}</span>
             </label>
             {% if is_size %}

@@ -13,8 +13,15 @@
     gap: 50px;
   }
 
+  #{{ section.id }} .faq-wrapper {
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
   #{{ section.id }} .faq-sidebar {
-    flex: 0 0 35%;
+    flex: 0 1 431px;
+    position: sticky;
+    top: 120px;
   }
 
   #{{ section.id }} .faq-title {
@@ -23,8 +30,9 @@
     margin: 0 0 22px 0;
     font-weight: 200;
     font-size: 52px;
-    line-height: 100%;
+    line-height: normal;
     letter-spacing: 0%;
+    max-width: 418px;
   }
 
   #{{ section.id }} .faq-subtitle {
@@ -56,22 +64,62 @@
   }
 
   #{{ section.id }} .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 0;
     font-family: 'Inter', sans-serif;
     color: #000000;
-    margin: 0 0 15px 0;
     font-weight: 200;
     font-size: 14px;
-    line-height: 100%;
-    letter-spacing: 5%;
+    line-height: normal;
+    letter-spacing: 0.7px;
     text-transform: uppercase;
+    cursor: pointer;
+    list-style: none;
   }
-  #{{ section.id }} .faq-answer p {
+
+  #{{ section.id }} .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  #{{ section.id }} .faq-icon {
+    flex: 0 0 16px;
+    transition: transform 0.25s ease;
+  }
+
+  #{{ section.id }} .faq-item[open] .faq-icon {
+    transform: rotate(180deg);
+  }
+
+  #{{ section.id }} .faq-item[open] .faq-answer {
+    padding-top: 15px;
+    animation: faqReveal-{{ section.id }} 0.25s ease;
+  }
+
+  @keyframes faqReveal-{{ section.id }} {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: none; }
+  }
+  #{{ section.id }} .faq-answer,
+  #{{ section.id }} .faq-answer p,
+  #{{ section.id }} .faq-answer li {
     font-family: 'Inter', sans-serif;
     font-weight: 300;
     font-size: 16px;
     line-height: 160%;
     letter-spacing: 0%;
     color: #000000;
+  }
+
+  #{{ section.id }} .faq-answer p {
+    margin: 0;
+  }
+
+  #{{ section.id }} .faq-answer ul {
+    margin: 8px 0 0;
+    padding-left: 20px;
   }
 
   /* Responsive Design */
@@ -89,6 +137,10 @@
     }
   }
   @media(max-width: 850px){
+    #{{ section.id }} .faq-sidebar {
+        position: static;
+        flex-basis: auto;
+    }
     #{{ section.id }} .faq-wrapper {
         padding: 0 30px;
         gap: 50px;
@@ -115,10 +167,12 @@
         max-width: 300px;
         margin: 0 auto 15px;
     }
-    #{{ section.id }} .faq-question{
-        margin: 0 0 8px 0;
+    #{{ section.id }} .faq-item[open] .faq-answer{
+        padding-top: 8px;
     }
-    #{{ section.id }} .faq-answer p {
+    #{{ section.id }} .faq-answer,
+    #{{ section.id }} .faq-answer p,
+    #{{ section.id }} .faq-answer li {
         font-size: 13px;
     }
     #{{ section.id }} .faq-item{
@@ -147,24 +201,51 @@
     </div>
 
     <div class="faq-content">
+      {%- assign faq_index = 0 -%}
       {%- for block in section.blocks -%}
-        {%- if block.type == 'faq_item' -%}
-          <div class="faq-item" {{ block.shopify_attributes }}>
-            {%- if block.settings.question != blank -%}
-              <h3 class="faq-question">{{ block.settings.question }}</h3>
-            {%- endif -%}
+        {%- if block.type == 'faq_item' and block.settings.question != blank -%}
+          {%- assign faq_index = faq_index | plus: 1 -%}
+          <details
+            class="faq-item"
+            name="faq-{{ section.id }}"
+            {% if faq_index == 1 %}open{% endif %}
+            {{ block.shopify_attributes }}
+          >
+            <summary class="faq-question">
+              <span>{{ block.settings.question }}</span>
+              <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
             {%- if block.settings.answer != blank -%}
               <div class="faq-answer">
                 {{ block.settings.answer }}
               </div>
             {%- endif -%}
-          </div>
-        {%- endif -= %}
+          </details>
+        {%- endif -%}
       {%- endfor -%}
     </div>
 
   </div>
 </section>
+
+<script>
+  // Only one answer open at a time (fallback for browsers without <details name> support)
+  (function () {
+    const section = document.getElementById('{{ section.id }}');
+    if (!section) return;
+    const items = section.querySelectorAll('.faq-item');
+    items.forEach((item) => {
+      item.addEventListener('toggle', () => {
+        if (!item.open) return;
+        items.forEach((other) => {
+          if (other !== item && other.open) other.open = false;
+        });
+      });
+    });
+  })();
+</script>
 
 {% schema %}
 {

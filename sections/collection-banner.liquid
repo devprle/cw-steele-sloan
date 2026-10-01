@@ -64,6 +64,35 @@
     
   }
 
+  #{{ section.id }} .banner-review {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 10px;
+    line-height: normal;
+    color: {{ section.settings.text_color }};
+    white-space: nowrap;
+  }
+
+  #{{ section.id }} .banner-review strong {
+    font-weight: 700;
+  }
+
+  #{{ section.id }} .banner-review__stars {
+    display: flex;
+    gap: 1px;
+  }
+
+  #{{ section.id }} .banner-review__stars img {
+    display: block;
+    width: 12px;
+    height: 12px;
+    filter: brightness(0);
+  }
+
   /* Responsive styling */
   @media screen and (max-width: 1024px) {
     #{{ section.id }} {
@@ -87,13 +116,42 @@
         background-image: url({{ section.settings.mobile_bg_image | image_url: width: 800 }});
       {% endif %}
     }
+    #{{ section.id }} {
+      align-items: flex-end;
+      background-position: center top;
+    }
+    /* White fade behind the text, as in the mobile design */
+    #{{ section.id }}::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 36.5%, rgba(255, 255, 255, 0.7) 70.4%);
+      z-index: 1;
+      pointer-events: none;
+    }
     #{{ section.id }} .banner-container {
-      padding: 0 20px;
+      padding: 0 10px;
       margin: auto auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    #{{ section.id }} .banner-review {
+      display: flex;
     }
     #{{ section.id }} .banner-title {
-      font-size: 28px;
-      margin: 0 0 15px 0;
+      font-size: 30px;
+      line-height: normal;
+      margin: 0;
+    }
+    #{{ section.id }} .banner-description {
+      font-size: 13px;
+      line-height: normal;
+      max-width: 320px;
+    }
+    #{{ section.id }} .banner-description p {
+      margin: 0;
     }
   }
 {% endstyle %}
@@ -118,6 +176,17 @@
 
 <section id="{{ section.id }}" class="collection-bg-banner {{ section.settings.custom_class }}">
   <div class="banner-container">
+    {%- if section.settings.review_text != blank -%}
+      <div class="banner-review">
+        <span class="banner-review__stars" aria-hidden="true">
+          {%- for star in (1..5) -%}
+            <img src="{{ 'hero-star.svg' | asset_url }}" width="12" height="12" alt="">
+          {%- endfor -%}
+        </span>
+        <span>{{ section.settings.review_text }}</span>
+      </div>
+    {%- endif -%}
+
     {%- if banner_title != blank -%}
       <h1 class="banner-title">{{ banner_title }}</h1>
     {%- endif -%}
@@ -198,6 +267,12 @@
       "id": "custom_description",
       "label": "Fallback / Custom Description",
       "default": "<p>Apparel, accessories and gifts for fans of Yale, Harvard, Vanderbilt, Columbia, Alabama, Stanford and more.</p>"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "review_text",
+      "label": "Review line (mobile)",
+      "info": "Shown with five stars above the title on mobile."
     },
     {
       "type": "select",

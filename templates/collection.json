@@ -58,8 +58,8 @@
         "scroll_speed": 25,
         "text_color": "#ffffff",
         "icon_color": "#ffffff",
-        "desktop_font_size": 12,
-        "mobile_font_size": 10,
+        "desktop_font_size": 15,
+        "mobile_font_size": 15,
         "page_width": 1474,
         "background_color": "#0a2540",
         "padding_top": 12,
@@ -94,6 +94,7 @@
         "tablet_padding_bottom": 30,
         "mobile_padding_top": 20,
         "mobile_padding_bottom": 20,
+        "review_text": "Loved by <strong>1,000</strong> customers based on <strong>193</strong> reviews",
         "custom_class": ""
       }
     },
@@ -105,56 +106,64 @@
           "settings": {
             "collection": "bears-teams",
             "custom_title": ""
-          }
+          },
+          "disabled": true
         },
         "collection_item_QqP9hU": {
           "type": "collection_item",
           "settings": {
             "collection": "bulldog-teams",
             "custom_title": ""
-          }
+          },
+          "disabled": true
         },
         "collection_item_LczxMJ": {
           "type": "collection_item",
           "settings": {
             "collection": "cats-teams",
             "custom_title": ""
-          }
+          },
+          "disabled": true
         },
         "collection_item_QRVdUc": {
           "type": "collection_item",
           "settings": {
             "collection": "eagles-teams",
             "custom_title": ""
-          }
+          },
+          "disabled": true
         },
         "collection_item_RazCBV": {
           "type": "collection_item",
           "settings": {
             "collection": "gators-teams",
             "custom_title": ""
-          }
+          },
+          "disabled": true
         },
         "collection_item_tMRgA3": {
           "type": "collection_item",
           "settings": {
             "collection": "lions-teams",
             "custom_title": ""
-          }
+          },
+          "disabled": true
         },
         "collection_item_zNaKmG": {
           "type": "collection_item",
           "settings": {
             "collection": "rams-teams",
             "custom_title": ""
-          }
+          },
+          "disabled": true
         },
         "collection_item_3FBeKA": {
           "type": "collection_item",
           "settings": {
             "collection": "university-of-alabama-gifts-roll-tide",
             "custom_image": "shopify://shop_images/Group_46.png",
-            "custom_title": "Alabama - Roll Tide!"
+            "custom_title": "Alabama - Roll Tide!",
+            "chip_label": "Alabama"
           }
         },
         "collection_item_hdKChc": {
@@ -162,7 +171,8 @@
           "settings": {
             "collection": "university-of-arkansas-razorbacks-go-hogs",
             "custom_image": "shopify://shop_images/Rectangle_19_4_0132d422-c3f6-4fbb-ade7-f0b88a2bd01a.png",
-            "custom_title": "Arkansas - Go Hogs!"
+            "custom_title": "Arkansas - Go Hogs!",
+            "chip_label": "Arkansas"
           }
         },
         "collection_item_LeHTJL": {
@@ -170,7 +180,8 @@
           "settings": {
             "collection": "auburn-university-war-eagle",
             "custom_image": "shopify://shop_images/Rectangle_19_5_2dbf88b1-7e5c-4b9d-a97f-87d95d25a551.png",
-            "custom_title": "Auburn - War Eagles"
+            "custom_title": "Auburn - War Eagles",
+            "chip_label": "Auburn"
           }
         },
         "collection_item_LG8wPQ": {
@@ -178,7 +189,8 @@
           "settings": {
             "collection": "florida-sate-university-go-noles",
             "custom_image": "shopify://shop_images/Rectangle_19_5_2dbf88b1-7e5c-4b9d-a97f-87d95d25a551.png",
-            "custom_title": "FSU - Go Noles!"
+            "custom_title": "FSU - Go Noles!",
+            "chip_label": "FSU"
           }
         },
         "collection_item_cfECzg": {
@@ -186,120 +198,135 @@
           "settings": {
             "collection": "florida-state-university-go-seminoles",
             "custom_title": "FSU - Go Seminoles"
-          }
+          },
+          "disabled": true
         },
         "collection_item_Q3mBDg": {
           "type": "collection_item",
           "settings": {
             "collection": "louisiana-state-university-lsu-geaux-tigers",
-            "custom_title": "LSU - Geaux Tigers!"
+            "custom_title": "LSU - Geaux Tigers!",
+            "chip_label": "LSU"
           }
         },
         "collection_item_QzAVjq": {
           "type": "collection_item",
           "settings": {
             "collection": "university-of-miami",
-            "custom_title": "Miami  - Hurricanes"
+            "custom_title": "Miami  - Hurricanes",
+            "chip_label": "Miami"
           }
         },
         "collection_item_kwGQGV": {
           "type": "collection_item",
           "settings": {
             "collection": "mississippi-state-bulldogs-hail-state",
-            "custom_title": ""
+            "custom_title": "",
+            "chip_label": "Mississippi State"
           }
         },
         "collection_item_iBXzxm": {
           "type": "collection_item",
           "settings": {
             "collection": "oklahoma-sooners-university-of-oklahoma",
-            "custom_title": "Oklahoma - Oklahoma Sooners"
+            "custom_title": "Oklahoma - Oklahoma Sooners",
+            "chip_label": "Oklahoma"
           }
         },
         "collection_item_mRWJQ4": {
           "type": "collection_item",
           "settings": {
             "collection": "ole-miss-university-of-mississippi-rebels",
-            "custom_title": "Ole Miss - Rebels"
+            "custom_title": "Ole Miss - Rebels",
+            "chip_label": "Ole Miss"
           }
         },
         "collection_item_zQtKAr": {
           "type": "collection_item",
           "settings": {
             "collection": "university-of-oregon-go-ducks",
-            "custom_title": "Oregon - Go Ducks!"
+            "custom_title": "Oregon - Go Ducks!",
+            "chip_label": "Oregon"
           }
         },
         "collection_item_F33Wqi": {
           "type": "collection_item",
           "settings": {
             "collection": "pittsburgh-panters-university-of-pittsburgh",
-            "custom_title": "Pitt - Pittsburgh Panthers"
+            "custom_title": "Pitt - Pittsburgh Panthers",
+            "chip_label": "Pitt"
           }
         },
         "collection_item_8UgGWm": {
           "type": "collection_item",
           "settings": {
             "collection": "tcu-texas-christian-university-horned-frogs",
-            "custom_title": "TCU - Horned Frogs"
+            "custom_title": "TCU - Horned Frogs",
+            "chip_label": "TCU"
           }
         },
         "collection_item_AkmYNQ": {
           "type": "collection_item",
           "settings": {
             "collection": "texas-a-m-gig-em-aggies",
-            "custom_title": ""
+            "custom_title": "",
+            "chip_label": "Texas A&M"
           }
         },
         "collection_item_nLRprR": {
           "type": "collection_item",
           "settings": {
             "collection": "texas-tech-wreck-em-red-raiders",
-            "custom_title": ""
+            "custom_title": "",
+            "chip_label": "Texas Tech"
           }
         },
         "collection_item_r6DDAR": {
           "type": "collection_item",
           "settings": {
             "collection": "university-of-tennessee-volunteers",
-            "custom_title": "Tennessee - Vols"
+            "custom_title": "Tennessee - Vols",
+            "chip_label": "Tennessee"
           }
         },
         "collection_item_TnxMLn": {
           "type": "collection_item",
           "settings": {
             "collection": "tulane-university-green-wave",
-            "custom_title": "Tulane - Green Wave"
+            "custom_title": "Tulane - Green Wave",
+            "chip_label": "Tulane"
           }
         },
         "collection_item_YpnNXd": {
           "type": "collection_item",
           "settings": {
             "collection": "unc-tarheels-university-of-north-carolina-at-chapel-hill",
-            "custom_title": "UNC - TarHeels"
+            "custom_title": "UNC - TarHeels",
+            "chip_label": "UNC"
           }
         },
         "collection_item_TjNAyz": {
           "type": "collection_item",
           "settings": {
             "collection": "university-of-south-carolina-gamecocks",
-            "custom_title": "USC - Gamecocks"
+            "custom_title": "USC - Gamecocks",
+            "chip_label": "South Carolina"
+          }
+        },
+        "collection_item_indiana": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "indiana-hoosiers",
+            "chip_label": "Indiana"
           }
         }
       },
       "block_order": [
-        "collection_item_VxkeiG",
-        "collection_item_QqP9hU",
-        "collection_item_LczxMJ",
-        "collection_item_QRVdUc",
-        "collection_item_RazCBV",
-        "collection_item_tMRgA3",
-        "collection_item_zNaKmG",
         "collection_item_3FBeKA",
         "collection_item_hdKChc",
         "collection_item_LeHTJL",
         "collection_item_LG8wPQ",
-        "collection_item_cfECzg",
+        "collection_item_indiana",
         "collection_item_Q3mBDg",
         "collection_item_QzAVjq",
         "collection_item_kwGQGV",
@@ -307,25 +334,33 @@
         "collection_item_mRWJQ4",
         "collection_item_zQtKAr",
         "collection_item_F33Wqi",
+        "collection_item_TjNAyz",
         "collection_item_8UgGWm",
+        "collection_item_r6DDAR",
         "collection_item_AkmYNQ",
         "collection_item_nLRprR",
-        "collection_item_r6DDAR",
         "collection_item_TnxMLn",
         "collection_item_YpnNXd",
-        "collection_item_TjNAyz"
+        "collection_item_VxkeiG",
+        "collection_item_QqP9hU",
+        "collection_item_LczxMJ",
+        "collection_item_QRVdUc",
+        "collection_item_RazCBV",
+        "collection_item_tMRgA3",
+        "collection_item_zNaKmG",
+        "collection_item_cfECzg"
       ],
       "name": "Collection Nav Slider",
       "settings": {
         "title": "Browse Colleges",
-        "background_color": "#eeeeee",
-        "text_color": "#121212",
+        "background_color": "#f2f2f2",
+        "text_color": "#000000",
         "item_text_color": "#ffffff",
         "active_border_color": "#d1b06b",
-        "overlay_opacity": 29,
+        "overlay_opacity": 39,
         "page_width": 1470,
-        "padding_top": 40,
-        "padding_bottom": 40
+        "padding_top": 64,
+        "padding_bottom": 62
       }
     },
     "collection-header": {
@@ -351,6 +386,17 @@
     "main": {
       "type": "main-collection-product-grid",
       "blocks": {
+        "review_card_sample1": {
+          "type": "review_card",
+          "settings": {
+            "position": 3,
+            "image": "shopify://shop_images/Ellipse_17.png",
+            "rating": 5,
+            "text": "Such pretty earrings! They came in record time and my granddaughter can't stop wearing them. Great purchase!",
+            "author": "Linda",
+            "date": "26 Mar, 2026"
+          }
+        },
         "banner_promotion_rU6hWX": {
           "type": "banner_promotion",
           "disabled": true,
@@ -432,7 +478,7 @@
         "collections_p9P4iV": {
           "type": "collections",
           "settings": {
-            "title": "Collections",
+            "title": "University",
             "menu": "collections",
             "show_image": false,
             "use_accordion": false,
@@ -441,6 +487,7 @@
         }
       },
       "block_order": [
+        "review_card_sample1",
         "banner_promotion_rU6hWX",
         "banner_promotion_zPRmLQ",
         "banner_promotion_wQzY8r",
@@ -460,7 +507,7 @@
         "grid_columns": "4",
         "show_columns_switcher": false,
         "pagination_limit": 12,
-        "paginate_type": "paginate",
+        "paginate_type": "loadmore",
         "show_sorting": true,
         "show_filter": true,
         "filters_type": "storefront_filters",
@@ -772,22 +819,22 @@
         "text_py3f9d": {
           "type": "text",
           "settings": {
-            "text": "Hypoallergenic stainless steel",
+            "text": "Hypoallergenic-friendly stainless steel styles",
             "icon_svg": ""
           }
         },
         "text_XYjKqa": {
           "type": "text",
           "settings": {
-            "text": "Wholesale prices available",
+            "text": "Giftable, on-trend designs at a great price point",
             "icon_svg": ""
           }
         },
         "text_DCPfhb": {
           "type": "text",
-          "disabled": true,
+          
           "settings": {
-            "text": "Hassle-free returns within 5 days",
+            "text": "Quick and easy returns available",
             "icon_svg": ""
           }
         }
@@ -806,14 +853,14 @@
         "enable_marquee_mobile": true,
         "pause_on_hover": false,
         "scroll_speed": 25,
-        "text_color": "#ffffff",
-        "icon_color": "#ffffff",
-        "desktop_font_size": 12,
-        "mobile_font_size": 10,
+        "text_color": "#0a2540",
+        "icon_color": "#0a2540",
+        "desktop_font_size": 15,
+        "mobile_font_size": 15,
         "page_width": 1474,
-        "background_color": "#0a2540",
-        "padding_top": 12,
-        "padding_bottom": 12,
+        "background_color": "#d4af77",
+        "padding_top": 11,
+        "padding_bottom": 13,
         "tablet_padding_top": 12,
         "tablet_padding_bottom": 12,
         "mobile_padding_top": 10,

@@ -1,4 +1,5 @@
 {{ 'product.css' | asset_url | stylesheet_tag }}
+{{ 'pdp-steele.css' | asset_url | stylesheet_tag }}
 {% if section.settings.show_zoom_button %}
   {{ 'photoswipe.css' | asset_url | stylesheet_tag }}
   {{ 'component-photoswipe.css' | asset_url | stylesheet_tag }}
@@ -175,6 +176,34 @@
     {% render 'sticky-atc', section: section, product: product, first_3d_model: first_3d_model %}
   {% endif %}
 
+  <script>
+    // Keep the "Add to cart - $price" label and the gallery in sync with the selected variant
+    window.addEventListener('DOMContentLoaded', () => {
+      if (!window.MinimogEvents || !window.MinimogTheme) return;
+      const sectionId = '{{ section.id }}';
+
+      MinimogEvents.subscribe(MinimogTheme.pubSubEvents.variantChange, (e) => {
+        if (!e.data || e.data.sectionId !== sectionId) return;
+        const variant = e.data.variant;
+
+        const priceText = variant && variant.available && typeof formatMoney === 'function'
+          ? ' - ' + formatMoney(variant.price, MinimogSettings.money_format)
+          : '';
+        document.querySelectorAll('[data-atc-price]').forEach((el) => {
+          el.textContent = priceText;
+        });
+
+        const mediaId = variant && variant.featured_media && variant.featured_media.id;
+        const mainSwiper = document.querySelector('#MainProduct-{{ section.id }} .product-main-swiper');
+        if (mediaId && mainSwiper && mainSwiper.swiper) {
+          const slides = Array.from(mainSwiper.querySelectorAll('.swiper-slide'));
+          const index = slides.findIndex((slide) => slide.dataset.mediaId === String(mediaId));
+          if (index > -1) mainSwiper.swiper.slideTo(index);
+        }
+      });
+    });
+  </script>
+
   {%- if enable_variant_group_img -%}
     <script id="variantGroup" type="application/json">
       {{ product.metafields.foxecom-bs-kit.variant-images.value | json }}
@@ -202,6 +231,7 @@
 {%- render 'product-data' -%}
 <script>
   document.addEventListener("DOMContentLoaded", function() {
+    if (!document.querySelector('.product-ugc-swiper')) return;
     const ugcSwiper = new Swiper('.product-ugc-swiper', {
       slidesPerView: 2.2,
       spaceBetween: 10,

@@ -92,7 +92,7 @@
   .m-product-card .product-review span {
     color: #000000;
   }
-  .product-review path {
+  .product-review path.is-filled {
     fill: #000;
   }
   .m-collection--wrapper .m-collection-products{
@@ -365,6 +365,360 @@
       margin: 0;
     }
   }
+
+  /* Steele redesign: product cards, badges, filters */
+  .m-collection-products .custom-product-badge {
+    border-radius: 0;
+    padding: 4px 8px 5px;
+    background: #ffffff;
+    color: #000000;
+    font-family: Inter, sans-serif;
+    font-weight: 300;
+    font-size: 10px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .m-collection-products .m-product-card__tags {
+    top: 10px;
+    left: 12px;
+  }
+  .m-collection-products .m-product-card__content {
+    padding-top: 26px;
+  }
+  .m-collection-products .m-product-card__info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 0;
+  }
+  .m-collection-products .m-product-card__info > * {
+    margin: 0;
+  }
+  .m-collection-products .product-review {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .m-collection-products .product-review span {
+    font-family: Inter, sans-serif;
+    font-weight: 300;
+    font-size: 10px;
+  }
+  .m-collection-products product-form.m-product-form .m-add-to-cart,
+  .m-collection-products .m-product-card__content > .m-product-card__action-wrapper .m-button {
+    width: 100%;
+    min-height: 48px;
+    margin-top: 20px;
+    background: #ffffff;
+    border: 1px solid #000000;
+    color: #000000;
+    font-family: Inter, sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    box-shadow: none;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+  .m-collection-products product-form.m-product-form .m-add-to-cart:hover,
+  .m-collection-products .m-product-card__content > .m-product-card__action-wrapper .m-button:hover {
+    background: #0A2540;
+    border-color: #0A2540;
+    color: #ffffff;
+    box-shadow: none;
+  }
+  .m-collection-products .m-product-option--node__label {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .m-collection-products .m-product-option--node__label:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 1px #ffffff, 0 0 0 2px #0A2540;
+  }
+
+  /* Load more (replaces numbered pagination) */
+  .m-collection--pagination .m-load-more {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding-top: 17px;
+  }
+  .m-load-more__count {
+    margin: 0;
+    font-family: Inter, sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: normal;
+    color: #8A8A8A;
+  }
+  .m-load-more__progress {
+    position: relative;
+    width: 200px;
+    height: 2px;
+    background: #D9D9D9;
+    overflow: hidden;
+  }
+  .m-load-more__progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #000000;
+    transition: width 0.4s ease;
+  }
+  .m-collection--pagination .m-load-more__button {
+    width: 300px;
+    max-width: 100%;
+    height: 48px;
+    padding: 0 34px;
+    background: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 0;
+    color: #000000;
+    font-family: Inter, sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    box-shadow: none;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+  .m-collection--pagination .m-load-more__button:hover {
+    background: #0A2540;
+    border-color: #0A2540;
+    color: #ffffff;
+    box-shadow: none;
+  }
+
+  /* Review card between products */
+  .m-collection-products .m-review-card-item {
+    display: flex;
+  }
+  .m-review-card {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    background: #F2F2F2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 61px 16px;
+  }
+  .m-review-card__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 214px;
+    text-align: center;
+  }
+  .m-review-card__image {
+    width: 148px;
+    height: 148px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .m-review-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .m-review-card__stars {
+    display: flex;
+    gap: 1px;
+  }
+  .m-review-card__stars svg {
+    display: block;
+  }
+  .m-review-card__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .m-review-card__text {
+    margin: 0;
+    font-family: Inter, sans-serif;
+    font-weight: 200;
+    font-size: 16px;
+    line-height: normal;
+    color: #000000;
+  }
+  .m-review-card__meta {
+    margin: 0;
+    font-family: Inter, sans-serif;
+    font-weight: 200;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #000000;
+  }
+
+  /* Product card spacing per design: image -> 26px -> reviews/title/price/swatches (10px apart) -> 20px -> button */
+  .m-collection-products .m-product-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .m-collection--wrapper .m-collection-products .m-product-card__content {
+    height: auto;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 26px 0 0;
+    margin: 0;
+  }
+  .m-collection-products .m-product-card__info .product-review {
+    height: 12px;
+    line-height: 12px;
+    padding: 0;
+  }
+  .m-collection-products .m-product-card__info .product-review svg {
+    display: block;
+  }
+  .m-collection-products .m-product-card__title {
+    margin: 0;
+    line-height: normal;
+  }
+  .m-collection-products .m-product-card__price,
+  .m-collection-products .m-product-card__price .m-price {
+    margin: 0;
+    line-height: normal;
+  }
+  .m-collection-products .m-product-card__price .m-price-item {
+    line-height: normal;
+  }
+  .m-collection-products [data-pcard-variant-picker],
+  .m-collection-products [data-pcard-variant-picker] .m-product-option,
+  .m-collection-products [data-pcard-variant-picker] .m-product-option--content {
+    margin: 0;
+    padding: 0;
+  }
+  .m-collection-products [data-pcard-variant-picker] .m-product-option--node {
+    margin: 0;
+    padding: 0;
+  }
+  .m-collection-products .m-product-card__content > .m-product-card__action-wrapper {
+    margin-top: auto;
+    padding-top: 20px;
+  }
+  .m-collection-products .m-product-card__content > .m-product-card__action-wrapper .m-button,
+  .m-collection-products .m-product-card__content > .m-product-card__action-wrapper product-form.m-product-form .m-add-to-cart {
+    margin-top: 0;
+    height: 48px;
+    min-height: 48px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* University list: first 5 + "Load more" */
+  .m-filter--widget-collections .m-link-lists.has-load-more:not(.expanded) li:nth-child(n+6) {
+    display: none;
+  }
+  .m-filter--widget-collections .m-link-lists--item {
+    margin-bottom: 8px;
+  }
+  .m-filter--widget .m-filter--load-more-btn {
+    margin: 10px 0 0 !important;
+    font-family: Inter, sans-serif !important;
+    font-weight: 300;
+    font-size: 12px !important;
+    line-height: 1.6;
+    color: #000000 !important;
+  }
+
+  /* Colour facet: checkbox + 16px swatch, as in the design */
+  .m-facet--color label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+  .m-facet--color label::before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin-right: 5px;
+    border: 1px solid #848484;
+    border-radius: 2px;
+    background: #ffffff no-repeat center / 12px 12px;
+    box-sizing: border-box;
+  }
+  .m-facet--color label:has(input:checked)::before {
+    border-color: #000000;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  }
+  .m-facet--color .m-facet--color-label {
+    width: 16px !important;
+    height: 16px !important;
+    min-width: 16px;
+    margin: 0 !important;
+    border-radius: 50%;
+  }
+  .m-facet--color label {
+    font-family: Inter, sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #000000;
+  }
+
+  @media screen and (min-width: 1280px) {
+    .m-collection--wrapper .m-sidebar {
+      flex: 0 0 230px;
+      max-width: 230px;
+      margin-right: 39px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .m-collection--wrapper .m-collection-products .m-product-card__content {
+      padding-top: 12px;
+    }
+    .m-collection-products .m-product-card__title a.m-product-card__name,
+    h3.m-product-card__title a.m-product-card__name {
+      font-weight: 300;
+      font-size: 11px;
+    }
+    .m-collection-products .m-product-card__content > .m-product-card__action-wrapper {
+      padding-top: 10px;
+    }
+    .m-collection-products .m-product-card__content > .m-product-card__action-wrapper .m-button,
+    .m-collection-products .m-product-card__content > .m-product-card__action-wrapper product-form.m-product-form .m-add-to-cart {
+      height: 40px;
+      min-height: 40px;
+      padding: 0 6px;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+    }
+    .m-review-card {
+      padding: 20px 8px;
+    }
+    .m-review-card__image {
+      width: 78px;
+      height: 78px;
+    }
+    .m-review-card__text {
+      font-size: 11px;
+    }
+    .m-review-card__meta {
+      font-size: 10px;
+    }
+    .m-collection-products .custom-product-badge {
+      padding: 4px 8px 5px;
+    }
+    .m-collection-products .m-product-card__tags {
+      top: 11px;
+      left: 8px;
+    }
+  }
 {% endstyle %}
 
 {%- liquid
@@ -463,7 +817,7 @@
                   {% liquid
                     case settings.pcard_layout
                       when '1'
-                        render 'custom-product-card', product: product, section: section, index: forloop.index, section_index: section.index, animated: animated, animation_effect: animation_effect, context: collection
+                        render 'custom-product-card', product: product, section: section, index: forloop.index, section_index: section.index, animated: animated, animation_effect: animation_effect, context: collection, image_ratio: '1/1', show_cart_button: section.settings.show_cart_button, cart_button_always: true, show_variant_options: true
                       when '2'
                         render 'product-card-2', product: product, section: section, index: forloop.index, section_index: section.index, animated: animated, animation_effect: animation_effect, context: collection
                       when '3'
@@ -475,6 +829,17 @@
                     endcase
                   %}
                 </div>
+                {%- assign product_position = paginate.current_offset | plus: forloop.index -%}
+                {%- for block in section.blocks -%}
+                  {%- if block.type == 'review_card' -%}
+                    {%- assign review_after = block.settings.position | plus: 0 -%}
+                    {%- if review_after == product_position -%}
+                      <div class="m-product-item m-review-card-item m:w-6/12 md:m:w-4/12" {{ block.shopify_attributes }}>
+                        {%- render 'collection-review-card', block: block -%}
+                      </div>
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endfor -%}
               {%- endfor -%}
             </div>
             {% if paginate.pages > 1 %}
@@ -482,7 +847,19 @@
                 {%- if section.settings.paginate_type == 'paginate' -%}
                   {%- render 'pagination', paginate: paginate, anchor: '' -%}
                 {%- else -%}
-                  <button class="m-button m-button--primary m-spinner-button" data-load-more>
+                  {%- liquid
+                    assign shown_count = paginate.current_offset | plus: collection.products.size
+                    assign shown_percent = shown_count | times: 100.0 | divided_by: paginate.items | round: 2
+                  -%}
+                  <div class="m-load-more">
+                  <p class="m-load-more__count">
+                    Showing <span data-shown-count>{{ shown_count }}</span> of
+                    <span data-total-count>{{ paginate.items }}</span> products
+                  </p>
+                  <div class="m-load-more__progress" aria-hidden="true">
+                    <span class="m-load-more__progress-fill" style="width: {{ shown_percent }}%;"></span>
+                  </div>
+                  <button class="m-button m-load-more__button m-spinner-button" data-load-more>
                     <span>
                       {%- render 'new-locale', key: 'collections.paginate.load_more' -%}
                     </span>
@@ -498,6 +875,7 @@
                       </svg>
                     </span>
                   </button>
+                  </div>
                 {%- endif -%}
               </div>
             {% endif %}
@@ -516,7 +894,28 @@
       MinimogTheme.Collection = new Collection();
       MinimogTheme.Collection.init();
     }
-    
+
+    // Keep "Showing X of Y" and the progress bar in sync as "Load more" appends products
+    const gridSection = document.querySelector('.facest-filters-section');
+    function updateShownCount() {
+      const container = document.querySelector('[data-product-container]');
+      if (!container) return;
+      const shown = container.querySelectorAll('.m-product-item:not(.m-review-card-item):not(.m-grid-banner)').length;
+      document.querySelectorAll('[data-shown-count]').forEach((el) => {
+        if (el.textContent !== String(shown)) el.textContent = shown;
+      });
+      const total = Number(document.querySelector('[data-total-count]')?.textContent);
+      const fill = document.querySelector('.m-load-more__progress-fill');
+      if (fill && total) fill.style.width = Math.min(100, (shown / total) * 100) + '%';
+    }
+    if (gridSection) {
+      let countTimer;
+      new MutationObserver(() => {
+        clearTimeout(countTimer);
+        countTimer = setTimeout(updateShownCount, 50);
+      }).observe(gridSection, { childList: true, subtree: true });
+    }
+
     function initLoadMoreFilters() {
       document.querySelectorAll('.m-filter--widget-content').forEach(function(content) {
         if (content.querySelector('.m-filter--load-more-btn')) return;
@@ -776,6 +1175,12 @@
       "default": true
     },
     {
+      "type": "checkbox",
+      "id": "show_cart_button",
+      "label": "Show Add to cart button on product cards",
+      "default": true
+    },
+    {
       "type": "text",
       "id": "collapsed_groups",
       "label": "Collapsed filter groups",
@@ -807,6 +1212,51 @@
     }
   ],
   "blocks": [
+    {
+      "type": "review_card",
+      "name": "Review card",
+      "settings": [
+        {
+          "type": "number",
+          "id": "position",
+          "label": "Show after product number",
+          "info": "E.g. 3 shows the review right after the 3rd product. Counts across \"Load more\" pages, so 15 appears after the 15th product.",
+          "default": 3
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Shown as a circle."
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Stars",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Review text"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Customer name",
+          "info": "Shown as \"Name on Date\"."
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Date",
+          "placeholder": "26 Mar, 2026"
+        }
+      ]
+    },
     {
       "type": "filter",
       "name": "Filter by tags",

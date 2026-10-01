@@ -159,6 +159,154 @@
         height: auto;
       }
     }
+
+    /* Cards per design: square image, 26px padded content, button pinned to the bottom so rows line up */
+    .pdp-recommendations-{{ section.id }} .m-product-list .swiper-slide {
+      height: auto;
+      padding: 0 10px !important;
+    }
+    .pdp-recommendations-{{ section.id }} .m-product-card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+    }
+    .pdp-recommendations-{{ section.id }} .m-product-card__media {
+      flex: 0 0 auto;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+    }
+    .pdp-recommendations-{{ section.id }} .m-product-card__media .card-gallery-swiper,
+    .pdp-recommendations-{{ section.id }} .m-product-card__media .swiper-wrapper,
+    .pdp-recommendations-{{ section.id }} .m-product-card__media .swiper-slide,
+    .pdp-recommendations-{{ section.id }} .m-product-card__media .m-product-card__link,
+    .pdp-recommendations-{{ section.id }} .m-product-card__media responsive-image {
+      width: 100%;
+      height: 100%;
+    }
+    .pdp-recommendations-{{ section.id }} .m-product-card__media img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover;
+    }
+    .pdp-recommendations-{{ section.id }} .m-product-card__content {
+      flex: 1 1 auto;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      padding: 26px 23px 20px 26px;
+      background: #ffffff;
+    }
+    .pdp-recommendations-{{ section.id }} .m-product-card__info {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 0;
+    }
+    .pdp-recommendations-{{ section.id }} .m-product-card__info > * {
+      margin: 0;
+    }
+    .pdp-recommendations-{{ section.id }} .product-review {
+      height: 12px;
+      padding: 0;
+    }
+    .pdp-recommendations-{{ section.id }} .product-review span {
+      color: #000000;
+    }
+    .pdp-recommendations-{{ section.id }} .product-review path.is-filled {
+      fill: #000000;
+    }
+    .pdp-recommendations-{{ section.id }} h3.m-product-card__title {
+      margin: 0;
+    }
+    .pdp-recommendations-{{ section.id }} h3.m-product-card__title a {
+      font-weight: 200;
+      font-size: 16px;
+      line-height: normal;
+    }
+    .pdp-recommendations-{{ section.id }} .m-price-item {
+      font-family: Inter, sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: normal;
+      color: #000000;
+    }
+    .pdp-recommendations-{{ section.id }} .custom-product-badge {
+      border-radius: 0;
+      padding: 6px 15px 7px;
+      background: #ffffff;
+      color: #000000;
+      font-family: Inter, sans-serif;
+      font-weight: 300;
+      font-size: 10px;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    .pdp-recommendations-{{ section.id }} .custom-product-badge--low-stock {
+      background: #000000;
+      color: #ffffff;
+    }
+    .pdp-recommendations-{{ section.id }} .m-product-card__content > .m-product-card__action-wrapper {
+      margin-top: auto;
+      padding-top: 20px;
+    }
+    .pdp-recommendations-{{ section.id }} .m-product-card__info .m-product-option,
+    .pdp-recommendations-{{ section.id }} .m-product-card__info .m-product-option--content {
+      justify-content: flex-start;
+      margin: 0;
+    }
+    .pdp-recommendations-{{ section.id }} .m-product-card__content > .m-product-card__action-wrapper .m-button,
+    .pdp-recommendations-{{ section.id }} .m-product-card__content > .m-product-card__action-wrapper .m-add-to-cart {
+      width: 100%;
+      height: 48px;
+      margin: 0;
+      padding: 0 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #000000;
+      border-radius: 0;
+      background: #ffffff;
+      color: #000000;
+      font-family: Inter, sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      box-shadow: none;
+      transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    }
+    .pdp-recommendations-{{ section.id }} .m-product-card__content > .m-product-card__action-wrapper .m-button:hover,
+    .pdp-recommendations-{{ section.id }} .m-product-card__content > .m-product-card__action-wrapper .m-add-to-cart:hover {
+      background: #0A2540;
+      border-color: #0A2540;
+      color: #ffffff;
+    }
+    @media screen and (max-width: 767px) {
+      .pdp-recommendations-{{ section.id }} .m-product-list .swiper-slide {
+        padding: 0 5px !important;
+      }
+      .pdp-recommendations-{{ section.id }} .m-product-card__content {
+        padding: 12px 0 0;
+      }
+      .pdp-recommendations-{{ section.id }} h3.m-product-card__title a {
+        font-weight: 300;
+        font-size: 11px;
+      }
+      .pdp-recommendations-{{ section.id }} .m-product-card__content > .m-product-card__action-wrapper {
+        padding-top: 10px;
+      }
+      .pdp-recommendations-{{ section.id }} .m-product-card__content > .m-product-card__action-wrapper .m-button,
+      .pdp-recommendations-{{ section.id }} .m-product-card__content > .m-product-card__action-wrapper .m-add-to-cart {
+        height: 40px;
+        padding: 0 6px;
+        font-size: 12px;
+        letter-spacing: 0.3px;
+        white-space: nowrap;
+      }
+    }
     @media screen and (max-width: 989px) {
       .pdp-recommendations-{{ section.id }} {
         padding-top: {{ section.settings.padding_top_tablet }}px;
@@ -199,6 +347,83 @@
         margin-bottom: 30px;
       }
     }
+
+    /* Arrows match the homepage product carousel: navy 48px circles with a thin white chevron */
+    .pdp-recommendations-{{ section.id }} .swiper-button-custom {
+      display: flex;
+      top: 40%;
+      width: 48px;
+      height: 48px;
+      background: #0A2540;
+      border: 0;
+      border-radius: 50%;
+      box-shadow: 0 4px 14px rgba(10, 37, 64, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    }
+    .pdp-recommendations-{{ section.id }} .swiper-button-custom:hover {
+      background: #0A2540;
+      transform: translateY(-50%) scale(1.06);
+      box-shadow: 0 6px 18px rgba(10, 37, 64, 0.45);
+    }
+    .pdp-recommendations-{{ section.id }} .swiper-button-custom svg,
+    .pdp-recommendations-{{ section.id }} .swiper-button-custom:hover svg {
+      width: 10px;
+      height: 18px;
+      fill: none;
+    }
+    .pdp-recommendations-{{ section.id }} .swiper-button-custom svg path {
+      stroke: #ffffff;
+      stroke-width: 1.5;
+    }
+    .pdp-recommendations-{{ section.id }} .swiper-button-prev-custom {
+      left: 30px;
+    }
+    .pdp-recommendations-{{ section.id }} .swiper-button-next-custom {
+      right: 30px;
+    }
+    @media screen and (max-width: 1024px) {
+      .pdp-recommendations-{{ section.id }} .swiper-button-custom {
+        display: none;
+      }
+    }
+
+    /* Controls below the slider are for mobile only (desktop uses the side arrows) */
+    @media screen and (min-width: 768px) {
+      .pdp-recommendations-{{ section.id }} .m-slider-controls {
+        display: none !important;
+      }
+    }
+
+    /* Mobile controls below the slider: same navy circles */
+    .pdp-recommendations-{{ section.id }} .m-slider-controls__button {
+      position: static;
+      width: 40px;
+      height: 40px;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0A2540;
+      border: 0;
+      border-radius: 50%;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(10, 37, 64, 0.35);
+    }
+    .pdp-recommendations-{{ section.id }} .m-slider-controls__button::after {
+      display: none;
+      content: none;
+    }
+    .pdp-recommendations-{{ section.id }} .m-slider-controls__button svg {
+      width: 18px;
+      height: 18px;
+    }
+    .pdp-recommendations-{{ section.id }} .m-slider-controls__button svg path {
+      stroke: #ffffff;
+      stroke-width: 1.5;
+    }
+    .pdp-recommendations-{{ section.id }} .m-slider-controls__button.swiper-button-disabled {
+      opacity: 0.4;
+    }
 {%- endstyle -%}
 
 <section
@@ -231,7 +456,7 @@
                   {% liquid
                     case settings.pcard_layout
                       when '1'
-                        render 'product-card-1', product: product, index: forloop.index, animated: animated, animation_effect: animation_effect, remove_params: remove_params
+                        render 'custom-product-card', product: product, section: section, index: forloop.index, animated: animated, animation_effect: animation_effect, remove_params: remove_params, image_ratio: '1/1', show_cart_button: true, cart_button_always: true, show_variant_options: true
                       when '2'
                         render 'product-card-2', product: product, index: forloop.index, animated: animated, animation_effect: animation_effect, remove_params: remove_params
                       when '3'
@@ -248,14 +473,14 @@
           </div>
 
           {% if section.settings.enable_slider and show_navigation %}
-            <div class="swiper-button-custom swiper-button-prev-custom swiper-nav-prev-{{ section.id }}">
-              <svg viewBox="0 0 24 24">
-                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+            <div class="swiper-button-custom swiper-button-prev-custom swiper-nav-prev-{{ section.id }}" role="button" aria-label="Previous">
+              <svg xmlns="http://www.w3.org/2000/svg" width="7" height="13" viewBox="0 0 7 13" fill="none" aria-hidden="true">
+                <path d="M6.5 0.5L0.5 6.5L6.5 12.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
-            <div class="swiper-button-custom swiper-button-next-custom swiper-nav-next-{{ section.id }}">
-              <svg viewBox="0 0 24 24">
-                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+            <div class="swiper-button-custom swiper-button-next-custom swiper-nav-next-{{ section.id }}" role="button" aria-label="Next">
+              <svg xmlns="http://www.w3.org/2000/svg" width="7" height="13" viewBox="0 0 7 13" fill="none" aria-hidden="true">
+                <path d="M0.5 12.5L6.5 6.5L0.499999 0.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
           {% endif %}
@@ -278,37 +503,45 @@
 
 {% if section.settings.enable_slider %}
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const initSlider = () => {
-        const sliderElem = document.querySelector('.swiper-container-{{ section.id }}');
-        if (sliderElem && typeof Swiper !== 'undefined') {
-          new Swiper('.swiper-container-{{ section.id }}', {
-            slidesPerView: 3,
-            spaceBetween: 16,
-            navigation: {
-              nextEl: '.swiper-nav-next-{{ section.id }}, .pdp-recommendations-{{ section.id }} .swiper-button-next',
-              prevEl: '.swiper-nav-prev-{{ section.id }}, .pdp-recommendations-{{ section.id }} .swiper-button-prev',
-              disabledClass: 'swiper-button-disabled'
-            },
-            breakpoints: {
-              768: {
-                slidesPerView: {{ section.settings.columns | minus: 1 }},
-                spaceBetween: {{ section.settings.column_gap }}
-              },
-              990: {
-                slidesPerView: 3,
-                spaceBetween: {{ section.settings.column_gap }}
-              }
-            }
-          });
-        }
+    // Desktop arrows drive the slider the theme creates once recommendations load (async)
+    (function () {
+      const sectionClass = '.pdp-recommendations-{{ section.id }}';
+      const getSwiper = () => {
+        const el = document.querySelector(sectionClass + ' .swiper-container-{{ section.id }}');
+        return el && el.swiper;
+      };
+      const syncArrows = () => {
+        const swiper = getSwiper();
+        if (!swiper) return;
+        const prev = document.querySelector('.swiper-nav-prev-{{ section.id }}');
+        const next = document.querySelector('.swiper-nav-next-{{ section.id }}');
+        if (prev) prev.classList.toggle('swiper-button-disabled', swiper.isBeginning);
+        if (next) next.classList.toggle('swiper-button-disabled', swiper.isEnd);
       };
 
-      initSlider();
-      document.addEventListener('shopify:section:load', (e) => {
-        if (e.detail.sectionId === '{{ section.id }}') initSlider();
+      document.addEventListener('click', (e) => {
+        const arrow = e.target.closest('.swiper-nav-prev-{{ section.id }}, .swiper-nav-next-{{ section.id }}');
+        if (!arrow) return;
+        const swiper = getSwiper();
+        if (!swiper) return;
+        arrow.classList.contains('swiper-nav-prev-{{ section.id }}') ? swiper.slidePrev() : swiper.slideNext();
       });
-    });
+
+      // Hook into the theme's Swiper as soon as it exists
+      const hook = () => {
+        const swiper = getSwiper();
+        if (!swiper || swiper.__steeleArrows) return;
+        swiper.__steeleArrows = true;
+        swiper.on('slideChange reachBeginning reachEnd fromEdge resize', syncArrows);
+        syncArrows();
+      };
+      const observer = new MutationObserver(hook);
+      document.addEventListener('DOMContentLoaded', () => {
+        const section = document.querySelector(sectionClass);
+        if (section) observer.observe(section, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
+        hook();
+      });
+    })();
   </script>
 {% endif %}
 

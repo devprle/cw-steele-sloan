@@ -1,0 +1,10 @@
+{% comment %}
+  One slide of the "See how people are wearing them" slider on the product page.
+
+  Accepts:
+  - image: {Object} Image (from the product's people_wearing_images metafield) (required)
+  - alt: {String} Fallback alt text (optional)
+{% endcomment %}
+<div class="swiper-slide">
+  {{ image | image_url: width: 600 | image_tag: loading: 'lazy', alt: image.alt | default: alt }}
+</div>

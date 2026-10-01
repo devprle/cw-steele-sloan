@@ -87,29 +87,27 @@
     {%- endif -%}
   </div>
       {%- when 'product_star_rating_badge' -%}
-        <div class="product-star-rating-badge" {{ block.shopify_attributes }}>
-          {%- if block.settings.star_image != blank -%}
-            <div class="stars-img-container">
-              <img 
-                src="{{ block.settings.star_image | image_url: width: 200 }}" 
-                alt="Stars Rating" 
-                loading="lazy"
-                width="90"
-                height="18"
-              >
-            </div>
-          {%- endif -%}
-          <div class="rating-text-wrapper">
-            {%- if block.settings.rating_score != blank -%}
-              <span class="rating-score">{{ block.settings.rating_score }}</span>
-            {%- endif -%}
-            
-            {%- if block.settings.reviews_count != blank -%}
-              <span class="rating-count">({{ block.settings.reviews_count }})</span>
-            {%- endif -%}
-          </div>
-
-        </div>
+        {%- liquid
+          # Live review data from Loox, falling back to Shopify's standard review metafields
+          assign review_count = product.metafields.loox.num_reviews | default: product.metafields.reviews.rating_count | plus: 0
+          assign review_rating = product.metafields.loox.avg_rating | default: product.metafields.reviews.rating.value | default: 0 | plus: 0
+          assign review_rating_rounded = review_rating | round
+        -%}
+        {%- if review_count > 0 -%}
+          <a href="#looxReviews" class="product-star-rating-badge">
+            <span class="stars-img-container" aria-hidden="true">
+              {%- for star in (1..5) -%}
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2.9125 10.5L3.725 6.9875L1 4.625L4.6 4.3125L6 1L7.4 4.3125L11 4.625L8.275 6.9875L9.0875 10.5L6 8.6375L2.9125 10.5Z" fill="{% if star <= review_rating_rounded %}#000000{% else %}#D9D9D9{% endif %}"/>
+                </svg>
+              {%- endfor -%}
+            </span>
+            <span class="rating-text-wrapper">
+              <span class="rating-score">{{ review_rating | round: 1 }}</span>
+              <span class="rating-count">({{ review_count }} {% if review_count == 1 %}review{% else %}reviews{% endif %})</span>
+            </span>
+          </a>
+        {%- endif -%}
       {%- when 'product_trust_hub' -%}
         <div class="product-trust-hub" {{ block.shopify_attributes }}>
           
@@ -192,38 +190,51 @@
           {%- endif -%}
         </div>
       {% when 'product_instagram_slider' %}
-        <div class="product-ugc-slider-wrapper">
-          {% if block.settings.heading != blank %}
-            <div class="slider-header-flex">
-              <h3 class="slider-main-heading">{{ block.settings.heading }}</h3>
-              <div class="swiper-navigation-buttons-wrap">
-                <div class="swiper-btn-prev">
-                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                </div>
-                <div class="swiper-btn-next">
-                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        {%- liquid
+          # Only shown when the product's "People wearing images" metafield (custom.people_wearing_images) has images
+          assign ugc_field = product.metafields.custom.people_wearing_images
+          assign ugc_count = 0
+          capture ugc_slides
+            if ugc_field.type contains 'list.'
+              for ugc_file in ugc_field.value
+                assign ugc_src = ugc_file.preview_image | default: ugc_file
+                if ugc_src.src != blank
+                  assign ugc_count = ugc_count | plus: 1
+                  render 'product-ugc-slide', image: ugc_src, alt: product.title
+                endif
+              endfor
+            elsif ugc_field.value != blank
+              assign ugc_src = ugc_field.value.preview_image | default: ugc_field.value
+              if ugc_src.src != blank
+                assign ugc_count = 1
+                render 'product-ugc-slide', image: ugc_src, alt: product.title
+              endif
+            endif
+          endcapture
+        -%}
+        {%- if ugc_count > 0 -%}
+          <div class="product-ugc-slider-wrapper">
+            {% if block.settings.heading != blank %}
+              <div class="slider-header-flex">
+                <h3 class="slider-main-heading">{{ block.settings.heading }}</h3>
+                <div class="swiper-navigation-buttons-wrap">
+                  <div class="swiper-btn-prev">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  </div>
+                  <div class="swiper-btn-next">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </div>
                 </div>
               </div>
-            </div>
-          {% endif %}
+            {% endif %}
 
-          <div class="swiper product-ugc-swiper">
-            <div class="swiper-wrapper">
-              {%- if block.settings.image_1 != blank -%}
-                <div class="swiper-slide"><img src="{{ block.settings.image_1 | image_url: width: 600 }}" alt="UGC 1" loading="lazy"></div>
-              {%- endif -%}
-              {%- if block.settings.image_2 != blank -%}
-                <div class="swiper-slide"><img src="{{ block.settings.image_2 | image_url: width: 600 }}" alt="UGC 2" loading="lazy"></div>
-              {%- endif -%}
-              {%- if block.settings.image_3 != blank -%}
-                <div class="swiper-slide"><img src="{{ block.settings.image_3 | image_url: width: 600 }}" alt="UGC 3" loading="lazy"></div>
-              {%- endif -%}
-              {%- if block.settings.image_4 != blank -%}
-                <div class="swiper-slide"><img src="{{ block.settings.image_4 | image_url: width: 600 }}" alt="UGC 4" loading="lazy"></div>
-              {%- endif -%}
+            <div class="swiper product-ugc-swiper">
+              <div class="swiper-wrapper">
+                {{ ugc_slides }}
+              </div>
             </div>
           </div>
-        </div>
+        {%- endif -%}
       {%- when 'breadcrumb' -%}
         {% render 'breadcrumb', container: 'container', justify: align_breadcrumb, hide_current: true %}
       {%- when 'title' -%}
@@ -810,6 +821,11 @@
                       {{ 'products.product.sold_out' | t }}
                     {%- else -%}
                       {{ 'products.product.add_to_cart' | t }}
+                    {%- endif -%}
+                  </span>
+                  <span class="m-add-to-cart--price" data-atc-price>
+                    {%- if product.selected_or_first_available_variant.available -%}
+                      {{- ' - ' -}}{{ product.selected_or_first_available_variant.price | money }}
                     {%- endif -%}
                   </span>
                 </button>

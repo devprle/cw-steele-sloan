@@ -6,6 +6,7 @@
   - image_ratio: {String} Product media ratio (optional)
   - show_vendor: {Boolean} Show product vendor (optional)
   - show_cart_button: {Boolean} Show Add to cart button (optional)
+  - cart_button_always: {Boolean} Keep the cart button visible when the product is sold out (optional)
   - show_quickview_button: {Boolean} Show Quickview button (optional)
   - show_wishlist_button: {Boolean} Show Wishlist button (optional)
   - column_wrapper: {Boolean} Wrap product card (optional)
@@ -218,6 +219,10 @@
       .card-gallery-swiper .swiper-pagination-bullet-active {
         background: #fff;
         opacity: 1;
+      }
+      /* Keep the quick-view (eye) button above the image dots */
+      .m-product-card__media .m-product-card__addons {
+        bottom: 34px;
       }
       .custom-gallery-img img {
         object-fit: cover !important;
@@ -477,18 +482,24 @@
       {%- if show_vendor -%}
         <span class="m-product-card__vendor">{{ product.vendor }}</span>
       {%- endif -%}
-      <div class="product-review">
-        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="12" viewBox="0 0 64 12" fill="none">
-          <path d="M2.9125 10.5L3.725 6.9875L1 4.625L4.6 4.3125L6 1L7.4 4.3125L11 4.625L8.275 6.9875L9.0875 10.5L6 8.6375L2.9125 10.5Z" fill="#0A2540"/>
-          <path d="M15.9125 10.5L16.725 6.9875L14 4.625L17.6 4.3125L19 1L20.4 4.3125L24 4.625L21.275 6.9875L22.0875 10.5L19 8.6375L15.9125 10.5Z" fill="#0A2540"/>
-          <path d="M28.9125 10.5L29.725 6.9875L27 4.625L30.6 4.3125L32 1L33.4 4.3125L37 4.625L34.275 6.9875L35.0875 10.5L32 8.6375L28.9125 10.5Z" fill="#0A2540"/>
-          <path d="M41.9125 10.5L42.725 6.9875L40 4.625L43.6 4.3125L45 1L46.4 4.3125L50 4.625L47.275 6.9875L48.0875 10.5L45 8.6375L41.9125 10.5Z" fill="#0A2540"/>
-          <path d="M54.9125 10.5L55.725 6.9875L53 4.625L56.6 4.3125L58 1L59.4 4.3125L63 4.625L60.275 6.9875L61.0875 10.5L58 8.6375L54.9125 10.5Z" fill="#0A2540"/>
-        </svg>
-        <span>
-          49 reviews
-        </span>
-      </div>
+      {%- liquid
+        # Review count/rating per product: Loox metafields first, then Shopify's standard review metafields
+        assign review_count = product.metafields.loox.num_reviews | default: product.metafields.reviews.rating_count | plus: 0
+        assign review_rating = product.metafields.loox.avg_rating | default: product.metafields.reviews.rating.value | default: 0 | plus: 0 | round
+      -%}
+      {%- if review_count > 0 -%}
+        <div class="product-review">
+          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="12" viewBox="0 0 64 12" fill="none" aria-hidden="true">
+            {%- for star in (1..5) -%}
+              {%- assign star_x = forloop.index0 | times: 13 -%}
+              <path class="{% if star <= review_rating %}is-filled{% else %}is-empty{% endif %}" transform="translate({{ star_x }} 0)" d="M2.9125 10.5L3.725 6.9875L1 4.625L4.6 4.3125L6 1L7.4 4.3125L11 4.625L8.275 6.9875L9.0875 10.5L6 8.6375L2.9125 10.5Z" fill="{% if star <= review_rating %}#0A2540{% else %}#D9D9D9{% endif %}"/>
+            {%- endfor -%}
+          </svg>
+          <span>
+            {{ review_count }} {% if review_count == 1 %}review{% else %}reviews{% endif %}
+          </span>
+        </div>
+      {%- endif -%}
       {% if show_title == true %}
         <h3 class="m-product-card__title">
           <a
@@ -601,7 +612,7 @@
       {%- endif -%}
     </div>
 
-    {%- if sold_out == false and show_cart_button -%}
+    {%- if show_cart_button and sold_out == false or show_cart_button and cart_button_always -%}
       {% render 'product-card-quick-add-btn', product: product, quick_add_text: quick_add_text, section: section %}
     {%- endif -%}
 

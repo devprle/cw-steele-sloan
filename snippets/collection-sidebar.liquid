@@ -62,7 +62,19 @@
                     {%- endif -%}
                   >
                     {% if menu.links != blank %}
-                      <ul class="m-link-lists">
+                      {%- liquid
+                        assign coll_link_count = 0
+                        assign coll_active_index = 0
+                        for link in menu.links
+                          if link.url contains '/collections/'
+                            assign coll_link_count = coll_link_count | plus: 1
+                            if link.active
+                              assign coll_active_index = coll_link_count
+                            endif
+                          endif
+                        endfor
+                      -%}
+                      <ul class="m-link-lists{% if coll_link_count > 5 %} has-load-more{% if coll_active_index > 5 %} expanded{% endif %}{% endif %}">
                         {% for link in menu.links %}
                           {% if link.url contains '/collections/' %}
                             <li class="m-link-lists--item{% if link.active %} active{% endif %}" data-tag-filter>
@@ -90,6 +102,15 @@
                           {% endif %}
                         {% endfor %}
                       </ul>
+                      {%- if coll_link_count > 5 -%}
+                        <button
+                          type="button"
+                          class="m-filter--load-more-btn"
+                          onclick="var l=this.previousElementSibling;l.classList.toggle('expanded');this.textContent=l.classList.contains('expanded')?'Show less':'Load more';"
+                        >
+                          {%- if coll_active_index > 5 -%}Show less{%- else -%}Load more{%- endif -%}
+                        </button>
+                      {%- endif -%}
                     {% endif %}
                   </div>
                 </div>

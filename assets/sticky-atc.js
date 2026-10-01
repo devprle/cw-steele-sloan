@@ -73,33 +73,74 @@ if (!customElements.get("sticky-atc")) {
         mql.onchange = this.setStickyAddToCartHeight.bind(this);
         this.setStickyAddToCartHeight();
 
-        this.domNodes.select.addEventListener("change", (e) => {
-          const { target } = e;
-          const variantPicker = this.mainProduct.querySelector('variant-picker');
-          const selectedVariantId = this.querySelector(this.selectors.variantIdSelect).value;
-          this.currentVariant = this.variantData.find((variant) => variant.id === Number(selectedVariantId));
-          this.currentVariant ? this.toggleAddButton(!this.currentVariant.available, window.MinimogStrings.soldOut) : this.toggleAddButton(true, window.MinimogStrings.unavailable);
+        this.optionSelects = Array.from(this.querySelectorAll("[data-sticky-option]"));
+        if (this.optionSelects.length) {
+          this.optionSelects.forEach((select) => select.addEventListener("change", this.onOptionChange.bind(this)));
+          this.updateSwatch();
+        } else if (this.domNodes.select) {
+          this.domNodes.select.addEventListener("change", (e) => {
+            const { target } = e;
+            const variantPicker = this.mainProduct.querySelector('variant-picker');
+            const selectedVariantId = this.querySelector(this.selectors.variantIdSelect).value;
+            this.currentVariant = this.variantData.find((variant) => variant.id === Number(selectedVariantId));
+            this.currentVariant ? this.toggleAddButton(!this.currentVariant.available, window.MinimogStrings.soldOut) : this.toggleAddButton(true, window.MinimogStrings.unavailable);
 
-          const selectedOption = target.options[target.selectedIndex];
-          const selectedOptionIds = selectedOption.dataset.options.split(',').filter(id => id);
+            const selectedOption = target.options[target.selectedIndex];
+            const selectedOptionIds = (selectedOption.dataset.options || '').split(',').filter(id => id);
+            if (variantPicker) {
+              selectedOptionIds.forEach((optionId) => this.selectMainOption(variantPicker, optionId));
+              variantPicker.dispatchEvent(new Event("change"));
+            }
+          });
+        }
+      }
 
-          if (variantPicker) {
-            selectedOptionIds.forEach((optionId) => {
-              const input = variantPicker.querySelector(`[data-option-value-id="${optionId}"]`);
-              const { tagName } = input;
-              switch (tagName) {
-                case "OPTION":
-                  const inputParent = input.parentNode; // select tag
-                  inputParent.value = input.value;
-                  break;
-                case "INPUT":
-                  input.checked = true;
-                  break;
-              }
-            });
-            variantPicker.dispatchEvent(new Event("change"));
-          }
-        });
+      // One select per product option (Color / Size ...): resolve the variant and mirror it in the main picker
+      onOptionChange() {
+        const values = this.optionSelects.map((select) => select.value);
+        const variant = this.variantData.find((v) => v.options.every((value, i) => value === values[i]));
+        const variantInput = this.querySelector('[name="id"]');
+
+        this.currentVariant = variant;
+        variantInput.value = variant ? variant.id : '';
+        variant
+          ? this.toggleAddButton(!variant.available, window.MinimogStrings.soldOut)
+          : this.toggleAddButton(true, window.MinimogStrings.unavailable);
+        this.updatePrice(variant);
+        this.updateSwatch();
+
+        const variantPicker = this.mainProduct.querySelector('variant-picker');
+        if (variantPicker) {
+          this.optionSelects.forEach((select) => {
+            const optionId = select.options[select.selectedIndex].dataset.optionValueId;
+            this.selectMainOption(variantPicker, optionId);
+          });
+          variantPicker.dispatchEvent(new Event("change"));
+        }
+      }
+
+      selectMainOption(variantPicker, optionId) {
+        const input = variantPicker.querySelector(`[data-option-value-id="${optionId}"]`);
+        if (!input) return;
+        if (input.tagName === "OPTION") {
+          input.parentNode.value = input.value;
+        } else if (input.tagName === "INPUT") {
+          input.checked = true;
+        }
+      }
+
+      updateSwatch() {
+        const swatch = this.querySelector("[data-sticky-swatch]");
+        if (!swatch) return;
+        const select = swatch.closest("label").querySelector("select");
+        const option = select.options[select.selectedIndex];
+        swatch.style.background = (option && option.dataset.swatch) || "";
+      }
+
+      updatePrice(variant) {
+        const priceEl = this.querySelector("[data-sticky-price]");
+        if (!priceEl || !variant || typeof formatMoney !== "function") return;
+        priceEl.textContent = formatMoney(variant.price, MinimogSettings.money_format);
       }
 
       getVariantData() {
@@ -147,7 +188,7 @@ if (!customElements.get("sticky-atc")) {
 
         const pickerFields = this.querySelector('.m-product-option--dropdown-select');
 
-        pickerFields.value = '';
+        if (pickerFields) pickerFields.value = '';
         this.setUnavailable();
       }
 
@@ -165,6 +206,13 @@ if (!customElements.get("sticky-atc")) {
           if (this.currentVariant) {
             variantInput.value = e.data.variant.id;
             this.toggleAddButton(!this.currentVariant.available, window.MinimogStrings.soldOut)
+            if (this.optionSelects) {
+              this.optionSelects.forEach((select, i) => {
+                if (this.currentVariant.options[i] !== undefined) select.value = this.currentVariant.options[i];
+              });
+              this.updateSwatch();
+            }
+            this.updatePrice(this.currentVariant);
           } else {
             variantInput.value = '';
             this.toggleAddButton(true, window.MinimogStrings.unavailable)

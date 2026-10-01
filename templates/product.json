@@ -58,8 +58,8 @@
         "scroll_speed": 25,
         "text_color": "#ffffff",
         "icon_color": "#ffffff",
-        "desktop_font_size": 12,
-        "mobile_font_size": 10,
+        "desktop_font_size": 15,
+        "mobile_font_size": 15,
         "page_width": 1474,
         "background_color": "#0a2540",
         "padding_top": 12,
@@ -80,7 +80,6 @@
         },
         "product_star_rating_badge_K4B3JQ": {
           "type": "product_star_rating_badge",
-          "disabled": true,
           "settings": {
             "star_image": "shopify://shop_images/Frame_26_1.svg",
             "rating_score": "4.9",
@@ -90,7 +89,7 @@
         "price": {
           "type": "price",
           "settings": {
-            "show_saving": false,
+            "show_saving": true,
             "sale_badge_type": "percentage"
           }
         },
@@ -108,7 +107,6 @@
         },
         "product_trust_hub_EV38R3": {
           "type": "product_trust_hub",
-          "disabled": true,
           "settings": {
             "delivery_text_prefix": "Order now for guaranteed delivery by",
             "delivery_days_offset": 5
@@ -196,7 +194,6 @@
         },
         "product_instagram_slider_JaYREd": {
           "type": "product_instagram_slider",
-          "disabled": true,
           "settings": {
             "heading": "SEE HOW PEOPLE ARE WEARING THEM",
             "image_1": "shopify://shop_images/Rectangle_14_3bd517f2-9055-483c-acb7-361aef5d7d7c.png",
@@ -254,7 +251,7 @@
         "heading_size": "h3",
         "text_align": "center",
         "limit": 8,
-        "columns": 5,
+        "columns": 4,
         "column_gap": 30,
         "enable_slider": true,
         "show_pagination": false,
@@ -731,17 +728,16 @@
         "faq_item_hMF6Pe",
         "faq_item_ab97qx"
       ],
-      "disabled": true,
       "name": "Custom FAQ",
       "settings": {
         "title": "Frequently Asked Questions",
         "subtitle": "Fast shipping, beautiful products, and service that keeps people coming back",
-        "background_color": "#f2f2f2",
-        "text_color": "#121212",
+        "background_color": "#ffffff",
+        "text_color": "#000000",
         "question_color": "#666666",
         "answer_color": "#121212",
         "divider_color": "#e8e8e8",
-        "page_width": 1200,
+        "page_width": 1474,
         "padding_top": 90,
         "padding_bottom": 40,
         "tablet_padding_top": 60,
@@ -851,22 +847,22 @@
         "text_F8TnNN": {
           "type": "text",
           "settings": {
-            "text": "Hypoallergenic stainless steel",
+            "text": "Hypoallergenic-friendly stainless steel styles",
             "icon_svg": ""
           }
         },
         "text_RwggEM": {
           "type": "text",
           "settings": {
-            "text": "Wholesale prices available",
+            "text": "Giftable, on-trend designs at a great price point",
             "icon_svg": ""
           }
         },
         "text_BJE4qa": {
           "type": "text",
-          "disabled": true,
+          
           "settings": {
-            "text": "Hassle-free returns within 5 days",
+            "text": "Quick and easy returns available",
             "icon_svg": ""
           }
         }
@@ -885,16 +881,16 @@
         "enable_marquee_mobile": true,
         "pause_on_hover": false,
         "scroll_speed": 25,
-        "text_color": "#ffffff",
-        "icon_color": "#ffffff",
-        "desktop_font_size": 12,
-        "mobile_font_size": 10,
+        "text_color": "#0a2540",
+        "icon_color": "#0a2540",
+        "desktop_font_size": 15,
+        "mobile_font_size": 15,
         "page_width": 1474,
-        "background_color": "#0a2540",
-        "padding_top": 12,
-        "padding_bottom": 12,
-        "tablet_padding_top": 12,
-        "tablet_padding_bottom": 12,
+        "background_color": "#d4af77",
+        "padding_top": 11,
+        "padding_bottom": 13,
+        "tablet_padding_top": 11,
+        "tablet_padding_bottom": 13,
         "mobile_padding_top": 10,
         "mobile_padding_bottom": 10,
         "custom_class": ""
@@ -904,13 +900,13 @@
   "order": [
     "custom_marquee_ymPMhq",
     "main",
-    "product-recommendations",
-    "image_features_grid_iGDgMW",
     "steps_process_banner_Lxpnbi",
+    "image_features_grid_iGDgMW",
     "product_specifications_table_A9FBG9",
     "testimonials_grid_RwCw9G",
     "17823102759d0b116c",
     "custom_faq_MepwJA",
+    "product-recommendations",
     "product-details-tabs",
     "recent-viewed-products",
     "custom_newsletter_3bdWnr",

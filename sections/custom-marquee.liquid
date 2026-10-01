@@ -104,7 +104,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 0 30px;
+    padding: 0 12px;
     color: {{ section.settings.text_color }};
     font-size: {{ section.settings.desktop_font_size }}px;
     font-weight: 300;
@@ -238,6 +238,16 @@
       }
     {% endif %}
   }
+  {%- unless section.settings.enable_marquee -%}
+    /* Static desktop bar: wrap onto a second line instead of clipping the last item */
+    @media screen and (min-width: 1025px) {
+      .marquee-content-{{ section.id }}:not([aria-hidden="true"]) {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        row-gap: 6px;
+      }
+    }
+  {%- endunless -%}
   @media(max-width: 1200px){
     .marquee-item-{{ section.id }} {
       padding: 0 5px

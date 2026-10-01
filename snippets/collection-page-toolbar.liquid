@@ -40,7 +40,14 @@
             {%- endif -%}
           {%- endif -%}
         {%- else -%}
-          Showing {{ results.products.size }} of {{ results.products_count }} products
+          {%- liquid
+            # The toolbar renders outside the paginate block, so products.size is Shopify's default page size, not the real one
+            assign shown_count = results.products.size
+            if st.pagination_limit
+              assign shown_count = results.products_count | at_most: st.pagination_limit
+            endif
+          -%}
+          Showing&nbsp;<span data-shown-count>{{ shown_count }}</span>&nbsp;of {{ results.products_count }} products
         {%- endif -%}
       </div>
     </div>

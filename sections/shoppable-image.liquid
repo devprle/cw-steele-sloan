@@ -66,12 +66,17 @@
         letter-spacing: 2px;
         font-size: 14px;
         display: flex;
+        gap: 1px;
+    }
+    #{{ section.id }} .shoppable-image__rating .stars svg {
+        width: 15px;
+        height: 15px;
     }
     #{{ section.id }} span.rating-text{
       font-family: 'Inter';
-      font-weight: 300;
-      font-size: 10px;
-      line-height: 100%;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: normal;
       letter-spacing: 0;
     }
     #{{ section.id }} span.rating-text strong{
@@ -319,6 +324,13 @@
     }
     #{{ section.id }} .shoppable-image__rating {
         justify-content: center;
+    }
+    #{{ section.id }} span.rating-text {
+        font-size: 13px;
+    }
+    #{{ section.id }} .shoppable-image__rating .stars svg {
+        width: 13px;
+        height: 13px;
     }
     .shoppable-image__content-{{ section.id }} {
         text-align: center;

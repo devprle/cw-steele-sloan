@@ -1,15 +1,36 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
+{%- liquid
+  # "Officially licensed" pill on the main image for licensed products
+  assign licensed_haystack = product.title | append: ' ' | append: product.tags | downcase
+  assign show_licensed_badge = false
+  if licensed_haystack contains 'officially licensed' or licensed_haystack contains 'officially-licensed'
+    assign show_licensed_badge = true
+  endif
+-%}
 <div class="product-gallery-swiper-wrapper">
-  
+
   <div class="swiper product-main-swiper">
+    {%- if show_licensed_badge -%}
+      <span class="product-gallery-badge">Officially licensed</span>
+    {%- endif -%}
     <div class="swiper-wrapper">
       {%- for media in product.media -%}
-        <div class="swiper-slide" data-media-type="{{ media.media_type }}">
+        <div class="swiper-slide" data-media-type="{{ media.media_type }}" data-media-id="{{ media.id }}">
           {%- case media.media_type -%}
             {%- when 'image' -%}
-              <img src="{{ media | image_url }}" height="auto" width="auto" alt="{{ media.alt | escape }}" loading="lazy">
+              {%- liquid
+                assign media_loading = 'lazy'
+                if forloop.first
+                  assign media_loading = 'eager'
+                endif
+              -%}
+              {{
+                media
+                | image_url: width: 1600
+                | image_tag: loading: media_loading, alt: media.alt, sizes: '(min-width: 1024px) 55vw, 100vw', widths: '600, 900, 1200, 1600'
+              }}
             
             {%- when 'video' -%}
               <div class="swiper-video-container">
@@ -35,7 +56,7 @@
     <div class="swiper-wrapper">
       {%- for media in product.media -%}
         <div class="swiper-slide">
-          <img src="{{ media | image_url }}" width="auto" height="auto" alt="Thumbnail" loading="lazy">
+          {{ media.preview_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: media.alt }}
           {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
             <span class="thumb-video-icon">▶</span>
           {%- endif -%}
@@ -50,10 +71,13 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const thumbsSwiper = new Swiper(".product-thumbs-swiper", {
-    spaceBetween: 10,
+    spaceBetween: 5,
     slidesPerView: 7,
     freeMode: true,
     watchSlidesProgress: true,
+    breakpoints: {
+      768: { slidesPerView: 7, spaceBetween: 19 },
+    },
   });
   const mainSwiper = new Swiper(".product-main-swiper", {
     spaceBetween: 10,

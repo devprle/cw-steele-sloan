@@ -1,0 +1,54 @@
+{% comment %}
+  Customer review tile shown between products in the collection grid.
+
+  Accepts:
+  - block: {Object} 'review_card' block from main-collection-product-grid (required)
+
+  Usage:
+  {% render 'collection-review-card', block: block %}
+{% endcomment %}
+
+{%- liquid
+  assign rating = block.settings.rating | default: 5
+  assign author = block.settings.author | strip
+  assign review_date = block.settings.date | strip
+-%}
+
+<div class="m-review-card">
+  <div class="m-review-card__inner">
+    {%- if block.settings.image != blank -%}
+      <div class="m-review-card__image">
+        {{
+          block.settings.image
+          | image_url: width: 300
+          | image_tag: loading: 'lazy', alt: author, sizes: '148px', widths: '150, 300'
+        }}
+      </div>
+    {%- endif -%}
+
+    <div class="m-review-card__stars" role="img" aria-label="{{ rating }} out of 5 stars">
+      {%- for star in (1..5) -%}
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path
+            d="M2.9125 10.5L3.725 6.9875L1 4.625L4.6 4.3125L6 1L7.4 4.3125L11 4.625L8.275 6.9875L9.0875 10.5L6 8.6375L2.9125 10.5Z"
+            fill="{% if star <= rating %}#000000{% else %}#D9D9D9{% endif %}"
+          />
+        </svg>
+      {%- endfor -%}
+    </div>
+
+    <div class="m-review-card__body">
+      {%- if block.settings.text != blank -%}
+        <p class="m-review-card__text">{{ block.settings.text | escape | newline_to_br }}</p>
+      {%- endif -%}
+
+      {%- if author != blank or review_date != blank -%}
+        <p class="m-review-card__meta">
+          {{- author | escape -}}
+          {%- if author != blank and review_date != blank %} on {% endif -%}
+          {{- review_date | escape -}}
+        </p>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
