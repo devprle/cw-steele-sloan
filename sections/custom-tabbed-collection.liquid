@@ -142,8 +142,14 @@
     opacity: 1;
   }
 
-  .tab-btn-{{ section.id }}.active {
-    border: 5px solid #0A2540;
+  /* Inset shadow instead of border so the active ring doesn't shrink the content area */
+  .tab-btn-{{ section.id }}.active::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 5px #0A2540;
+    pointer-events: none;
   }
 
   .tab-img-{{ section.id }} {
