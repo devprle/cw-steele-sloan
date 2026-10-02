@@ -2366,6 +2366,69 @@
         "default": false
       },
       {
+        "type": "number",
+        "id": "cart_free_shipping_threshold",
+        "label": "Free shipping threshold",
+        "info": "Order amount (in store currency) for free shipping. Set to 0 to hide the progress bar.",
+        "default": 40
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_drawer_show_recommendations",
+        "label": "Show \"You Will Also Love\" recommendations",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "cart_drawer_recommendations_title",
+        "label": "Recommendations heading",
+        "default": "You Will Also Love"
+      },
+      {
+        "type": "header",
+        "content": "Cart drawer delivery estimate"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_delivery_estimate_enable",
+        "label": "Show delivery estimate",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "cart_delivery_ship_from",
+        "label": "Ships from",
+        "default": "Atlanta, GA"
+      },
+      {
+        "type": "range",
+        "id": "cart_delivery_cutoff_hour",
+        "label": "Same-day shipping cutoff (hour, US Eastern time)",
+        "info": "Orders placed on a business day before this hour ship the same day.",
+        "min": 0,
+        "max": 23,
+        "step": 1,
+        "default": 14
+      },
+      {
+        "type": "range",
+        "id": "cart_delivery_min_days",
+        "label": "Transit time – minimum (business days)",
+        "min": 1,
+        "max": 15,
+        "step": 1,
+        "default": 2
+      },
+      {
+        "type": "range",
+        "id": "cart_delivery_max_days",
+        "label": "Transit time – maximum (business days)",
+        "min": 1,
+        "max": 20,
+        "step": 1,
+        "default": 5
+      },
+      {
         "type": "header",
         "content": "Cart addons"
       },

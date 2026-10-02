@@ -15,7 +15,9 @@
 
         assign title_handle = link.title | handleize
         assign has_mega_item = false
+        assign steele_mega = false
       %}
+      {%- capture block_type -%}{%- endcapture -%}
       {% for block in section.blocks %}
         {% liquid
           assign menu_title = block.settings.heading | handleize
@@ -231,6 +233,11 @@
                     </div>
                   {% endunless %}
                 {% endcapture %}
+            {% when 'steele_mega_shop_all', 'steele_mega_college' %}
+              {% assign steele_mega = true %}
+              {% capture block_type %}
+                {% render 'steele-mega-menu', block: block %}
+              {% endcapture %}
             {% when 'custom_html' %}
               {% capture block_type %}
                   {% if block.settings.html != blank %}
@@ -271,7 +278,23 @@
         endif
       %}
 
-      {% if link.links != blank %}
+      {% if steele_mega and block_type != blank %}
+        {%- comment -%} Desktop-only Figma megamenu; the mobile drawer still uses the navigation menu {%- endcomment -%}
+        <li class="m-menu__item m-menu__item--parent m-menu__item--mega steele-mega-item" data-index="{{ forloop.index0 }}">
+          <a
+            href="{{ link.url }}"
+            class="m-menu__link m-menu__link--main{% if section.settings.uppercase_parent_level %} m:uppercase{% endif %}"
+          >
+            {{ link.title }}
+            <span class="m-menu__arrow">
+              <img src="{{ 'header-chevron.svg' | asset_url }}" width="16" height="16" alt="">
+            </span>
+          </a>
+          <div class="m-mega-menu steele-mega">
+            {{ block_type }}
+          </div>
+        </li>
+      {% elsif link.links != blank %}
         <li class="{{ li_class }}" data-index="{{ forloop.index0 }}">
           <a
             href="{{ link.url }}"

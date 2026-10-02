@@ -1,0 +1,131 @@
+{%- comment -%}
+  Desktop megamenu panels (Figma: Mega menu — Desktop).
+  Links come from the menus picked in the block; when a menu isn't picked, the Figma defaults below are used.
+  Default lists are "Label|/url" pairs separated by ";;".
+{%- endcomment -%}
+{%- liquid
+  assign s = block.settings
+  if block.type == 'steele_mega_shop_all'
+    assign default_featured = 'Best Sellers|/collections/best-sellers;;New Arrivals|/collections/new-arrivals;;Game Day|/collections/game-day;;Sporty Earrings|/collections/sports-earrings'
+  else
+    assign default_colleges = 'Alabama|/collections/university-of-alabama-gifts-roll-tide;;Arkansas|/collections/university-of-arkansas-razorbacks-go-hogs;;Auburn|/collections/auburn-university-war-eagle;;FSU|/collections/florida-sate-university-go-noles;;Indiana|/collections/indiana-hoosiers;;LSU|/collections/louisiana-state-university-lsu-geaux-tigers;;Miami|/collections/university-of-miami;;Mississippi State|/collections/mississippi-state-bulldogs-hail-state;;Oklahoma|/collections/oklahoma-sooners-university-of-oklahoma;;Ole Miss|/collections/ole-miss-university-of-mississippi-rebels;;Oregon|/collections/university-of-oregon-go-ducks;;South Carolina|/collections/university-of-south-carolina-gamecocks;;TCU|/collections/tcu-texas-christian-university-horned-frogs;;Tennessee|/collections/university-of-tennessee-volunteers;;Texas A&M|/collections/texas-a-m-gig-em-aggies;;Texas Tech|/collections/texas-tech-wreck-em-red-raiders;;Tulane|/collections/tulane-university-green-wave;;UNC|/collections/unc-tarheels-university-of-north-carolina-at-chapel-hill'
+    assign default_mascots = 'Bears|/collections/bears-teams;;Bulldogs|/collections/bulldog-teams;;Cats|/collections/cats-teams;;Eagles|/collections/eagles-teams;;Gators|/collections/gators-teams;;Lions|/collections/lions-teams;;Rams|/collections/rams-teams;;Tigers|/collections/gold-stud-earrings'
+  endif
+-%}
+
+<div class="steele-mega__panel">
+  {%- if block.type == 'steele_mega_shop_all' -%}
+    <div class="steele-mega__content steele-mega__content--shop-all">
+      <div class="steele-mega__column steele-mega__column--featured">
+        {%- if s.featured_heading != blank -%}
+          <p class="steele-mega__heading">{{ s.featured_heading }}</p>
+        {%- endif -%}
+        <ul class="steele-mega__links" role="list">
+          {%- if s.featured_menu != blank and linklists[s.featured_menu].links.size > 0 -%}
+            {%- for link in linklists[s.featured_menu].links -%}
+              <li><a href="{{ link.url }}" class="steele-mega__link">{{ link.title }}</a></li>
+            {%- endfor -%}
+          {%- else -%}
+            {%- assign pairs = default_featured | split: ';;' -%}
+            {%- for pair in pairs -%}
+              {%- assign parts = pair | split: '|' -%}
+              <li><a href="{{ parts.last }}" class="steele-mega__link">{{ parts.first }}</a></li>
+            {%- endfor -%}
+          {%- endif -%}
+        </ul>
+        {%- if s.view_all_label != blank -%}
+          <div class="steele-mega__view-all">
+            <a href="{{ s.view_all_link | default: '/collections/all-products' }}" class="steele-mega__view-all-link">
+              {{ s.view_all_label }}
+              <img src="{{ 'mega-arrow-right.svg' | asset_url }}" width="16" height="12" alt="" aria-hidden="true">
+            </a>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="steele-mega__tiles">
+        {%- assign tile_defaults = 'earrings|/collections/earrings,necklaces|/collections/necklace,bracelets|/collections/bracelets-1,gifts|/collections/under-20' | split: ',' -%}
+        {%- for tile_default in tile_defaults -%}
+          {%- liquid
+            assign i = forloop.index
+            assign default_parts = tile_default | split: '|'
+            assign image_key = 'tile_' | append: i | append: '_image'
+            assign title_key = 'tile_' | append: i | append: '_title'
+            assign text_key = 'tile_' | append: i | append: '_text'
+            assign link_key = 'tile_' | append: i | append: '_link'
+            assign fallback_image = 'mega-' | append: default_parts.first | append: '.jpg'
+          -%}
+          {%- render 'steele-mega-tile',
+            image: s[image_key],
+            fallback_image: fallback_image,
+            title: s[title_key],
+            text: s[text_key],
+            url: s[link_key],
+            fallback_url: default_parts.last
+          -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- else -%}
+    <div class="steele-mega__content steele-mega__content--college">
+      <div class="steele-mega__column steele-mega__column--colleges">
+        {%- if s.colleges_heading != blank -%}
+          <p class="steele-mega__heading">{{ s.colleges_heading }}</p>
+        {%- endif -%}
+        {%- if s.colleges_menu != blank and linklists[s.colleges_menu].links.size > 0 -%}
+          {%- assign college_count = linklists[s.colleges_menu].links.size -%}
+        {%- else -%}
+          {%- assign college_pairs = default_colleges | split: ';;' -%}
+          {%- assign college_count = college_pairs.size -%}
+        {%- endif -%}
+        {%- assign college_rows = college_count | plus: 1 | divided_by: 2 -%}
+        <ul class="steele-mega__links steele-mega__links--two-col" role="list" style="--steele-rows: {{ college_rows }};">
+          {%- if s.colleges_menu != blank and linklists[s.colleges_menu].links.size > 0 -%}
+            {%- for link in linklists[s.colleges_menu].links -%}
+              <li><a href="{{ link.url }}" class="steele-mega__link">{{ link.title }}</a></li>
+            {%- endfor -%}
+          {%- else -%}
+            {%- for pair in college_pairs -%}
+              {%- assign parts = pair | split: '|' -%}
+              <li><a href="{{ parts.last }}" class="steele-mega__link">{{ parts.first }}</a></li>
+            {%- endfor -%}
+          {%- endif -%}
+        </ul>
+      </div>
+
+      <div class="steele-mega__column steele-mega__column--mascots">
+        {%- if s.mascots_heading != blank -%}
+          <p class="steele-mega__heading">{{ s.mascots_heading }}</p>
+        {%- endif -%}
+        <ul class="steele-mega__links" role="list">
+          {%- if s.mascots_text != blank -%}
+            <li class="steele-mega__helper">{{ s.mascots_text }}</li>
+          {%- endif -%}
+          {%- if s.mascots_menu != blank and linklists[s.mascots_menu].links.size > 0 -%}
+            {%- for link in linklists[s.mascots_menu].links -%}
+              <li><a href="{{ link.url }}" class="steele-mega__link">{{ link.title }}</a></li>
+            {%- endfor -%}
+          {%- else -%}
+            {%- assign pairs = default_mascots | split: ';;' -%}
+            {%- for pair in pairs -%}
+              {%- assign parts = pair | split: '|' -%}
+              <li><a href="{{ parts.last }}" class="steele-mega__link">{{ parts.first }}</a></li>
+            {%- endfor -%}
+          {%- endif -%}
+        </ul>
+      </div>
+
+      <div class="steele-mega__tiles steele-mega__tiles--wide">
+        {%- render 'steele-mega-tile',
+          image: s.tile_image,
+          fallback_image: 'mega-game-day.jpg',
+          title: s.tile_title,
+          text: s.tile_text,
+          url: s.tile_link,
+          fallback_url: '/collections/game-day',
+          wide: true
+        -%}
+      </div>
+    </div>
+  {%- endif -%}
+</div>

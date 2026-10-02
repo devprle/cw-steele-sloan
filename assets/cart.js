@@ -223,6 +223,12 @@ class MCartItems extends HTMLElement {
           this.postProcessHtmlCallbacks
         );
       }
+      // Custom header parts (item count + free shipping bar) live outside the form/footer
+      ['#SteeleCartTitle', '#SteeleCartShipping'].forEach((selector) => {
+        const current = cartDrawer.querySelector(selector);
+        const updated = sectionToRender.querySelector(selector);
+        if (current && updated) current.innerHTML = updated.innerHTML;
+      });
     }
 
     const mainCart = document.querySelector(`#MinimogCart`);

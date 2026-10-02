@@ -96,6 +96,16 @@
       margin-top: 20px;
       background: transparent;
       color: #000;
+      transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    }
+    /* Same hover as the collection/homepage cards; must match the specificity of the rule above */
+    .m-product-card__content .m-product-card__action .m-product-form button:not([disabled]):hover,
+    .m-product-card__content button.m-product-form.m-product-quickview-button.m-spinner-button.m-button:hover,
+    .pdp-recommendations-{{ section.id }} .m-product-card__content .m-product-card__action-wrapper .m-button:not([disabled]):hover {
+      background: #0A2540;
+      border-color: #0A2540;
+      color: #ffffff;
+      box-shadow: none;
     }
     .m-product-card.m-product-card--style-1 {
       height: 100%;

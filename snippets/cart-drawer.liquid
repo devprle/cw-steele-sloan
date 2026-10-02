@@ -1,4 +1,6 @@
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+{{ 'steele-cart-drawer.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'steele-cart-drawer.js' | asset_url }}" defer="defer"></script>
 {% comment %} <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script> {% endcomment %}
 {{ 'component-quantity-popover.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
@@ -23,20 +25,20 @@
   class="m-cart-drawer"
 >
   <div class="m-cart-drawer__inner m:h-full m-gradient m-color-{{ settings.drawer_popup_color_scheme }}">
-    <button class="m-cart-drawer__close" aria-label="Close">
-      <svg
-        class="m-svg-icon--large"
-        fill="currentColor"
-        stroke="currentColor"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 320 512"
-      >
-        <path d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z"/>
-      </svg>
-    </button>
     <div class="m:flex m:flex-col m:h-full">
-      <div class="m-cart-drawer__header">
-        <h3 class="m-cart-drawer__title m:text-xl md:m:text-2xl m:font-medium">{{ 'cart.general.title' | t }}</h3>
+      <div class="m-cart-drawer__header steele-cart__header">
+        <div class="steele-cart__title-row">
+          <h3 class="steele-cart__title" id="SteeleCartTitle">
+            Your cart
+            <span class="steele-cart__count">({{ cart.item_count }})</span>
+          </h3>
+          <button class="m-cart-drawer__close steele-cart__close" aria-label="Close">
+            <img src="{{ 'cart-close.svg' | asset_url }}" width="17" height="17" alt="" aria-hidden="true">
+          </button>
+        </div>
+        <div id="SteeleCartShipping">
+          {%- render 'steele-cart-shipping-bar' -%}
+        </div>
         {% if template.name != 'cart' %}
           <foxkit-cart-countdown></foxkit-cart-countdown>
         {% endif %}
@@ -65,10 +67,16 @@
             </div>
           {%- endif -%}
         </form>
+        {%- if settings.cart_drawer_show_recommendations -%}
+          <steele-cart-recommendations
+            class="steele-cart__recs"
+            data-url="{{ routes.product_recommendations_url }}"
+            data-product-id="{{ cart.items.first.product_id }}"
+          ></steele-cart-recommendations>
+        {%- endif -%}
       </m-cart-items>
       <div class="m-cart-drawer__footer" id="MinimogCartDrawerFooter">
         <div class="m-cart-drawer__footer--wrapper{% if cart == empty %} m:hidden{% else %} m:block{% endif %}">
-          {% render 'cart-addons', form_id: 'cart-drawer-form' %}
           <div class="m-cart-drawer__gift-wrapping">
             <div class="m:hidden">{{ gift_wrapping.object.variants.first | json }}</div>
             {%- if gift_wrapping != null -%}
@@ -125,32 +133,42 @@
               </m-gift-wrapping-component>
             {%- endif -%}
           </div>
-          <div class="m-cart__summary m-cart-drawer__summary">
+          {%- liquid
+            assign cart_savings = 0
+            for item in cart.items
+              assign compare_unit = item.original_price
+              if item.variant.compare_at_price > compare_unit
+                assign compare_unit = item.variant.compare_at_price
+              endif
+              assign compare_line = compare_unit | times: item.quantity
+              if compare_line > item.final_line_price
+                assign cart_savings = cart_savings | plus: compare_line | minus: item.final_line_price
+              endif
+            endfor
+            for discount in cart.cart_level_discount_applications
+              assign cart_savings = cart_savings | plus: discount.total_allocated_amount
+            endfor
+          -%}
+          <div class="m-cart__summary m-cart-drawer__summary steele-cart__summary">
             <div data-foxkit-cart-summary></div>
+            {%- if cart_savings > 0 -%}
+              <div class="steele-cart__savings">
+                <span>Savings</span>
+                <span>{{ cart_savings | money }}</span>
+              </div>
+            {%- endif -%}
             <div data-minimog-cart-discounts>
               {%- if cart.cart_level_discount_applications.size > 0 -%}
-                <ul class="m-cart__discount" role="list">
+                <ul class="steele-cart__discounts" role="list">
                   {%- for discount in cart.cart_level_discount_applications -%}
-                    <li class="m-cart__discount--item m:justify-end m:items-center">
-                      <svg
-                        aria-hidden="true"
-                        width="20"
-                        height="20"
-                        focusable="false"
-                        role="presentation"
-                        viewBox="0 0 12 13"
-                      >
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M7 .5h3a2 2 0 0 1 2 2v3a.995.995 0 0 1-.293.707l-6 6a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 0-1.414l6-6A.995.995 0 0 1 7 .5zm2 2a1 1 0 1 0 2 0 1 1 0 0 0-2 0z" fill="currentColor"></path>
-                      </svg>
-                      <span>{{ discount.title | upcase }}&nbsp;(-{{ discount.total_allocated_amount | money }})</span>
-                    </li>
+                    <li>{{ discount.title | upcase }} (-{{ discount.total_allocated_amount | money }})</li>
                   {%- endfor -%}
                 </ul>
               {%- endif -%}
             </div>
-            <div class="m-cart__subtotal m:flex m:justify-between" data-cart-subtotal>
-              <span class="m-cart__subtotal--label m:font-medium">{{ 'cart.general.subtotal' | t }}</span>
-              <span class="m-cart__subtotal--price m:font-medium" data-cart-subtotal-price>
+            <div class="m-cart__subtotal steele-cart__subtotal" data-cart-subtotal>
+              <span>{{ 'cart.general.subtotal' | t }}</span>
+              <span data-cart-subtotal-price>
                 {% if settings.currency_code_enabled %}
                   {{ cart.total_price | money_with_currency }}
                 {% else %}
@@ -158,8 +176,21 @@
                 {% endif %}
               </span>
             </div>
+            <p class="steele-cart__tax-note">Tax &amp; shipping calculated at checkout</p>
           </div>
-          <div class="m:flex m:flex-col m:items-center">
+
+          {%- if settings.cart_delivery_estimate_enable -%}
+            <div class="steele-cart__delivery">
+              <span class="steele-cart__truck-icon" aria-hidden="true">
+                <img src="{{ 'cart-truck.svg' | asset_url }}" width="12" height="8" alt="">
+              </span>
+              <span class="steele-cart__delivery-text">
+                <span class="steele-cart__delivery-date">Ships same or next day from Atlanta, GA</span>
+              </span>
+            </div>
+          {%- endif -%}
+
+          <div class="steele-cart__actions">
             {% assign show_terms = false %}
             {% if settings.agree_text != blank and settings.show_agree_on_cart %}
               <div class="m-terms-conditons">
@@ -186,34 +217,28 @@
             <button
               type="submit"
               form="cart-drawer-form"
-              class="m-button m-button--primary m:w-full"
+              class="m-button m-button--primary steele-cart__checkout"
               name="checkout"
               {% if show_terms %}
                 data-terms-action disabled
               {% endif %}
             >
-              <span>{{ 'cart.general.checkout' | t }}</span>
+              <span>Checkout securely</span>
             </button>
             {%- if settings.cart_drawer_show_accelerated_button and additional_checkout_buttons -%}
               <div class="additional-checkout-buttons m:w-full">
                 {{ content_for_additional_checkout_buttons }}
               </div>
             {%- endif -%}
-            <a class="m-cart-drawer__link-to-cart m-button m-button--link" href="{{ routes.cart_url }}">
-              {{ 'cart.general.viewcart' | t }}
-            </a>
           </div>
-          {% if settings.cart_drawer_trust_badge %}
-            <div class="m-cart__trust-badge">
-              <img
-                src="{{ settings.cart_drawer_trust_badge | image_url: width: 840 }}"
-                loading="lazy"
-                width="400"
-                height="100"
-                alt="Trust secure badge"
-              >
-            </div>
-          {% endif %}
+
+          {%- if shop.enabled_payment_types.size > 0 -%}
+            <ul class="steele-cart__payments" role="list">
+              {%- for type in shop.enabled_payment_types -%}
+                <li>{{ type | payment_type_svg_tag: class: 'steele-cart__payment-icon' }}</li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
         </div>
         <div class="m-cart__overlay"></div>
       </div>

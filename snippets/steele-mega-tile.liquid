@@ -1,0 +1,31 @@
+{%- comment -%}
+  Megamenu image tile. The whole tile is one link (Figma: Mega menu / Tile).
+  Params: image, fallback_image (theme asset), title, text, url, fallback_url, wide
+{%- endcomment -%}
+<a href="{{ url | default: fallback_url }}" class="steele-mega-tile{% if wide %} steele-mega-tile--wide{% endif %}">
+  <span class="steele-mega-tile__image">
+    {%- if image != blank -%}
+      {%- if wide -%}
+        {{ image | image_url: width: 984 | image_tag: loading: 'lazy', alt: title, widths: '492, 738, 984', sizes: '492px' }}
+      {%- else -%}
+        {{ image | image_url: width: 472 | image_tag: loading: 'lazy', alt: title, widths: '236, 354, 472', sizes: '236px' }}
+      {%- endif -%}
+    {%- else -%}
+      <img
+        src="{{ fallback_image | asset_url }}"
+        alt="{{ title | escape }}"
+        loading="lazy"
+        width="{% if wide %}984{% else %}472{% endif %}"
+        height="560"
+      >
+    {%- endif -%}
+  </span>
+  <span class="steele-mega-tile__text">
+    {%- if title != blank -%}
+      <span class="steele-mega-tile__title">{{ title }}</span>
+    {%- endif -%}
+    {%- if text != blank -%}
+      <span class="steele-mega-tile__desc">{{ text }}</span>
+    {%- endif -%}
+  </span>
+</a>

@@ -8,6 +8,12 @@
   if licensed_haystack contains 'officially licensed' or licensed_haystack contains 'officially-licensed'
     assign show_licensed_badge = true
   endif
+
+  # Open on the variant's image when the URL has ?variant=
+  assign initial_slide = 0
+  if product.selected_variant.featured_media
+    assign initial_slide = product.selected_variant.featured_media.position | minus: 1
+  endif
 -%}
 <div class="product-gallery-swiper-wrapper">
 
@@ -81,6 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   const mainSwiper = new Swiper(".product-main-swiper", {
     spaceBetween: 10,
+    initialSlide: {{ initial_slide }},
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
@@ -100,6 +107,18 @@ document.addEventListener("DOMContentLoaded", function () {
         handleSlideVideo(this);
       },
     },
+  });
+
+  // Theme's product-info only updates the stock gallery, so sync this custom slider to the variant image
+  document.addEventListener("variant:changed", function (event) {
+    const mediaId = event.detail?.variant?.featured_media?.id;
+    if (!mediaId) return;
+    const index = Array.from(mainSwiper.slides).findIndex(
+      (slide) => slide.dataset.mediaId === String(mediaId)
+    );
+    if (index !== -1 && index !== mainSwiper.activeIndex) {
+      mainSwiper.slideTo(index);
+    }
   });
 
   function handleSlideVideo(swiper) {

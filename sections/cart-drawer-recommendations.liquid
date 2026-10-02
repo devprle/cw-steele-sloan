@@ -1,0 +1,101 @@
+{%- comment -%}
+  Rendered through /recommendations/products?section_id=cart-drawer-recommendations
+  and injected into the cart drawer by steele-cart-drawer.js.
+{%- endcomment -%}
+{%- liquid
+  assign cart_product_ids = cart.items | map: 'product_id'
+  assign shown = 0
+-%}
+<div class="steele-cart-recs" data-steele-cart-recs>
+  {%- if recommendations.performed and recommendations.products_count > 0 -%}
+    {%- capture slides -%}
+      {%- for product in recommendations.products -%}
+        {%- if shown >= 6 -%}{%- break -%}{%- endif -%}
+        {%- if cart_product_ids contains product.id or product.available == false -%}{%- continue -%}{%- endif -%}
+        {%- liquid
+          assign shown = shown | plus: 1
+          assign rec_variant = product.selected_or_first_available_variant
+          assign rec_compare = rec_variant.compare_at_price | default: 0
+          assign rec_save = 0
+          if rec_compare > rec_variant.price
+            assign rec_save = rec_compare | minus: rec_variant.price | times: 100.0 | divided_by: rec_compare | round
+          endif
+          assign rec_review_count = product.metafields.loox.num_reviews | default: product.metafields.reviews.rating_count | plus: 0
+          assign rec_rating = product.metafields.loox.avg_rating | default: product.metafields.reviews.rating.value | default: 0 | plus: 0
+          assign rec_rating_stars = rec_rating | round
+        -%}
+        <div class="steele-cart-recs__slide">
+          <a href="{{ product.url }}" class="steele-cart-recs__image">
+            {%- if product.featured_image -%}
+              {{ product.featured_image | image_url: width: 240 | image_tag: loading: 'lazy', alt: product.title, widths: '96, 192, 240' }}
+            {%- endif -%}
+          </a>
+          <div class="steele-cart-recs__info">
+            {%- if rec_review_count > 0 -%}
+              <div class="steele-cart-recs__rating">
+                <span class="steele-cart-recs__stars" aria-hidden="true">
+                  {%- for star in (1..5) -%}
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2.9125 10.5L3.725 6.9875L1 4.625L4.6 4.3125L6 1L7.4 4.3125L11 4.625L8.275 6.9875L9.0875 10.5L6 8.6375L2.9125 10.5Z" fill="{% if star <= rec_rating_stars %}#000000{% else %}#D9D9D9{% endif %}"/>
+                    </svg>
+                  {%- endfor -%}
+                </span>
+                <span><strong>{{ rec_rating | round: 1 }}</strong> ({{ rec_review_count }} {% if rec_review_count == 1 %}review{% else %}reviews{% endif %})</span>
+              </div>
+            {%- endif -%}
+            <a href="{{ product.url }}" class="steele-cart-recs__title">{{ product.title }}</a>
+            <div class="steele-cart-recs__prices">
+              {%- if rec_save > 0 -%}
+                <del>{{ rec_compare | money }}</del>
+              {%- endif -%}
+              <span>{{ rec_variant.price | money }}</span>
+              {%- if rec_save > 0 -%}
+                <strong class="steele-cart-recs__save">Save {{ rec_save }}%</strong>
+              {%- endif -%}
+            </div>
+          </div>
+          <product-form class="m-product-form steele-cart-recs__form" data-product-id="{{ product.id }}">
+            {%- form 'product', product, class: 'steele-cart-recs__atc-form', novalidate: 'novalidate' -%}
+              <input type="hidden" name="id" value="{{ rec_variant.id }}">
+              <button type="submit" name="add" class="m-add-to-cart m-spinner-button steele-cart-recs__atc">
+                <span class="m-spinner-icon">
+                  <svg class="animate-spin m-svg-icon--medium" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                </span>
+                <span class="m-add-to-cart--text">{{ 'products.product.add_to_cart' | t }}</span>
+              </button>
+            {%- endform -%}
+          </product-form>
+        </div>
+      {%- endfor -%}
+    {%- endcapture -%}
+
+    {%- if shown > 0 -%}
+      <div class="steele-cart-recs__header">
+        <p class="steele-cart-recs__heading">{{ settings.cart_drawer_recommendations_title | default: 'You Will Also Love' }}</p>
+        {%- if shown > 1 -%}
+          <div class="steele-cart-recs__nav">
+            <button type="button" class="steele-cart-recs__arrow steele-cart-recs__arrow--prev" data-recs-prev aria-label="Previous" disabled>
+              <img src="{{ 'cart-arrow.svg' | asset_url }}" width="26" height="26" alt="" aria-hidden="true">
+            </button>
+            <button type="button" class="steele-cart-recs__arrow" data-recs-next aria-label="Next">
+              <img src="{{ 'cart-arrow.svg' | asset_url }}" width="26" height="26" alt="" aria-hidden="true">
+            </button>
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="steele-cart-recs__track" data-recs-track>
+        {{ slides }}
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Cart recommendations",
+  "settings": []
+}
+{% endschema %}

@@ -68,10 +68,48 @@
             "show_language_switcher": false,
             "alert_message": "<span>The Best Gifts at the Best Price to Celebrate In Style  |  <a class=\"m-link-underline\" href=\"https://ssw0dm-y7.myshopify.com/collections/all\">Discover More</a><span></span></span>"
           }
+        },
+        "steele_mega_shop_all": {
+          "type": "steele_mega_shop_all",
+          "settings": {
+            "heading": "Shop All",
+            "featured_heading": "Featured",
+            "featured_menu": "",
+            "view_all_label": "Shop all jewelry",
+            "view_all_link": "/collections/all-products",
+            "tile_1_title": "Earrings",
+            "tile_1_text": "Stainless steel favorites for everyday wear.",
+            "tile_1_link": "/collections/earrings",
+            "tile_2_title": "Necklaces",
+            "tile_2_text": "Layerable pieces that get compliments.",
+            "tile_2_link": "/collections/necklace",
+            "tile_3_title": "Bracelets",
+            "tile_3_text": "Dainty to statement, made to mix.",
+            "tile_3_link": "/collections/bracelets-1",
+            "tile_4_title": "Gifts Under $25",
+            "tile_4_text": "Easy wins for birthdays and “thinking of you.”",
+            "tile_4_link": "/collections/under-20"
+          }
+        },
+        "steele_mega_college": {
+          "type": "steele_mega_college",
+          "settings": {
+            "heading": "Shop by College",
+            "colleges_heading": "Officially licensed colleges",
+            "colleges_menu": "",
+            "mascots_heading": "Shop by mascot",
+            "mascots_text": "Don’t see your school? Shop your mascot.",
+            "mascots_menu": "",
+            "tile_title": "Game Day",
+            "tile_text": "Team jewelry for tailgates, watch parties and the stands.",
+            "tile_link": "/collections/game-day"
+          }
         }
       },
       "block_order": [
-        "5e153016-a9d7-46c9-a10e-30d16446793d"
+        "5e153016-a9d7-46c9-a10e-30d16446793d",
+        "steele_mega_shop_all",
+        "steele_mega_college"
       ],
       "custom_css": [
         ".m-topbar a[href*=\"facebook\"] {order: 2;}",

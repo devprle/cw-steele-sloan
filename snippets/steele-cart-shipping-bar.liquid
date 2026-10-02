@@ -1,0 +1,35 @@
+{%- liquid
+  assign free_shipping_threshold = settings.cart_free_shipping_threshold | default: 0 | times: 100
+  assign free_shipping_remaining = free_shipping_threshold | minus: cart.total_price
+  assign free_shipping_progress = 100
+  if free_shipping_remaining > 0
+    assign free_shipping_progress = cart.total_price | times: 100.0 | divided_by: free_shipping_threshold
+  endif
+-%}
+{%- if free_shipping_threshold > 0 and cart.item_count > 0 -%}
+  <div class="steele-cart__shipping">
+    <p class="steele-cart__shipping-text">
+      {%- if free_shipping_remaining > 0 -%}
+        You’re {{ free_shipping_remaining | money_without_trailing_zeros }} away from FREE Shipping!
+      {%- else -%}
+        You’ve unlocked FREE Shipping!
+      {%- endif -%}
+    </p>
+    <div
+      class="steele-cart__progress{% if free_shipping_remaining <= 0 %} is-complete{% endif %}"
+      style="--steele-progress: {{ free_shipping_progress }}%;"
+      role="progressbar"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="{{ free_shipping_progress | round }}"
+    >
+      <span class="steele-cart__progress-track">
+        <span class="steele-cart__progress-fill"></span>
+        <span class="steele-cart__progress-knob"></span>
+      </span>
+      <span class="steele-cart__truck-icon" aria-hidden="true">
+        <img src="{{ 'cart-truck.svg' | asset_url }}" width="12" height="8" alt="">
+      </span>
+    </div>
+  </div>
+{%- endif -%}

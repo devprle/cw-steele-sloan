@@ -1,0 +1,924 @@
+/* ==========================================================================
+   Cart drawer redesign
+   Figma: desktop 41:4804 (500px), mobile 41:5092 (390px). Values are 1:1 with Figma.
+   ========================================================================== */
+.m-cart-drawer .m-cart-drawer__inner {
+  font-family: Inter, sans-serif;
+  color: #000000;
+}
+
+@media screen and (min-width: 768px) {
+  .m-cart-drawer .m-cart-drawer__inner {
+    width: 500px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .m-cart-drawer .m-cart-drawer__inner {
+    width: 100%;
+  }
+}
+
+/* Figma trims text boxes to cap height on these labels */
+.steele-cart__title,
+.steele-cart-item__title,
+.steele-cart-item__options,
+.steele-cart-recs__title,
+.steele-cart__savings span,
+.steele-cart__subtotal span {
+  text-box: trim-both cap alphabetic;
+}
+
+/* ---------- Header ---------- */
+.m-cart-drawer .steele-cart__header {
+  padding: 0;
+}
+
+.steele-cart__title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.steele-cart__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-family: Inter, sans-serif;
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 1.1;
+  letter-spacing: 0.32px;
+  color: #000000;
+  text-transform: capitalize;
+}
+
+.steele-cart__count {
+  line-height: normal;
+}
+
+.m-cart-drawer .steele-cart__close {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: none;
+}
+
+.m-cart-drawer .steele-cart__close img {
+  display: block;
+  width: 17px;
+  height: 17px;
+  max-width: none;
+}
+
+/* ---------- Free shipping bar ---------- */
+.steele-cart__shipping {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 10px 15px;
+  background: #000000;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.steele-cart__shipping-text {
+  margin: 0;
+  font-weight: 200;
+  font-size: 14px;
+  line-height: normal;
+  color: #ffffff;
+  text-align: center;
+}
+
+.steele-cart__progress {
+  position: relative;
+  width: 100%;
+  height: 32px;
+}
+
+.steele-cart__progress-track {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  right: 20px;
+  height: 6px;
+  border-radius: 6px;
+  background: #bababa;
+}
+
+.steele-cart__progress-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--steele-progress, 0%);
+  max-width: 100%;
+  border-radius: inherit;
+  background: #ffffff;
+  transition: width 0.4s ease;
+}
+
+.steele-cart__progress-knob {
+  position: absolute;
+  top: 50%;
+  left: var(--steele-progress, 0%);
+  width: 13px;
+  height: 13px;
+  border: 1px solid #000000;
+  border-radius: 50%;
+  background: #ffffff;
+  transform: translate(-50%, -50%);
+  transition: left 0.4s ease;
+}
+
+.steele-cart__progress.is-complete .steele-cart__progress-knob {
+  display: none;
+}
+
+/* Truck badge: 32px in the bar on desktop, 24px elsewhere */
+.steele-cart__truck-icon {
+  display: flex;
+  flex: 0 0 24px;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #ffffff;
+  border-radius: 1000px;
+  background: #000000;
+}
+
+.steele-cart__truck-icon img {
+  display: block;
+  width: 12px;
+  height: auto;
+  max-width: none;
+}
+
+.steele-cart__progress .steele-cart__truck-icon {
+  position: absolute;
+  top: 0;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+}
+
+.steele-cart__progress .steele-cart__truck-icon img {
+  width: 16px;
+}
+
+/* ---------- Body / items ---------- */
+.m-cart-drawer .m-cart-drawer__body {
+  padding: 0;
+}
+
+.m-cart-drawer .m-cart-drawer__items {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px 0;
+}
+
+.m-cart-drawer .m-cart-drawer__empty {
+  padding: 40px 20px;
+  font-weight: 200;
+  font-size: 14px;
+  text-align: center;
+}
+
+.m-cart-drawer .steele-cart-item {
+  display: block;
+  padding: 0 0 20px;
+  margin: 0 0 20px;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.steele-cart-item__row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.steele-cart-item__image {
+  flex: 0 0 96px;
+  width: 96px;
+  height: 96px;
+  overflow: hidden;
+}
+
+.steele-cart-item__image img,
+.steele-cart-item__image svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.steele-cart-item__info {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+}
+
+.m-cart-drawer .steele-cart-item__title {
+  font-weight: 200;
+  font-size: 14px;
+  line-height: normal;
+  letter-spacing: 0;
+  color: #000000;
+  text-decoration: none;
+}
+
+.m-cart-drawer .steele-cart-item__title:hover {
+  color: #000000;
+  text-decoration: underline;
+}
+
+.steele-cart-item__options:empty {
+  display: none;
+}
+
+.steele-cart-item__option {
+  margin: 0;
+  font-weight: 200;
+  font-size: 12px;
+  line-height: 1.3;
+  color: #787878;
+}
+
+.steele-cart-item__discounts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-weight: 300;
+  font-size: 12px;
+  color: #787878;
+}
+
+.m-cart-drawer .steele-cart-item__qty {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+/* Bordered quantity stepper: 22px cells */
+.m-cart-drawer .steele-cart-item .m-quantity {
+  display: inline-flex;
+  align-items: stretch;
+  width: auto;
+  max-width: none;
+  min-height: 0;
+  height: 23px;
+  padding: 0;
+  border: 1px solid #d9d9d9;
+  border-radius: 1.467px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.m-cart-drawer .steele-cart-item .m-quantity .m-quantity__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  width: 22px;
+  max-width: none;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.m-cart-drawer .steele-cart-item .m-quantity .m-quantity__button img {
+  display: block;
+  width: 11.733px;
+  height: 11.733px;
+  max-width: none;
+}
+
+.m-cart-drawer .steele-cart-item .m-quantity .m-quantity__input {
+  flex: 0 0 22px;
+  width: 22px;
+  max-width: none;
+  height: 100%;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-left: 1px solid #d9d9d9;
+  border-right: 1px solid #d9d9d9;
+  border-radius: 0;
+  font-family: Inter, sans-serif;
+  font-weight: 200;
+  font-size: 12px;
+  line-height: 1.2;
+  color: #000000;
+  text-align: center;
+  -moz-appearance: textfield;
+}
+
+.m-cart-drawer .steele-cart-item .m-quantity .m-quantity__input::-webkit-outer-spin-button,
+.m-cart-drawer .steele-cart-item .m-quantity .m-quantity__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.steele-cart-item__aside {
+  display: flex;
+  flex: 0 0 95px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.steele-cart-item__remove {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.steele-cart-item__remove:hover {
+  opacity: 0.7;
+}
+
+.steele-cart-item__remove img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+.steele-cart-item__prices {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.steele-cart-item__price-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: normal;
+  color: #000000;
+}
+
+.steele-cart-item__compare {
+  opacity: 0.5;
+}
+
+.steele-cart-item__save {
+  margin: 0;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: normal;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+/* ---------- You Will Also Love ---------- */
+.steele-cart__recs {
+  display: block;
+  margin-top: auto;
+}
+
+.steele-cart__recs:not(:empty) {
+  padding: 20px;
+  background: #f2f2f2;
+}
+
+.steele-cart-recs__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.steele-cart-recs__heading {
+  flex: 1 0 0;
+  margin: 0;
+  font-weight: 200;
+  font-size: 16px;
+  line-height: normal;
+  color: #000000;
+}
+
+.steele-cart-recs__nav {
+  display: flex;
+  gap: 16px;
+}
+
+.steele-cart-recs__arrow {
+  display: flex;
+  width: 25.723px;
+  height: 25.723px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.steele-cart-recs__arrow img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+.steele-cart-recs__arrow--prev img {
+  transform: rotate(180deg);
+}
+
+.steele-cart-recs__arrow[disabled] {
+  cursor: default;
+  opacity: 0.3;
+}
+
+.steele-cart-recs__track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.steele-cart-recs__track::-webkit-scrollbar {
+  display: none;
+}
+
+.steele-cart-recs__slide {
+  display: flex;
+  flex: 0 0 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.steele-cart-recs__image {
+  flex: 0 0 96px;
+  width: 96px;
+  height: 96px;
+  overflow: hidden;
+  background: #f6f6f7;
+}
+
+.steele-cart-recs__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.steele-cart-recs__info {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.steele-cart-recs__rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: normal;
+  color: #000000;
+}
+
+.steele-cart-recs__rating strong {
+  font-weight: 700;
+}
+
+.steele-cart-recs__stars {
+  display: flex;
+  gap: 1px;
+}
+
+.steele-cart-recs__stars svg {
+  display: block;
+}
+
+.m-cart-drawer .steele-cart-recs__title {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-weight: 200;
+  font-size: 14px;
+  line-height: normal;
+  color: #000000;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.m-cart-drawer .steele-cart-recs__title:hover {
+  color: #000000;
+}
+
+.steele-cart-recs__prices {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: normal;
+  color: #000000;
+  white-space: nowrap;
+}
+
+.steele-cart-recs__prices del {
+  opacity: 0.5;
+}
+
+.steele-cart-recs__save {
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.steele-cart-recs__form {
+  flex: 0 0 auto;
+}
+
+.m-cart-drawer .steele-cart-recs__atc {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 134px;
+  height: 48px;
+  padding: 14px 34px 14px 35px;
+  border: 1px solid #000000;
+  border-radius: 0;
+  background: #ffffff;
+  font-family: Inter, sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: normal;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: #000000;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.m-cart-drawer .steele-cart-recs__atc:hover {
+  border-color: #0a2540;
+  background: #0a2540;
+  color: #ffffff;
+}
+
+/* ---------- Footer / summary ---------- */
+.m-cart-drawer .m-cart-drawer__footer {
+  padding: 0;
+  box-shadow: none;
+  border-top: 0;
+}
+
+.m-cart-drawer .m-cart-drawer__footer--wrapper {
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Theme toggles m:block / m:hidden on the wrapper; use flex so hidden children don't leave gaps */
+.m-cart-drawer .m-cart-drawer__footer--wrapper.m\:block {
+  display: flex;
+}
+
+.m-cart-drawer .m-cart-drawer__gift-wrapping:not(:has(m-gift-wrapping-component)) {
+  display: none;
+}
+
+.m-cart-drawer .steele-cart__summary {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.steele-cart__savings {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 9px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.32px;
+  color: #2d2828;
+  white-space: nowrap;
+}
+
+.steele-cart__discounts {
+  margin: 0 0 4px;
+  padding: 0;
+  list-style: none;
+  font-weight: 300;
+  font-size: 12px;
+  color: #555555;
+}
+
+.m-cart-drawer .steele-cart__subtotal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 32px;
+  margin: 0;
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.32px;
+  color: #000000;
+  white-space: nowrap;
+}
+
+.steele-cart__tax-note {
+  margin: 3px 0 0;
+  font-weight: 200;
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: -0.24px;
+  color: #000000;
+}
+
+/* Delivery estimate */
+.steele-cart__delivery {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: #f3f3f3;
+}
+
+.steele-cart__delivery-text {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.steele-cart__delivery-date {
+  font-size: 13px;
+  letter-spacing: -0.26px;
+  color: #2d2828;
+}
+
+.steele-cart__delivery-date strong {
+  font-weight: 600;
+}
+
+.steele-cart__delivery-ship {
+  font-size: 12px;
+  color: #555555;
+}
+
+/* Checkout */
+.steele-cart__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.m-cart-drawer .steele-cart__checkout {
+  width: 100%;
+  height: 64px;
+  min-height: 0;
+  padding: 14px 34px 14px 35px;
+  border: 1px solid #000000;
+  border-radius: 0;
+  background: #000000;
+  font-family: Inter, sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: normal;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: #ffffff;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.m-cart-drawer .steele-cart__checkout:not([disabled]):hover {
+  border-color: #d4af77;
+  background: #d4af77;
+  color: #0a2540;
+}
+
+/* Payment icons: 33x20, spread across the row */
+.steele-cart__payments {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.steele-cart__payments li {
+  display: flex;
+  flex: 0 1 33px;
+  min-width: 0;
+}
+
+.steele-cart__payment-icon {
+  display: block;
+  width: 33px;
+  max-width: 100%;
+  height: 20px;
+}
+
+/* ---------- Mobile (Figma 41:5092) ---------- */
+@media screen and (max-width: 767px) {
+  .steele-cart__progress {
+    height: 24px;
+  }
+
+  .steele-cart__progress-track {
+    top: 9px;
+    right: 1.49%;
+  }
+
+  .steele-cart__progress .steele-cart__truck-icon {
+    right: 0;
+    width: 24px;
+    height: 24px;
+  }
+
+  .steele-cart__progress .steele-cart__truck-icon img {
+    width: 12px;
+  }
+
+  .m-cart-drawer .m-cart-drawer__items {
+    padding: 16px 20px 0;
+  }
+
+  .m-cart-drawer .steele-cart-item {
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+  }
+
+  .steele-cart-item__row {
+    gap: 12px;
+  }
+
+  .steele-cart-item__image {
+    flex-basis: 80px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .m-cart-drawer .steele-cart-item__title {
+    font-size: 12px;
+  }
+
+  .steele-cart-item__option {
+    font-size: 10px;
+  }
+
+  .m-cart-drawer .steele-cart-item .m-quantity {
+    height: 16px;
+    border-width: 0.696px;
+    border-radius: 1.02px;
+  }
+
+  .m-cart-drawer .steele-cart-item .m-quantity .m-quantity__button {
+    flex-basis: 15.304px;
+    width: 15.304px;
+  }
+
+  .m-cart-drawer .steele-cart-item .m-quantity .m-quantity__button img {
+    width: 8.162px;
+    height: 8.162px;
+  }
+
+  .m-cart-drawer .steele-cart-item .m-quantity .m-quantity__input {
+    flex-basis: 15.304px;
+    width: 15.304px;
+    border-left-width: 0.696px;
+    border-right-width: 0.696px;
+    font-size: 8.348px;
+  }
+
+  .steele-cart-item__remove {
+    width: 20px;
+    height: 20px;
+  }
+
+  .steele-cart-item__prices {
+    gap: 8px;
+  }
+
+  .steele-cart-item__price-row {
+    font-size: 12px;
+  }
+
+  .steele-cart-item__save {
+    font-size: 11px;
+    letter-spacing: 0.55px;
+  }
+
+  .steele-cart-recs__header {
+    margin-bottom: 16px;
+  }
+
+  .steele-cart-recs__heading {
+    font-size: 14px;
+  }
+
+  .steele-cart-recs__nav {
+    gap: 12.44px;
+  }
+
+  .steele-cart-recs__arrow {
+    width: 20px;
+    height: 20px;
+  }
+
+  .steele-cart-recs__slide {
+    gap: 12px;
+  }
+
+  .steele-cart-recs__image {
+    flex-basis: 80px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .m-cart-drawer .steele-cart-recs__title,
+  .steele-cart-recs__prices {
+    font-size: 12px;
+  }
+
+  .steele-cart-recs__save {
+    font-size: 11px;
+    letter-spacing: 0.55px;
+  }
+
+  .m-cart-drawer .steele-cart-recs__atc {
+    width: 96px;
+    height: 36px;
+    padding: 0;
+    font-size: 12px;
+    letter-spacing: 0.6px;
+  }
+
+  .m-cart-drawer .m-cart-drawer__footer--wrapper {
+    gap: 16px;
+    padding: 16px 20px;
+  }
+
+  .steele-cart__savings {
+    font-size: 14px;
+    letter-spacing: -0.28px;
+  }
+
+  .m-cart-drawer .steele-cart__subtotal {
+    font-size: 14px;
+    letter-spacing: -0.28px;
+  }
+
+  .steele-cart__tax-note {
+    font-size: 11px;
+    letter-spacing: -0.22px;
+  }
+
+  .m-cart-drawer .steele-cart__checkout {
+    height: 48px;
+  }
+
+  .steele-cart__payments {
+    gap: 0;
+  }
+
+  .steele-cart__payments li {
+    margin-right: -4.182px;
+  }
+
+  .steele-cart__payments li:last-child {
+    margin-right: 0;
+  }
+}

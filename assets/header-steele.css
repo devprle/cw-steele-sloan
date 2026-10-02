@@ -246,3 +246,265 @@
 .m-header--steele .m-header__mobile-right .m-tooltip {
   padding: 0;
 }
+
+/* ==========================================================================
+   Desktop megamenu (Figma: Mega menu — Desktop)
+   ========================================================================== */
+.m-header--steele .m-header__overlay {
+  background-color: rgba(0, 0, 0, 0.35);
+}
+
+/* Active item: thin underline under the label only (not the chevron) */
+.m-header--steele .both-center .steele-mega-item > .m-menu__link--main::after {
+  height: 1px;
+  background-color: #0a2540;
+}
+
+.m-header--steele .both-center .steele-mega-item:hover > .m-menu__link--main::after,
+.m-header--steele .both-center .steele-mega-item.m-menu__item--active > .m-menu__link--main::after {
+  width: calc(100% - 26px);
+}
+
+.m-header--steele .both-center .steele-mega-item .m-menu__arrow {
+  transition: transform 0.2s ease;
+}
+
+.m-header--steele .steele-mega {
+  max-height: calc(100vh - var(--m-header-height, 85px));
+  border-top: 1px solid #e6e6e6;
+  background: #ffffff;
+  box-shadow: 0 16px 16px rgba(0, 0, 0, 0.12);
+  color: #0a2540;
+  cursor: default;
+}
+
+/* Header nav styles (uppercase, tracking) cascade into the panel; reset them */
+/* (must beat header.css: .m-header__menu ul.m-menu li.m-menu__item a) */
+.m-header--steele .m-header__menu ul.m-menu li.m-menu__item .steele-mega,
+.m-header--steele .m-header__menu ul.m-menu li.m-menu__item .steele-mega a,
+.m-header--steele .m-header__menu ul.m-menu li.m-menu__item .steele-mega li,
+.m-header--steele .m-header__menu ul.m-menu li.m-menu__item .steele-mega p,
+.m-header--steele .m-header__menu ul.m-menu li.m-menu__item .steele-mega span {
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.m-header--steele .m-header__menu ul.m-menu li.m-menu__item .steele-mega p.steele-mega__heading {
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.steele-mega__panel {
+  max-width: calc(1321px + 2 * clamp(24px, 4.1667vw, 60px));
+  margin: 0 auto;
+  padding: 40px clamp(24px, 4.1667vw, 60px) 48px;
+  font-family: Inter, sans-serif;
+  text-align: left;
+}
+
+.steele-mega__content {
+  display: flex;
+  align-items: flex-start;
+}
+
+.steele-mega__content--shop-all {
+  gap: clamp(32px, 5vw, 72px);
+}
+
+.steele-mega__content--college {
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.steele-mega__column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.steele-mega__column--featured {
+  flex: 0 0 245px;
+}
+
+.steele-mega__column--colleges {
+  flex: 0 1 429px;
+  min-width: 0;
+}
+
+.steele-mega__column--mascots {
+  flex: 0 0 240px;
+}
+
+.steele-mega__heading {
+  margin: 0;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: normal;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #0a2540;
+}
+
+.steele-mega__links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.steele-mega__links--two-col {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(var(--steele-rows, 9), auto);
+  grid-template-columns: repeat(2, minmax(0, 200px));
+  column-gap: 29px;
+  row-gap: 14px;
+}
+
+.steele-mega__links li {
+  margin: 0;
+  padding: 0;
+}
+
+.steele-mega .steele-mega__link {
+  display: inline-block;
+  padding: 0;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 22px;
+  color: #0a2540;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.steele-mega .steele-mega__link:hover,
+.steele-mega .steele-mega__link:focus-visible {
+  color: #0a2540;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.steele-mega__helper {
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 22px;
+  color: rgba(10, 37, 64, 0.75);
+  white-space: nowrap;
+}
+
+.steele-mega__view-all {
+  width: 100%;
+  padding-top: 16px;
+  border-top: 1px solid #e6e6e6;
+}
+
+.steele-mega .steele-mega__view-all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #0a2540;
+  text-decoration: none;
+}
+
+.steele-mega .steele-mega__view-all-link:hover,
+.steele-mega .steele-mega__view-all-link:focus-visible {
+  color: #0a2540;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.steele-mega__view-all-link img {
+  display: block;
+  width: 16px;
+  height: 12px;
+  transition: transform 0.2s ease;
+}
+
+.steele-mega__view-all-link:hover img {
+  transform: translateX(3px);
+}
+
+/* Tiles */
+.steele-mega__tiles {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+  gap: 20px;
+  min-width: 0;
+}
+
+.steele-mega__tiles--wide {
+  flex: 0 1 492px;
+}
+
+.steele-mega .steele-mega-tile {
+  display: flex;
+  flex: 0 1 236px;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  color: #0a2540;
+  text-decoration: none;
+}
+
+.steele-mega .steele-mega-tile--wide {
+  flex-basis: 492px;
+}
+
+.steele-mega-tile__image {
+  display: block;
+  height: 280px;
+  overflow: hidden;
+  background: #f6f6f7;
+}
+
+.steele-mega-tile__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.steele-mega-tile__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-weight: 300;
+}
+
+.steele-mega-tile__title {
+  font-size: 16px;
+  line-height: 22px;
+  color: #0a2540;
+}
+
+.steele-mega-tile__desc {
+  font-size: 12px;
+  line-height: 17px;
+  color: rgba(10, 37, 64, 0.75);
+}
+
+.steele-mega .steele-mega-tile:hover .steele-mega-tile__image img,
+.steele-mega .steele-mega-tile:focus-visible .steele-mega-tile__image img {
+  transform: scale(1.03);
+}
+
+.steele-mega .steele-mega-tile:hover .steele-mega-tile__title,
+.steele-mega .steele-mega-tile:focus-visible .steele-mega-tile__title {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media screen and (max-width: 1199px) {
+  .steele-mega__content--shop-all .steele-mega__tiles .steele-mega-tile:nth-child(4) {
+    display: none;
+  }
+}
