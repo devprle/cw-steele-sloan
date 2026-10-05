@@ -508,3 +508,70 @@
     display: none;
   }
 }
+
+/* Mobile drawer: "Shop by mascot" inside the Shop by College panel */
+.steele-mobile-mascots {
+  margin: 4px 16px 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(10, 37, 64, 0.12);
+  font-family: Inter, sans-serif;
+}
+
+.steele-mobile-mascots__heading {
+  margin: 0;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: #0a2540;
+}
+
+.steele-mobile-mascots__heading--colleges {
+  margin: 0 16px 4px;
+  font-family: Inter, sans-serif;
+}
+
+.steele-mobile-mascots__text {
+  margin: 4px 0 0;
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 20px;
+  color: rgba(10, 37, 64, 0.75);
+}
+
+.steele-mobile-mascots__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.steele-mobile-mascots__list li {
+  margin: 0;
+  padding: 0;
+}
+
+.steele-mobile-mascots__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid rgba(10, 37, 64, 0.2);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #0a2540;
+  text-decoration: none;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.steele-mobile-mascots__link:hover,
+.steele-mobile-mascots__link:focus-visible {
+  border-color: #0a2540;
+  background-color: rgba(10, 37, 64, 0.04);
+}

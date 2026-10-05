@@ -26,6 +26,7 @@
             assign title_handle = link.title | handleize
             assign has_mega_item = false
           %}
+          {%- capture steele_mascots -%}{%- endcapture -%}
           {% for block in section.blocks %}
             {% liquid
               assign menu_title = block.settings.heading | handleize
@@ -210,6 +211,25 @@
                       </div>
                     {% endif %}
                   {% endcapture %}
+                {% when 'steele_mega_college' %}
+                  {%- comment -%} Mobile version of the desktop "Shop by mascot" column, shown above the college links {%- endcomment -%}
+                  {%- capture block_type -%}{%- endcapture -%}
+                  {% capture steele_mascots %}
+                    <div class="steele-mobile-mascots">
+                      {%- if block.settings.mascots_heading != blank -%}
+                        <p class="steele-mobile-mascots__heading">{{ block.settings.mascots_heading }}</p>
+                      {%- endif -%}
+                      {%- if block.settings.mascots_text != blank -%}
+                        <p class="steele-mobile-mascots__text">{{ block.settings.mascots_text }}</p>
+                      {%- endif -%}
+                      <ul class="steele-mobile-mascots__list" role="list">
+                        {%- render 'steele-mascot-links', block: block, link_class: 'steele-mobile-mascots__link' -%}
+                      </ul>
+                    </div>
+                    {%- if block.settings.colleges_heading != blank -%}
+                      <p class="steele-mobile-mascots__heading steele-mobile-mascots__heading--colleges">{{ block.settings.colleges_heading }}</p>
+                    {%- endif -%}
+                  {% endcapture %}
                 {% else %}
                   {%- capture block_type -%}
                   {%- endcapture -%}
@@ -240,6 +260,7 @@
                     </svg>
                     <span>{{ link.title }}</span>
                   </button>
+                  {{ steele_mascots }}
                   <ul class="m-submenu-mobile">
                     {% for child in link.links %}
                       <li class="m-menu-mobile__item" data-url="{{ link.url }}">

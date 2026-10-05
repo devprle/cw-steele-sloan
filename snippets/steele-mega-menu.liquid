@@ -9,7 +9,6 @@
     assign default_featured = 'Best Sellers|/collections/best-sellers;;New Arrivals|/collections/new-arrivals;;Game Day|/collections/game-day;;Sporty Earrings|/collections/sports-earrings'
   else
     assign default_colleges = 'Alabama|/collections/university-of-alabama-gifts-roll-tide;;Arkansas|/collections/university-of-arkansas-razorbacks-go-hogs;;Auburn|/collections/auburn-university-war-eagle;;FSU|/collections/florida-sate-university-go-noles;;Indiana|/collections/indiana-hoosiers;;LSU|/collections/louisiana-state-university-lsu-geaux-tigers;;Miami|/collections/university-of-miami;;Mississippi State|/collections/mississippi-state-bulldogs-hail-state;;Oklahoma|/collections/oklahoma-sooners-university-of-oklahoma;;Ole Miss|/collections/ole-miss-university-of-mississippi-rebels;;Oregon|/collections/university-of-oregon-go-ducks;;South Carolina|/collections/university-of-south-carolina-gamecocks;;TCU|/collections/tcu-texas-christian-university-horned-frogs;;Tennessee|/collections/university-of-tennessee-volunteers;;Texas A&M|/collections/texas-a-m-gig-em-aggies;;Texas Tech|/collections/texas-tech-wreck-em-red-raiders;;Tulane|/collections/tulane-university-green-wave;;UNC|/collections/unc-tarheels-university-of-north-carolina-at-chapel-hill'
-    assign default_mascots = 'Bears|/collections/bears-teams;;Bulldogs|/collections/bulldog-teams;;Cats|/collections/cats-teams;;Eagles|/collections/eagles-teams;;Gators|/collections/gators-teams;;Lions|/collections/lions-teams;;Rams|/collections/rams-teams;;Tigers|/collections/gold-stud-earrings'
   endif
 -%}
 
@@ -101,17 +100,7 @@
           {%- if s.mascots_text != blank -%}
             <li class="steele-mega__helper">{{ s.mascots_text }}</li>
           {%- endif -%}
-          {%- if s.mascots_menu != blank and linklists[s.mascots_menu].links.size > 0 -%}
-            {%- for link in linklists[s.mascots_menu].links -%}
-              <li><a href="{{ link.url }}" class="steele-mega__link">{{ link.title }}</a></li>
-            {%- endfor -%}
-          {%- else -%}
-            {%- assign pairs = default_mascots | split: ';;' -%}
-            {%- for pair in pairs -%}
-              {%- assign parts = pair | split: '|' -%}
-              <li><a href="{{ parts.last }}" class="steele-mega__link">{{ parts.first }}</a></li>
-            {%- endfor -%}
-          {%- endif -%}
+          {%- render 'steele-mascot-links', block: block, link_class: 'steele-mega__link' -%}
         </ul>
       </div>
 
