@@ -79,8 +79,8 @@
           "settings": {
             "slide_image": "shopify://shop_images/Rectangle_1.png",
             "slide_mobile_image": "shopify://shop_images/Rectangle_1_1.png",
-            "review_text": "Loved by <strong>1,000</strong> customers based on <strong>193</strong> reviews",
-            "title": "Trending jewellery you can wear on repeat",
+            "review_text": "Loved by many happy customers based on <strong>193</strong> reviews",
+            "title": "Trending jewelry you can wear on repeat",
             "subtitle": "Shop on-trend, versatile designs made with special care, with stainless steel favorites that are loved for their look and sensitive-skin friendliness.",
             "button_label": "SHOP BEST SELLERS",
             "button_link": "shopify://collections",
@@ -93,7 +93,7 @@
           "settings": {
             "slide_image": "shopify://shop_images/hero-2.png",
             "slide_mobile_image": "shopify://shop_images/hero-2-mobile.png",
-            "review_text": "Loved by <strong>1,000</strong> customers based on <strong>193</strong> reviews",
+            "review_text": "Loved by many happy customers based on <strong>193</strong> reviews",
             "title": "Every gift, every style, collegiate included",
             "content_position": "right",
             "subtitle": "Hypoallergenic stainless steel jewelry for everyday and gift-giving. Great prices, built to last.",
@@ -107,8 +107,8 @@
           "type": "slide",
           "disabled": true,
           "settings": {
-            "review_text": "Loved by 1,000 customers based on 193 reviews",
-            "title": "Trending jewellery you can wear on repeat",
+            "review_text": "Loved by many happy customers based on 193 reviews",
+            "title": "Trending jewelry you can wear on repeat",
             "subtitle": "Shop on-trend, versatile designs made with special care, with stainless steel favorites that are loved for their look and sensitive-skin friendliness.",
             "button_label": "SHOP BEST SELLERS",
             "button_link": ""
@@ -599,7 +599,7 @@
       ],
       "name": "Shoppable Image",
       "settings": {
-        "rating_text": "Loved by <strong>1,000</strong> customers based on <strong>193 </strong>reviews",
+        "rating_text": "Loved by many happy customers based on <strong>193 </strong>reviews",
         "title": "Know Someone Who Loves Their Team?",
         "subtitle": "From game day earrings to personalized necklaces, Steele Sloan Designs has something for every fan on your list.",
         "button_label": "SHOP BEST SELLERS",
@@ -714,7 +714,7 @@
         "custom_class": "",
         "page_width": 1474,
         "background_color": "#ffffff",
-        "top_text": "Loved by <strong>1,000</strong> customers based on <strong>193</strong> reviews",
+        "top_text": "Loved by many happy customers based on <strong>193</strong> reviews",
         "heading": "Don't Take Our Word for It",
         "description": "Join the fans who found their new favorite jewelry.",
         "padding_top": 110,
