@@ -82,6 +82,11 @@
     #{{ section.id }} span.rating-text strong{
       font-weight: 700;
     }
+    @media screen and (min-width: 768px) {
+      #{{ section.id }} span.rating-text {
+        white-space: nowrap;
+      }
+    }
     #{{ section.id }} .shoppable-image__title {
         margin-bottom: 22px;
         color: inherit;
@@ -578,7 +583,7 @@
       "type": "inline_richtext",
       "id": "rating_text",
       "label": "Rating Text",
-      "default": "Loved by many happy customers based on 193 reviews"
+      "default": "Highly rated by 193 real customers"
     },
     {
       "type": "text",

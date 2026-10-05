@@ -509,31 +509,14 @@
   }
 }
 
-/* Mobile drawer: "Shop by mascot" inside the Shop by College panel */
+/* Mobile drawer: "Shop by mascot" top-level item, opens a panel of mascot buttons */
 .steele-mobile-mascots {
-  margin: 4px 16px 24px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid rgba(10, 37, 64, 0.12);
-  font-family: Inter, sans-serif;
-}
-
-.steele-mobile-mascots__heading {
-  margin: 0;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0.7px;
-  text-transform: uppercase;
-  color: #0a2540;
-}
-
-.steele-mobile-mascots__heading--colleges {
-  margin: 0 16px 4px;
+  margin: 0 16px 24px;
   font-family: Inter, sans-serif;
 }
 
 .steele-mobile-mascots__text {
-  margin: 4px 0 0;
+  margin: 0;
   font-weight: 300;
   font-size: 13px;
   line-height: 20px;

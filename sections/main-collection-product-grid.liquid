@@ -495,6 +495,11 @@
   .m-collection-products .m-review-card-item {
     display: flex;
   }
+
+  /* Incomplete last row while "Load more" is available (set in the script below) */
+  .m-collection-products .m-product-item--row-hidden {
+    display: none;
+  }
   .m-review-card {
     width: 100%;
     height: 100%;
@@ -895,12 +900,28 @@
       MinimogTheme.Collection.init();
     }
 
+    // While more pages can be loaded, hide items left alone in an incomplete last row
+    // (the review card shifts the grid by one cell). They show again once "Load more" appends the next page.
+    function hideIncompleteLastRow(container) {
+      const items = [...container.querySelectorAll(':scope > .m-product-item')];
+      items.forEach((item) => item.classList.remove('m-product-item--row-hidden'));
+      if (!document.querySelector('[data-load-more]') || items.length < 2) return;
+      const firstRowTop = items[0].offsetTop;
+      const columns = items.filter((item) => item.offsetTop === firstRowTop).length;
+      const lastRowTop = items[items.length - 1].offsetTop;
+      const lastRow = items.filter((item) => item.offsetTop === lastRowTop);
+      if (lastRow.length < columns && lastRow.length < items.length) {
+        lastRow.forEach((item) => item.classList.add('m-product-item--row-hidden'));
+      }
+    }
+
     // Keep "Showing X of Y" and the progress bar in sync as "Load more" appends products
     const gridSection = document.querySelector('.facest-filters-section');
     function updateShownCount() {
       const container = document.querySelector('[data-product-container]');
       if (!container) return;
-      const shown = container.querySelectorAll('.m-product-item:not(.m-review-card-item):not(.m-grid-banner)').length;
+      hideIncompleteLastRow(container);
+      const shown = container.querySelectorAll('.m-product-item:not(.m-review-card-item):not(.m-grid-banner):not(.m-product-item--row-hidden)').length;
       document.querySelectorAll('[data-shown-count]').forEach((el) => {
         if (el.textContent !== String(shown)) el.textContent = shown;
       });
@@ -914,6 +935,12 @@
         clearTimeout(countTimer);
         countTimer = setTimeout(updateShownCount, 50);
       }).observe(gridSection, { childList: true, subtree: true });
+      updateShownCount();
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(updateShownCount, 150);
+      });
     }
 
     function initLoadMoreFilters() {
