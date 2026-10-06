@@ -1,0 +1,20 @@
+{%- comment -%}
+  Mascot links for the "Shop by College" megamenu block (desktop panel + mobile drawer).
+  Uses the menu picked in the block; falls back to the Figma defaults ("Label|/url" pairs separated by ";;").
+
+  Accepts:
+  - block: steele_mega_college block
+  - link_class: class added to each <a>
+{%- endcomment -%}
+{%- assign mascots_menu = block.settings.mascots_menu -%}
+{%- if mascots_menu != blank and linklists[mascots_menu].links.size > 0 -%}
+  {%- for link in linklists[mascots_menu].links -%}
+    <li><a href="{{ link.url }}" class="{{ link_class }}">{{ link.title }}</a></li>
+  {%- endfor -%}
+{%- else -%}
+  {%- assign pairs = 'Bears|/collections/bears-teams;;Bulldogs|/collections/bulldog-teams;;Cats|/collections/cats-teams;;Eagles|/collections/eagles-teams;;Gators|/collections/gators-teams;;Lions|/collections/lions-teams;;Rams|/collections/rams-teams;;Tigers|/collections/gold-stud-earrings' | split: ';;' -%}
+  {%- for pair in pairs -%}
+    {%- assign parts = pair | split: '|' -%}
+    <li><a href="{{ parts.last }}" class="{{ link_class }}">{{ parts.first }}</a></li>
+  {%- endfor -%}
+{%- endif -%}
